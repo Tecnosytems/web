@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TecnoSystems · Soluciones Tecnológicas</title>
+<meta name="description" content="TecnoSystems: climatización, refrigeración, electricidad y energía solar fotovoltaica en Málaga y la Axarquía. Instalación, mantenimiento y reparación.">
+<link rel="icon" type="image/png" href="img/icono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --orange:#F47C48; --orange-d:#d9622f;
+  --ink:#0d0f12; --ink-2:#15181d; --line:#262a31;
+  --text:#eef0f3; --muted:#9aa1ab;
+  --paper:#f6f4f1;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--text);font-family:Archivo,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.mono{font-family:"JetBrains Mono",monospace;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
+
+/* header */
+header{position:sticky;top:0;z-index:10;background:rgba(13,15,18,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav img{height:42px;width:auto;display:block}
+.nav ul{display:flex;gap:28px;list-style:none}
+.nav ul a{text-decoration:none;color:var(--muted);font-weight:500;font-size:.95rem}
+.nav ul a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--orange);color:#111;font-weight:600;text-decoration:none;padding:13px 22px;border-radius:4px;transition:background .2s,transform .2s}
+.btn:hover{background:#ff8f5e;transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--orange);background:transparent}
+.nav .btn{padding:9px 16px;font-size:.9rem}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding:96px 0 88px;border-bottom:1px solid var(--line)}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;opacity:.35;mask-image:radial-gradient(ellipse at 70% 30%,#000 10%,transparent 70%)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,5.2vw,3.8rem);line-height:1.05;font-weight:800;letter-spacing:-.02em;margin:18px 0 22px}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero p.lead{font-size:1.15rem;color:var(--muted);max-width:34em;margin-bottom:34px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.panel{background:var(--ink-2);border:1px solid var(--line);border-radius:6px;padding:28px}
+.panel .row{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px dashed var(--line);font-size:.98rem}
+.panel .row:last-child{border-bottom:0}
+.panel .row span:last-child{color:var(--muted);text-align:right}
+.panel .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;margin-right:8px;box-shadow:0 0 10px #4ade80}
+
+/* sections */
+section{padding:88px 0}
+.head{max-width:620px;margin-bottom:48px}
+.head h2{font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.15;font-weight:800;letter-spacing:-.015em;margin-top:12px}
+.head p{color:var(--muted);margin-top:14px;font-size:1.05rem}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.card{background:var(--ink);padding:32px 28px;transition:background .2s}
+.card:hover{background:var(--ink-2)}
+.card svg{width:34px;height:34px;stroke:var(--orange);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-bottom:20px}
+.card h3{font-size:1.15rem;font-weight:600;margin-bottom:8px}
+.card p{color:var(--muted);font-size:.97rem}
+
+/* light band */
+.light{background:var(--paper);color:#1a1c20}
+.light .head p,.light .step p{color:#5b6068}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;counter-reset:s}
+.step{border-top:3px solid #1a1c20;padding-top:20px}
+.step::before{counter-increment:s;content:"0" counter(s);font-family:"JetBrains Mono",monospace;color:var(--orange-d);font-size:.85rem;font-weight:500}
+.step h3{font-size:1.1rem;margin:8px 0 6px}
+.step p{font-size:.96rem}
+
+/* zona */
+.zona{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.tags{display:flex;flex-wrap:wrap;gap:10px}
+.tags span{border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:.95rem;color:var(--muted)}
+.tags span.on{border-color:var(--orange);color:var(--text)}
+
+/* contacto */
+.contact{background:var(--orange);color:#111;border-radius:8px;padding:56px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center}
+.contact h2{font-size:clamp(1.8rem,3.6vw,2.6rem);line-height:1.1;font-weight:800;letter-spacing:-.015em}
+.contact p{margin-top:12px;font-size:1.05rem;color:#3a1f12}
+.contact .btn{background:#111;color:#fff;font-size:1.05rem;padding:16px 26px;word-break:break-all}
+.contact .btn:hover{background:#000}
+
+footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer img{height:28px;opacity:.85}
+
+@media (max-width:900px){
+  .hero .wrap,.zona,.contact{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .nav ul{display:none}
+}
+@media (max-width:560px){
+  .grid,.steps{grid-template-columns:1fr}
+  .hero{padding:64px 0}
+  section{padding:64px 0}
+  .contact{padding:32px 24px}
+  .nav .btn{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#"><img src="img/logo-blanco.png" alt="TecnoSystems · Soluciones Tecnológicas"></a>
+    <ul>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#como">Cómo trabajamos</a></li>
+      <li><a href="#zona">Zona</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a class="btn" href="mailto:info@tecnosystems.org">Pedir presupuesto</a>
+  </div>
+</header>
+
+<main>
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <div class="mono">Málaga · Axarquía</div>
+      <h1>Climatización, frío y energía <em>que funcionan.</em></h1>
+      <p class="lead">Instalación, mantenimiento y reparación de equipos de climatización, refrigeración, electricidad y autoconsumo solar fotovoltaico, para viviendas, comercios e instalaciones técnicas.</p>
+      <div class="ctas">
+        <a class="btn" href="#contacto">Solicitar presupuesto</a>
+        <a class="btn ghost" href="#servicios">Ver servicios</a>
+      </div>
+    </div>
+    <div class="panel" aria-label="Resumen">
+      <div class="row"><span><span class="dot"></span>Servicio técnico</span><span>Disponible</span></div>
+      <div class="row"><span>Experiencia</span><span>Más de 10 años en entorno hospitalario</span></div>
+      <div class="row"><span>Especialidad</span><span>HVAC · Frío · Fotovoltaica</span></div>
+      <div class="row"><span>Presupuesto</span><span>Sin compromiso</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="servicios">
+  <div class="wrap">
+    <div class="head">
+      <div class="mono">Servicios</div>
+      <h2>Todo lo técnico de tu instalación, con un solo profesional.</h2>
+      <p>Diagnóstico claro, trabajo limpio y explicación de lo que se hace y por qué.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="8" rx="1.5"/><path d="M7 17c0 1.5-1 2-1 3M12 17v3M17 17c0 1.5 1 2 1 3M6 10h12"/></svg>
+        <h3>Climatización</h3>
+        <p>Instalación y mantenimiento de aire acondicionado y bombas de calor: splits, conductos y equipos comerciales.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 24 24"><path d="M12 2v20M4.9 6.5l14.2 11M19.1 6.5 4.9 17.5M9.5 3.5 12 6l2.5-2.5M9.5 20.5 12 18l2.5 2.5"/></svg>
+        <h3>Refrigeración</h3>
+        <p>Reparación de equipos de frío comercial: cámaras, vitrinas, arcones y maquinaria de hostelería.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <h3>Energía solar fotovoltaica</h3>
+        <p>Estudio, diseño e instalación de autoconsumo para vivienda y negocio, con o sin baterías.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>
+        <h3>Electricidad</h3>
+        <p>Instalaciones eléctricas, cuadros, reformas, averías y adecuación de instalaciones a normativa.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg>
+        <h3>Mantenimiento preventivo</h3>
+        <p>Revisiones periódicas para que los equipos consuman menos, duren más y no fallen en verano.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <h3>Instalaciones comerciales</h3>
+        <p>Soluciones para locales, oficinas y comunidades: climatización, frío y electricidad coordinados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="como" class="light">
+  <div class="wrap">
+    <div class="head">
+      <div class="mono" style="color:var(--orange-d)">Cómo trabajamos</div>
+      <h2>Sencillo, de principio a fin.</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Nos cuentas</h3><p>Escríbenos con lo que necesitas o la avería que tienes. Si puedes, añade fotos.</p></div>
+      <div class="step"><h3>Valoramos</h3><p>Visitamos o revisamos el caso y te damos un presupuesto claro y sin compromiso.</p></div>
+      <div class="step"><h3>Ejecutamos</h3><p>Instalación o reparación con material de calidad y respetando la normativa.</p></div>
+      <div class="step"><h3>Seguimiento</h3><p>Te explicamos el resultado y te proponemos el mantenimiento adecuado.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="zona">
+  <div class="wrap zona">
+    <div class="head" style="margin-bottom:0">
+      <div class="mono">Zona de trabajo</div>
+      <h2>Málaga capital y la Axarquía.</h2>
+      <p>Trabajamos en Málaga y su provincia, con especial presencia en la comarca de la Axarquía. Si estás fuera de esta zona, consúltanos.</p>
+    </div>
+    <div class="tags">
+      <span class="on">Málaga</span><span class="on">Vélez-Málaga</span><span class="on">Benamocarra</span>
+      <span>Rincón de la Victoria</span><span>Torre del Mar</span><span>Torrox</span><span>Nerja</span>
+      <span>Iznate</span><span>Comares</span><span>Alrededores</span>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" style="padding-top:0">
+  <div class="wrap">
+    <div class="contact">
+      <div>
+        <h2>¿Tienes una avería o un proyecto?</h2>
+        <p>Cuéntanos qué necesitas y te respondemos con un presupuesto sin compromiso.</p>
+      </div>
+      <div>
+        <a class="btn" href="mailto:info@tecnosystems.org?subject=Solicitud%20de%20presupuesto">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          info@tecnosystems.org
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="img/logo-blanco.png" alt="TecnoSystems">
+    <span>© <span id="y">2026</span> TecnoSystems · Soluciones Tecnológicas · Málaga</span>
+  </div>
+</footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
