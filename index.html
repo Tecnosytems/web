@@ -266,6 +266,16 @@ footer a:hover{color:var(--orange)}
 .cal-k span::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;background:currentColor}
 .cal-k .k-n{color:var(--orange)}.cal-k .k-b{color:var(--cool)}.cal-k .k-m{color:var(--amber)}
 .cal-n{margin-top:8px;font-size:.7rem;color:var(--muted);line-height:1.4}
+.avisos-ay{margin-top:28px;padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--bg2)}
+.avisos-ay h3{font-size:1.1rem;font-weight:700}
+.avisos-ay .filters{margin-top:14px}
+.av{list-style:none;display:grid;gap:10px;margin-top:16px}
+.av li{display:grid;gap:3px;padding:12px 14px;border:1px solid var(--line);border-left:3px solid var(--c,var(--orange));border-radius:8px;background:var(--bg)}
+.av a{color:var(--text);text-decoration:none;font-weight:600;line-height:1.35}
+.av a:hover{color:var(--orange)}
+.av .meta{color:var(--muted);font-size:.82rem}
+.av .nuevo{display:inline-block;margin-left:8px;padding:1px 7px;border-radius:5px;background:var(--orange);color:#0D1219;font-size:.7rem;font-weight:700}
+.av .vacio{color:var(--muted);border-left-color:var(--line)}
 .cal-f{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:.76rem;color:var(--muted)}
 @media (max-width:680px){
   .clock>button{padding:2px 8px}
@@ -569,6 +579,18 @@ footer a:hover{color:var(--orange)}
         </div>
         <p class="updated" id="updated"></p>
       </div>
+      <div class="avisos-ay" id="avAyudas">
+        <h3>Avisos de convocatorias de ayudas</h3>
+        <p class="fine">Titulares recientes sobre ayudas públicas en Andalucía para cada área, recopilados automáticamente. Son informaciones de terceros: confirma siempre las bases en la convocatoria oficial.</p>
+        <div class="filters" role="group" aria-label="Área de la ayuda" id="avTabs">
+          <button type="button" data-t="Fotovoltaica" aria-pressed="true">Fotovoltaica</button>
+          <button type="button" data-t="Climatización" aria-pressed="false">Climatización</button>
+          <button type="button" data-t="Refrigeración" aria-pressed="false">Refrigeración</button>
+          <button type="button" data-t="Electricidad" aria-pressed="false">Electricidad</button>
+        </div>
+        <ul class="av" id="avList"></ul>
+        <p class="fine">Convocatorias oficiales: <a href="https://incentivos.agenciaandaluzadelaenergia.es/orden24en/" target="_blank" rel="noopener noreferrer">Agencia Andaluza de la Energía</a> · <a href="https://www.juntadeandalucia.es/eboja" target="_blank" rel="noopener noreferrer">BOJA</a> · <a href="https://www.idae.es" target="_blank" rel="noopener noreferrer">IDAE</a></p>
+      </div>
       <div class="filters" role="group" aria-label="Filtrar por tema" id="filters">
         <button type="button" data-t="" aria-pressed="true">Todas</button>
         <button type="button" data-t="Climatización" aria-pressed="false">Climatización</button>
@@ -860,6 +882,7 @@ footer a:hover{color:var(--orange)}
   var COLORS = {'Climatización':'var(--cool)','Refrigeración':'var(--cold)','Fotovoltaica':'var(--orange)','Electricidad':'var(--amber)'};
   var list = document.getElementById('news'), empty = document.getElementById('empty'), more = document.getElementById('more');
   var items = [], topic = '', shown = 7, STEP = 6;
+  var ayudas = [], avT = 'Fotovoltaica';
   var fmt = new Intl.DateTimeFormat('es-ES',{day:'numeric',month:'short'});
 
   function safe(u){ try{ var p = new URL(u); return (p.protocol==='https:'||p.protocol==='http:') ? p.href : null; }catch(e){ return null; } }
@@ -905,17 +928,33 @@ footer a:hover{color:var(--orange)}
     more.hidden = vis.length <= shown;
   }
 
+  function drawAv(){
+    var ul = document.getElementById('avList'); while(ul.firstChild) ul.removeChild(ul.firstChild);
+    var vis = ayudas.filter(function(i){ return i.topic === avT; }), now = Date.now(), n = 0;
+    vis.forEach(function(i){
+      var href = safe(i.link); if(!href) return;
+      var li = document.createElement('li'); li.style.setProperty('--c', COLORS[i.topic] || 'var(--orange)');
+      var a = document.createElement('a'); a.href = href; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = i.title;
+      var d = i.date ? new Date(i.date) : null, ok = d && !isNaN(d);
+      var m = document.createElement('span'); m.className = 'meta'; m.textContent = (i.source || '') + ((i.source && ok) ? ' · ' : '') + (ok ? fmt.format(d) : '');
+      if(ok && now - d.getTime() < 7*864e5){ var nw = document.createElement('span'); nw.className = 'nuevo'; nw.textContent = 'Nuevo'; m.appendChild(nw); }
+      li.appendChild(a); li.appendChild(m); ul.appendChild(li); n++;
+    });
+    if(!n){ var e = document.createElement('li'); e.className = 'vacio'; e.textContent = 'Todavía no hay avisos recientes en esta área. Consulta las convocatorias oficiales de abajo.'; ul.appendChild(e); }
+  }
+
   fetch('noticias.json?v=' + Math.floor(Date.now()/3600000))
     .then(function(r){ return r.ok ? r.json() : null; })
     .then(function(d){
       if(d && Array.isArray(d.items)) items = d.items;
+      if(d && Array.isArray(d.ayudas)) ayudas = d.ayudas;
       if(d && d.updated){
         var u = new Date(d.updated);
         if(!isNaN(u)) document.getElementById('updated').textContent = 'Actualizado el ' + new Intl.DateTimeFormat('es-ES',{day:'numeric',month:'long'}).format(u);
       }
-      render();
+      render(); drawAv();
     })
-    .catch(render);
+    .catch(function(){ render(); drawAv(); });
 
   document.getElementById('filters').addEventListener('click', function(e){
     var b = e.target.closest('button'); if(!b) return;
@@ -924,6 +963,12 @@ footer a:hover{color:var(--orange)}
     render();
   });
   more.addEventListener('click', function(){ shown += STEP; render(); });
+  document.getElementById('avTabs').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    avT = b.getAttribute('data-t');
+    Array.prototype.forEach.call(this.querySelectorAll('button'), function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    drawAv();
+  });
 
   /* Visitas (GoatCounter) */
   fetch('https://tecnosystems.goatcounter.com/counter/%2F.json')
