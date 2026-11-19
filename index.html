@@ -40,16 +40,36 @@ h1{font-size:clamp(2.3rem,6.4vw,4.6rem);line-height:1.02;font-weight:800;font-st
 .status i{width:8px;height:8px;border-radius:50%;background:var(--amber);flex:none}
 
 /* Escala de temperatura */
-.scale{margin-top:64px;max-width:860px}
-.track{position:relative;height:14px;border-radius:7px;background:linear-gradient(90deg,#4FB3E8 0%,#7ED0C0 28%,#F2B84B 60%,#F47C48 82%,#E4472B 100%)}
-.marker{position:absolute;top:-6px;left:0;width:0;height:26px;transition:left 1.8s cubic-bezier(.2,.8,.2,1)}
-.marker::before{content:"";position:absolute;left:-1px;top:0;width:3px;height:26px;border-radius:2px;background:var(--text);box-shadow:0 0 0 3px rgba(13,18,25,.9)}
-.marker b{position:absolute;left:0;bottom:36px;transform:translateX(-50%);white-space:nowrap;font:500 .95rem 'JetBrains Mono',monospace;color:var(--text);background:var(--bg2);border:1px solid var(--line);padding:3px 10px;border-radius:6px}
-.ticks{position:relative;height:1.2em;margin-top:10px;font:400 .78rem 'JetBrains Mono',monospace;color:var(--muted)}
-.ticks span{position:absolute;top:0;transform:translateX(-50%)}
-.ticks span:first-child{transform:none}
-.scale .cap{margin-top:14px;color:var(--muted);font-size:.92rem}
-.scale .cap span{color:var(--text)}
+.scale{margin-top:36px;max-width:400px}
+.scalewrap{display:flex;align-items:center;gap:10px;font:400 .74rem 'JetBrains Mono',monospace;color:var(--muted);padding:30px 0}
+.track{position:relative;flex:1;height:8px;border-radius:4px;background:linear-gradient(90deg,#4FB3E8 0%,#7ED0C0 28%,#F2B84B 60%,#F47C48 82%,#E4472B 100%)}
+.marker{position:absolute;top:-5px;left:0;width:0;height:18px;transition:left 1.8s cubic-bezier(.2,.8,.2,1)}
+.marker::before{content:"";position:absolute;left:-1px;top:0;width:2px;height:18px;border-radius:1px;background:var(--text);box-shadow:0 0 0 2px rgba(13,18,25,.9)}
+.marker b{position:absolute;left:0;bottom:24px;transform:translateX(-50%);white-space:nowrap;font:500 .74rem 'JetBrains Mono',monospace;color:var(--text);background:var(--bg2);border:1px solid var(--line);padding:2px 8px;border-radius:5px}
+.marker.m2 b{bottom:auto;top:24px}
+.scale .cap{color:var(--muted);font-size:.84rem}
+
+/* El tiempo */
+.wx{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:40px;margin-top:36px;align-items:start}
+.wxmap svg{width:100%;height:auto;display:block}
+.wxmap .land{fill:var(--bg2);stroke:#33445a;stroke-width:1;stroke-linejoin:round}
+.wxmap .dot circle{stroke:var(--bg);stroke-width:2}
+.wxmap .dot text.v{font:500 12px 'JetBrains Mono',monospace;fill:#0D1219;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.wxmap .dot text.n{font:500 10.5px 'Archivo',sans-serif;fill:var(--muted);text-anchor:middle;pointer-events:none}
+.wxmap .dot.mine circle{stroke:var(--text)}
+.days{display:flex;flex-wrap:wrap;gap:8px}
+.days button{font:500 .9rem 'Archivo',sans-serif;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 16px;cursor:pointer;transition:color .2s,border-color .2s,background .2s}
+.days button:hover{color:var(--text);border-color:var(--muted)}
+.days button[aria-pressed="true"]{color:#0D1219;background:var(--text);border-color:var(--text)}
+.wxnote{margin-top:12px;color:var(--muted);font-size:.88rem}
+.mine-list{list-style:none;margin-top:24px;border-top:1px solid var(--line)}
+.mine-list li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.mine-list b{font-weight:650;font-size:1.05rem}
+.mine-list span.r{font:400 .9rem 'JetBrains Mono',monospace;color:var(--muted);text-align:right}
+.mine-list span.r em{font-style:normal;color:var(--text);font-weight:500}
+.legend{margin-top:26px}
+.legend .bar{height:8px;border-radius:4px;background:linear-gradient(90deg,#4FB3E8 0%,#7ED0C0 28%,#F2B84B 60%,#F47C48 82%,#E4472B 100%)}
+.legend .ends{display:flex;justify-content:space-between;margin-top:6px;font:400 .76rem 'JetBrains Mono',monospace;color:var(--muted)}
 
 /* Secciones */
 section{padding:72px 0}
@@ -113,7 +133,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 footer a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
 footer a:hover{color:var(--orange)}
 
-@media (max-width:960px){.grid{grid-template-columns:1fr 1fr}#news{grid-template-columns:1fr 1fr}}
+@media (max-width:960px){.wx{grid-template-columns:1fr;gap:28px}.grid{grid-template-columns:1fr 1fr}#news{grid-template-columns:1fr 1fr}}
 @media (max-width:680px){
   .hero{padding:52px 0 48px}
   section{padding:52px 0}
@@ -128,7 +148,7 @@ footer a:hover{color:var(--orange)}
   #news li:first-child a.t{font-size:1.1rem}
   nav{gap:16px;font-size:.9rem}
   header img{height:22px}
-  .scale{margin-top:56px}
+  .scale{margin-top:32px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -142,6 +162,7 @@ footer a:hover{color:var(--orange)}
     <a href="#inicio" aria-label="TecnoSystems, inicio"><img src="logo-blanco.png" alt="TecnoSystems"></a>
     <nav aria-label="Principal">
       <a href="#areas">Áreas</a>
+      <a href="#tiempo">Tiempo</a>
       <a href="#novedades">Novedades</a>
       <a href="#contacto">Contacto</a>
     </nav>
@@ -155,12 +176,15 @@ footer a:hover{color:var(--orange)}
       <p class="lead">TecnoSystems es un proyecto dedicado a las instalaciones técnicas: climatización, refrigeración, electricidad y energía solar fotovoltaica. Desde Málaga.</p>
       <div class="status"><i></i>Ahora mismo no realizamos trabajos ni aceptamos encargos.</div>
 
-      <div class="scale" role="img" aria-label="Escala de temperatura de 0 a 45 grados centígrados, con la temperatura actual de Málaga marcada">
-        <div class="track">
-          <div class="marker" id="marker" hidden><b id="tnow"></b></div>
+      <div class="scale" role="group" aria-label="Temperatura actual en Málaga y Benamocarra">
+        <div class="scalewrap">
+          <span aria-hidden="true">0°</span>
+          <div class="track">
+            <div class="marker m1" id="m1" hidden><b id="t1"></b></div>
+            <div class="marker m2" id="m2" hidden><b id="t2"></b></div>
+          </div>
+          <span aria-hidden="true">45°</span>
         </div>
-        <div class="ticks" aria-hidden="true"><span style="left:0">0°</span><span style="left:22.2%">10°</span><span style="left:44.4%">20°</span><span style="left:66.7%">30°</span><span style="left:88.9%">40°</span></div>
-        <p class="cap" id="cap" hidden>Málaga ahora: <span id="tcap"></span>. Nuestro trabajo va de un extremo a otro de la escala.</p>
       </div>
     </div>
   </div>
@@ -218,6 +242,34 @@ footer a:hover{color:var(--orange)}
     </div>
   </section>
 
+  <section id="tiempo" style="border-top:1px solid var(--line)">
+    <div class="wrap">
+      <h2>El tiempo en España</h2>
+      <p class="sub">Temperatura por ciudad, ahora y en los próximos días. Los datos vienen de Open-Meteo y se consultan al abrir la página.</p>
+      <div class="wx">
+        <div class="wxmap">
+          <svg viewBox="0 0 560 470" role="img" aria-label="Mapa de España con la temperatura en las principales ciudades" id="wxsvg">
+            <path class="land" d="M438.3,266.6L437.5,267.3L434.9,266.8L430.8,267L430.6,265L431.1,263.6L431.7,262L434.3,264.8L438.2,265.1ZM496,205.2L499.9,206.5L503.8,204.7L505.9,205L508.1,205.6L508.8,208.9L507.3,212.7L505,216.5L503,220.7L501.5,225.5L498.2,228.5L495,230.3L487.9,227.5L483.9,226.9L482.7,225.7L481.3,220.6L479.5,219.2L476.7,218.6L474.5,220L471.7,223L469.8,220.4L467.4,220.1L466.3,218.5L466.1,216.4L481.6,202.9L486,199.8L495.8,195.9L497.4,196.2L496.3,198.2L496.4,199L497.7,199.8L497.5,201.4L496.4,202.7ZM540.9,198.7L540.2,199.4L527.7,194.5L523.7,194.2L522.6,193.4L522.5,190.3L522.7,189L530.6,187.6L537.3,189.2L541.4,194.8L541.7,195.8ZM431.7,254.3L430.4,257.5L424.3,256.8L422.8,255.5L423.9,251.9L425.8,251.4L425.6,248.9L427.3,246.2L435.8,243.6L437.9,245.3L438.5,247.8L433.7,253.5ZM297.5,29L297.6,30.7L299,33.2L300.7,34.1L303.9,35.2L306.4,35.4L309.7,35.9L312.1,37.3L312.3,39.4L311.6,41.9L310.3,44.2L309.6,46L310.4,47L311.7,47.7L312.9,47.9L313.8,47.6L314.5,46.2L315.6,44.5L316.3,44.3L316.3,45.2L316.9,46.3L321.1,48.3L330.3,51.7L333.8,51.6L336.8,52L337.7,53.5L343.7,59L345.1,58.8L347.6,58.8L350.7,58.2L352.9,57.1L354.4,57.2L356,58.3L358,59.1L360.6,60.9L362.9,63.1L364.4,63.8L373.5,61.8L375.6,63.2L377.7,63.1L380.2,62.6L385.5,63.1L389.8,62.7L390.2,62L390.4,56.9L391,55L391.9,54.6L394.5,54.8L403.8,57.3L407.7,59L411.5,60.3L414.8,60.3L416.8,61.2L420.1,65.9L419.8,68.3L420,69.2L420.5,70.9L420.5,72.8L421.4,74L422.8,74.1L424.7,73.5L426.5,72.7L429.9,70.4L430.9,70L436.9,72L439.6,73.4L440.6,75.1L442,76.7L443.7,76.9L446.1,75L449.9,73L456.6,74.2L464.1,76L467.2,76L467.3,74.8L467.7,73.2L468.9,72.4L470.7,72L473.2,71L475.9,69.4L478.8,68.6L482,69.4L485.8,70L488.2,69.8L489.4,72.9L491.4,74L492.3,76.7L489.1,78.5L487.1,78.8L486.9,83.7L487.8,85L489.8,86.1L490.5,87.5L491.5,94.6L487.9,99.1L482.8,104.4L457.3,121.6L451.4,129.5L449.2,131.4L429.7,137.3L415.9,143.2L409.3,145.3L401.4,154.5L397.7,158.3L401,159.1L404.8,163.1L403.6,165L398.5,168.1L396.1,169.1L394.9,168.7L393.6,169.2L385.3,184.7L377.6,196L373.3,200.9L369.1,208.2L359.9,226.9L359.9,232.1L365.6,250.1L368.5,254.8L372.7,258.7L380.5,261.7L382.4,265L379.9,268.4L372.6,274.4L359.8,282.5L354.4,288.8L353.4,294.7L349.6,297.5L348.4,305.8L346.3,311.3L345.7,313.1L343.4,317.4L343.2,320.3L347.4,324.4L345.4,326.2L343.4,327.1L338.7,327.7L322.9,328.7L310.4,337.9L304.1,346L298.6,360.8L291.7,369.7L288.6,371.4L283.7,367.6L277.6,367.1L271.7,368.5L268.7,371.5L263.9,373.2L259.1,371.8L249,371.1L244.4,371.3L237.3,373.8L231.2,372.2L221,371.4L198.7,373.1L196.1,374.1L193.2,377.7L186,383.9L175.3,384L165.4,387.9L163,390.5L158.7,397.4L157.2,402.6L156.5,402.7L155.5,401.4L153.8,401.7L153,405.7L149.2,407.4L146.2,408L138.6,404.6L132.5,399.6L129.2,399.3L124,391.6L121.8,386.8L120.3,381.6L120.6,379.7L120.2,378L115.5,375.8L114.5,371L118.2,365L121.1,362.4L122.9,361.8L118.6,361.9L115.4,365.8L111.6,359.3L95.9,346.5L97.1,343.7L97,342.1L94.2,345.3L92.3,346.1L84,345.3L74.5,346.4L72.6,333.5L71.6,328.5L71.5,325.4L74.3,318.2L77,315.3L80.8,309.3L85.3,304.3L89.9,303.3L92,302.6L93.7,298.7L94.8,295.4L94.1,295L88.9,295.5L79.9,281L80.3,278.7L81.6,275.3L82.6,271.2L82.9,267.8L85.4,265L89.3,262.3L92.6,258.4L94.3,254.3L94.9,250.7L93.1,248L88,246.4L83.2,235.8L82.3,229.2L81.2,228.5L78,225.4L75.1,219.8L74.7,218.8L78,218L91.3,218.5L94.1,217.4L94.6,217L97.2,212.7L100,205.7L100.7,201.3L99.9,199.5L95.7,195L95.6,193.7L96.4,191.6L99,189.5L102.6,187.1L104.7,185L104.3,183.3L103.2,181.4L103.2,179.8L103.9,177.8L104.3,170.8L104.9,169L104.5,162.7L103.8,157.5L101.3,150.7L101.9,149.2L103.2,148L107.3,145.8L110.8,140.4L115.8,136L122.2,132.6L126.6,128.6L128.5,125.5L129.8,124.7L129.4,123.3L128.6,121.1L126.2,119L123,117.7L119.5,117.6L117.3,117.2L116.8,115.5L117,111.1L117,106.7L116.4,104.8L114.8,103.2L111.5,103.5L108.8,102.2L106.6,101.8L105.3,102.7L99.2,102.2L96.6,101.4L94.7,100.5L93.6,100.9L92.8,101.8L92.7,103.1L92.2,104.8L89.8,106.3L84.6,107.7L80.5,107.3L76.7,106.1L75.5,105.1L73.7,104.4L65.9,104.9L64.9,104.2L62.2,105.7L58.2,107.5L55.9,107.4L55.1,107L54.9,106.1L53.4,103L53.9,101.4L57.3,96.9L57.1,95.8L55.8,94.2L54.8,91.9L54.4,90.8L52.4,90.6L50.3,91.6L41.9,93.5L40,94.2L36.3,96.3L32.4,99.6L29.6,100.1L28.6,99L28.8,90.9L33.4,85.8L36.6,82.7L35.3,82L32,81.9L32.3,79.3L34,78.2L35.7,75.6L34,74.2L32.7,72.3L33,67.6L33.5,65.7L33.2,63.6L26.4,66.1L24.6,65.5L24.9,62L28.8,56.8L29.3,55.3L25,54.2L22,51.3L20.2,48.9L18.3,45.4L18.4,42.4L21,35.5L24.3,33.5L27,32.4L33,27.9L40.6,29.2L45.5,28.5L49.9,26.2L52.5,25.7L56.5,23.8L56.5,20.8L55.3,18.5L56.6,16.5L61.1,14.2L66.3,11.1L71.9,10.8L77.8,8L81.6,10.1L85,9.7L88.7,12L93.6,17.4L101,19.9L107.1,18.4L117.6,18.5L122.9,19.3L132.4,18.3L137.7,18.9L146.3,16.5L153.1,19.9L166.1,21.7L173.8,24.5L195.5,29.1L203.5,29.3L214.5,26.8L219.2,25L223.5,26.2L229.8,24L232.9,24.4L236.8,27.5L250.8,31.5L254.4,28L257.1,27.2L267.1,29.2L277.2,33.4L282.5,33.6L290.1,32.3L296.3,29.3Z"/>
+            <path class="land" d="M65,439.1L62.7,446.2L60.5,449L59.2,450L56,450.7L52.2,446.3L50.3,441.7L49.2,440.3L50.9,439.2L53.4,439.3L58.8,438.4L59.9,438L65.4,433.4L70.8,432.9L70.9,434.4ZM137.4,422.3L135.5,424.4L133.4,423.6L134.4,419.1L135.3,417.7L139.2,415.7L142.4,414.9L143.3,412.8L144.4,412L145.5,413.3L144.6,414.7L144,419.3L141.8,420.7ZM124.1,445.7L120.3,449.2L116.5,448.4L115.9,447.8L119.7,446.9L123.1,444.2L125.3,438.2L128.8,431.6L129.5,428.7L130.8,427.6L132.7,427.5L133.4,427.7L134.3,429.2L134.3,432.6L133.3,438.1L131.6,443ZM90.8,446.3L90.6,448.8L91.2,451.1L91.1,454.9L89.9,456.8L86.4,458.9L83.8,458.5L82.3,457.7L79.6,454.5L79.5,451.1L82,448.9L83,446.1L89.4,446.6L90,446.1L90.4,446ZM41.5,450.3L40.4,450.5L39,449.7L37.6,447.3L38.6,445.4L39.4,444.6L40.7,444.7L43,446.1L43.8,447.4L43.8,448.3ZM22.1,456.9L19.4,462L16,460.1L15.2,459.5L14.5,458.4L17.8,458.2L21.1,455.7ZM23.6,435.5L22.9,435.7L22.2,433.2L18.9,427.1L20.9,424.4L24.6,424.4L26.1,426.2L26.6,428.2L25.9,429.3L26.1,431.6L25.7,433.1Z"/>
+            <g id="wxdots"></g>
+          </svg>
+        </div>
+        <div>
+          <div class="days" role="group" aria-label="Elegir día" id="days">
+            <button type="button" data-d="now" aria-pressed="true">Ahora</button>
+            <button type="button" data-d="0" aria-pressed="false">Hoy</button>
+            <button type="button" data-d="1" aria-pressed="false">Mañana</button>
+            <button type="button" data-d="2" aria-pressed="false">Pasado</button>
+          </div>
+          <p class="wxnote" id="wxnote">Temperatura actual.</p>
+          <ul class="mine-list" id="mine" aria-live="polite"></ul>
+          <div class="legend" aria-hidden="true"><div class="bar"></div><div class="ends"><span>0°</span><span>15°</span><span>30°</span><span>45°</span></div></div>
+        </div>
+      </div>
+      <p class="empty" id="wxerr" hidden>No se ha podido cargar el tiempo ahora mismo. Vuelve a intentarlo en un rato.</p>
+    </div>
+  </section>
+
   <section id="novedades" style="border-top:1px solid var(--line)">
     <div class="wrap">
       <div class="news-head">
@@ -259,23 +311,105 @@ footer a:hover{color:var(--orange)}
 (function(){
   document.getElementById('y').textContent = new Date().getFullYear();
 
-  /* Temperatura actual de Málaga sobre la escala */
+  /* Tiempo: escala del inicio + mapa de España */
   var MIN = 0, MAX = 45;
-  fetch('https://api.open-meteo.com/v1/forecast?latitude=36.72&longitude=-4.42&current=temperature_2m')
+  var CITIES = [["A Coruña",43.37,-8.4,50.7,27],["Bilbao",43.26,-2.93,255.1,37.2],["Barcelona",41.39,2.17,452.2,125.9],["Zaragoza",41.65,-0.89,334.1,118.3],["Valladolid",41.65,-4.72,187.2,119.8],["Madrid",40.42,-3.7,226.3,183.2],["Palma",39.57,2.65,477.3,217.9],["Valencia",39.47,-0.38,357.8,229.5],["Badajoz",38.88,-6.97,95.6,259.8],["Murcia",37.99,-1.13,330.3,306.4],["Sevilla",37.39,-5.98,133.2,337.6],["Granada",37.18,-3.6,230.4,349.5],["Málaga",36.72,-4.42,196.6,373.1],["Las Palmas",28.12,-15.41,90.5,447.2]];
+  var MINE = [['Málaga',36.72,-4.42],['Benamocarra',36.7936,-4.1928]];
+  var STOPS = [[0,[79,179,232]],[12.6,[126,208,192]],[27,[242,184,75]],[36.9,[244,124,72]],[45,[228,71,43]]];
+  function tcolor(t){
+    t = Math.min(Math.max(t,MIN),MAX);
+    for(var i=1;i<STOPS.length;i++){
+      if(t <= STOPS[i][0]){
+        var a = STOPS[i-1], b = STOPS[i], k = (t - a[0]) / (b[0] - a[0]);
+        return 'rgb(' + [0,1,2].map(function(j){ return Math.round(a[1][j] + (b[1][j]-a[1][j])*k); }).join(',') + ')';
+      }
+    }
+    return 'rgb(228,71,43)';
+  }
+  function fmtT(t, d){ return t.toLocaleString('es-ES',{maximumFractionDigits:d==null?1:d}) + ' °C'; }
+  var WX = null, dayMode = 'now';
+  var SVGNS = 'http://www.w3.org/2000/svg';
+
+  function el(n, attrs, txt){
+    var e = document.createElementNS(SVGNS, n);
+    for(var k in attrs) e.setAttribute(k, attrs[k]);
+    if(txt != null) e.textContent = txt;
+    return e;
+  }
+
+  function valueFor(p){
+    if(dayMode === 'now') return p.now;
+    return p.max[+dayMode];
+  }
+
+  function drawMap(){
+    var g = document.getElementById('wxdots'); g.textContent = '';
+    CITIES.forEach(function(c, idx){
+      var p = WX[idx]; if(!p) return;
+      var v = valueFor(p); if(typeof v !== 'number') return;
+      var dot = el('g', {'class':'dot' + (c[0]==='Málaga' ? ' mine' : '')});
+      dot.appendChild(el('title', {}, c[0] + ': ' + fmtT(v) + (dayMode==='now' ? '' : ' (máx.), mín. ' + fmtT(p.min[+dayMode]))));
+      dot.appendChild(el('circle', {cx:c[3], cy:c[4], r:15, fill:tcolor(v)}));
+      dot.appendChild(el('text', {'class':'v', x:c[3], y:c[4]}, String(Math.round(v))));
+      dot.appendChild(el('text', {'class':'n', x:c[3], y:c[4] + (c[0]==='Granada' || c[0]==='Las Palmas' ? -21 : 28)}, c[0]));
+      g.appendChild(dot);
+    });
+  }
+
+  function drawMine(){
+    var ul = document.getElementById('mine'); ul.textContent = '';
+    MINE.forEach(function(m, k){
+      var p = WX[CITIES.length + k]; if(!p) return;
+      var d = dayMode === 'now' ? 0 : +dayMode;
+      var li = document.createElement('li');
+      var b = document.createElement('b'); b.textContent = m[0];
+      var r = document.createElement('span'); r.className = 'r';
+      if(dayMode === 'now'){
+        r.appendChild(document.createTextNode('ahora '));
+        var e = document.createElement('em'); e.textContent = fmtT(p.now); r.appendChild(e);
+        r.appendChild(document.createTextNode(' · hoy ' + fmtT(p.min[0],0) + ' / ' + fmtT(p.max[0],0)));
+      } else {
+        r.appendChild(document.createTextNode('máx '));
+        var e2 = document.createElement('em'); e2.textContent = fmtT(p.max[d],0); r.appendChild(e2);
+        r.appendChild(document.createTextNode(' · mín ' + fmtT(p.min[d],0)));
+      }
+      li.appendChild(b); li.appendChild(r); ul.appendChild(li);
+    });
+  }
+
+  function placeMarkers(){
+    [['m1','t1',0],['m2','t2',1]].forEach(function(x){
+      var p = WX[CITIES.length + x[2]]; if(!p || typeof p.now !== 'number') return;
+      var m = document.getElementById(x[0]);
+      document.getElementById(x[1]).textContent = MINE[x[2]][0] + ' ' + fmtT(p.now);
+      m.hidden = false;
+      var pct = Math.min(Math.max((p.now - MIN) / (MAX - MIN), 0.03), 0.97) * 100;
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ m.style.left = pct + '%'; }); });
+    });
+  }
+
+  var all = CITIES.map(function(c){ return [c[1], c[2]]; }).concat(MINE.map(function(m){ return [m[1], m[2]]; }));
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=' + all.map(function(a){ return a[0]; }).join(',') +
+        '&longitude=' + all.map(function(a){ return a[1]; }).join(',') +
+        '&current=temperature_2m&daily=temperature_2m_max,temperature_2m_min&forecast_days=3&timezone=auto')
     .then(function(r){ return r.ok ? r.json() : null; })
     .then(function(d){
-      if(!d || !d.current || typeof d.current.temperature_2m !== 'number') return;
-      var t = d.current.temperature_2m;
-      var txt = t.toLocaleString('es-ES',{maximumFractionDigits:1}) + ' °C';
-      var m = document.getElementById('marker');
-      document.getElementById('tnow').textContent = txt;
-      document.getElementById('tcap').textContent = txt;
-      document.getElementById('cap').hidden = false;
-      m.hidden = false;
-      var pct = Math.min(Math.max((t - MIN) / (MAX - MIN), 0.03), 0.97) * 100;
-      requestAnimationFrame(function(){ requestAnimationFrame(function(){ m.style.left = pct + '%'; }); });
+      if(!Array.isArray(d)) d = d ? [d] : [];
+      if(d.length !== all.length) throw new Error('datos incompletos');
+      WX = d.map(function(x){
+        return { now: x.current && x.current.temperature_2m, max: (x.daily && x.daily.temperature_2m_max) || [], min: (x.daily && x.daily.temperature_2m_min) || [] };
+      });
+      placeMarkers(); drawMap(); drawMine();
     })
-    .catch(function(){});
+    .catch(function(){ document.getElementById('wxerr').hidden = false; });
+
+  document.getElementById('days').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b || !WX) return;
+    dayMode = b.getAttribute('data-d');
+    Array.prototype.forEach.call(this.querySelectorAll('button'), function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    document.getElementById('wxnote').textContent = dayMode === 'now' ? 'Temperatura actual.' : 'Temperatura máxima prevista.';
+    drawMap(); drawMine();
+  });
 
   /* Novedades automáticas */
   var COLORS = {'Climatización':'var(--cool)','Refrigeración':'var(--cold)','Fotovoltaica':'var(--orange)','Electricidad':'var(--amber)'};
