@@ -99,8 +99,13 @@ footer .links{margin-top:8px}
 <footer>
   <div class="wrap">© <span id="y">2026</span> TecnoSystems · Soluciones Tecnológicas
     <div class="links"><a href="privacidad.html">Política de privacidad</a> · <a href="condiciones.html">Condiciones del servicio</a></div>
+    <div class="links" id="vis" style="display:none">Visitas: <span id="visn"></span></div>
   </div>
 </footer>
 <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+<script data-goatcounter="https://tecnosystems.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+fetch('https://tecnosystems.goatcounter.com/counter/TOTAL.json').then(function(r){return r.ok?r.json():null}).then(function(d){if(d&&d.count){document.getElementById('visn').textContent=d.count;document.getElementById('vis').style.display=''}}).catch(function(){});
+</script>
 </body>
 </html>
