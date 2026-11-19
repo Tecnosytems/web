@@ -13,7 +13,7 @@ jobs:
       - name: Descargar titulares
         run: |
           python3 - <<'PY'
-          import json, re, datetime, urllib.request, urllib.parse
+          import json, re, html, datetime, urllib.request, urllib.parse
           import xml.etree.ElementTree as ET
           from email.utils import parsedate_to_datetime
 
@@ -39,6 +39,34 @@ jobs:
               except Exception:
                   return None
 
+          def imagen_feed(it):
+              for e in it.iter():
+                  etiqueta = e.tag.split("}")[-1]
+                  u = e.get("url") or ""
+                  if etiqueta in ("content", "thumbnail", "enclosure") and u.startswith("http"):
+                      tipo = e.get("type") or e.get("medium") or ""
+                      if not tipo or tipo.startswith("image") or tipo == "image":
+                          return u
+              for e in it.iter():
+                  if e.tag.split("}")[-1] in ("description", "encoded") and e.text:
+                      m = re.search(r'<img[^>]+src=["\']([^"\']+)', e.text)
+                      if m and m.group(1).startswith("http"):
+                          return html.unescape(m.group(1))
+              return ""
+
+          def imagen_pagina(url):
+              try:
+                  req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (compatible; TecnoSystemsBot/1.0)"})
+                  with urllib.request.urlopen(req, timeout=12) as r:
+                      cabeza = r.read(250000).decode("utf-8", "ignore")
+                  for pat in (r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)', r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\']'):
+                      m = re.search(pat, cabeza, re.I)
+                      if m and m.group(1).startswith("http"):
+                          return html.unescape(m.group(1))
+              except Exception:
+                  pass
+              return ""
+
           def leer(url, tema, fuente_fija=None):
               raiz = ET.fromstring(bajar(url))
               salida = []
@@ -54,7 +82,7 @@ jobs:
                       titulo, fuente = cabeza.strip(), cola.strip()
                   d = fecha(it.findtext("pubDate") or "")
                   if titulo and enlace.startswith("http") and d:
-                      salida.append({"topic": tema, "title": titulo, "link": enlace, "source": fuente, "date": d})
+                      salida.append({"topic": tema, "title": titulo, "link": enlace, "source": fuente, "date": d, "image": imagen_feed(it)})
               return salida
 
           todas = []
@@ -86,6 +114,13 @@ jobs:
               vistos.add(clave)
               por_tema[n["topic"]] = por_tema.get(n["topic"], 0) + 1
               final.append({**n, "date": n["date"].strftime("%Y-%m-%dT%H:%M:%SZ")})
+
+          intentos = 0
+          for n in final:
+              if not n.get("image") and "news.google.com" not in n["link"] and intentos < 40:
+                  intentos += 1
+                  n["image"] = imagen_pagina(n["link"])
+          print("Con imagen:", sum(1 for n in final if n.get("image")), "de", len(final))
 
           if final:
               with open("noticias.json", "w", encoding="utf-8") as f:
