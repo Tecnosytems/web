@@ -39,6 +39,9 @@ a{color:inherit}
 .contact a:hover{color:var(--orange)}
 
 footer{margin-top:auto;border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:.88rem;text-align:center}
+footer a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
+footer a:hover{color:var(--orange)}
+footer .links{margin-top:8px}
 
 @media (max-width:860px){.grid{grid-template-columns:1fr 1fr}}
 @media (max-width:520px){.grid{grid-template-columns:1fr}.hero{padding:56px 0 40px}}
@@ -94,7 +97,9 @@ footer{margin-top:auto;border-top:1px solid var(--line);padding:28px 0;color:var
 </main>
 
 <footer>
-  <div class="wrap">© <span id="y">2026</span> TecnoSystems · Soluciones Tecnológicas</div>
+  <div class="wrap">© <span id="y">2026</span> TecnoSystems · Soluciones Tecnológicas
+    <div class="links"><a href="privacidad.html">Política de privacidad</a> · <a href="condiciones.html">Condiciones del servicio</a></div>
+  </div>
 </footer>
 <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
