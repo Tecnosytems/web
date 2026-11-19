@@ -24,6 +24,16 @@ jobs:
               "Electricidad": ["instalaciones eléctricas baja tensión REBT", "instaladores eléctricos normativa"],
           }
           DIRECTOS = [("Fotovoltaica", "https://www.pv-magazine.es/feed/")]
+          AYUDAS = {
+              "Fotovoltaica": ["ayudas autoconsumo fotovoltaico Andalucía", "incentivos placas solares baterías Junta de Andalucía", "Agencia Andaluza de la Energía convocatoria autoconsumo"],
+              "Climatización": ["ayudas aerotermia bomba de calor Andalucía", "subvenciones climatización eficiencia energética Junta de Andalucía", "Agencia Andaluza de la Energía incentivos climatización"],
+              "Refrigeración": ["ayudas refrigeración eficiencia energética empresas Andalucía", "subvenciones frío industrial comercio Andalucía", "incentivos eficiencia energética pymes Junta de Andalucía"],
+              "Electricidad": ["ayudas instalaciones eléctricas rehabilitación Andalucía", "subvenciones eficiencia energética vivienda Junta de Andalucía", "ayudas punto de recarga vehículo eléctrico Andalucía"],
+          }
+          CLAVES_AYUDA = ("ayuda", "subvenci", "incentivo", "convocatoria", "bono", "plan renove", "fondos", "feder")
+          CLAVES_ZONA = ("andaluc", "junta", "málaga", "malaga", "sevilla", "granada", "córdoba", "cordoba", "cádiz", "cadiz", "almería", "almeria", "jaén", "jaen", "huelva", "españa", "estatal", "idae", "next generation")
+          AYUDAS_POR_TEMA = 5
+          AYUDAS_DIAS = 90
           POR_TEMA = 8
           DIAS = 30
 
@@ -103,6 +113,17 @@ jobs:
               except Exception as e:
                   print("ERR", tema, "|", url, "|", e)
 
+          avisos = []
+          for tema, consultas in AYUDAS.items():
+              for q in consultas:
+                  url = "https://news.google.com/rss/search?q=" + urllib.parse.quote(q + " when:60d") + "&hl=es&gl=ES&ceid=ES:es"
+                  try:
+                      encontradas = leer(url, tema)
+                      print("AYU", tema, "|", q, "|", len(encontradas))
+                      avisos += encontradas
+                  except Exception as e:
+                      print("ERR", tema, "|", q, "|", e)
+
           limite = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=DIAS)
           vistos, por_tema, final = set(), {}, []
           for n in sorted(todas, key=lambda x: x["date"], reverse=True):
@@ -115,6 +136,22 @@ jobs:
               por_tema[n["topic"]] = por_tema.get(n["topic"], 0) + 1
               final.append({**n, "date": n["date"].strftime("%Y-%m-%dT%H:%M:%SZ")})
 
+          lim_ay = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=AYUDAS_DIAS)
+          vistos_ay, cont_ay, ayudas_final = set(), {}, []
+          for n in sorted(avisos, key=lambda x: x["date"], reverse=True):
+              t = n["title"].lower()
+              clave = re.sub(r"\W+", " ", t).strip()[:80]
+              if clave in vistos_ay or n["date"] < lim_ay:
+                  continue
+              if not any(k in t for k in CLAVES_AYUDA) or not any(k in t for k in CLAVES_ZONA):
+                  continue
+              if cont_ay.get(n["topic"], 0) >= AYUDAS_POR_TEMA:
+                  continue
+              vistos_ay.add(clave)
+              cont_ay[n["topic"]] = cont_ay.get(n["topic"], 0) + 1
+              ayudas_final.append({"topic": n["topic"], "title": n["title"], "link": n["link"], "source": n["source"], "date": n["date"].strftime("%Y-%m-%dT%H:%M:%SZ")})
+          print("Avisos de ayudas:", len(ayudas_final), cont_ay)
+
           intentos = 0
           for n in final:
               if not n.get("image") and "news.google.com" not in n["link"] and intentos < 40:
@@ -124,7 +161,7 @@ jobs:
 
           if final:
               with open("noticias.json", "w", encoding="utf-8") as f:
-                  json.dump({"updated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "items": final}, f, ensure_ascii=False, indent=1)
+                  json.dump({"updated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "items": final, "ayudas": ayudas_final}, f, ensure_ascii=False, indent=1)
               print("Guardadas", len(final), "noticias")
           else:
               print("Sin noticias nuevas: se conserva el archivo anterior")
