@@ -105,7 +105,7 @@ footer .links{margin-top:8px}
 <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 <script data-goatcounter="https://tecnosystems.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script>
-fetch('https://tecnosystems.goatcounter.com/counter/TOTAL.json').then(function(r){return r.ok?r.json():null}).then(function(d){if(d&&d.count){document.getElementById('visn').textContent=d.count;document.getElementById('vis').style.display=''}}).catch(function(){});
+fetch('https://tecnosystems.goatcounter.com/counter/%2F.json').then(function(r){return r.ok?r.json():null}).then(function(d){if(d&&d.count){document.getElementById('visn').textContent=d.count;document.getElementById('vis').style.display=''}}).catch(function(){});
 </script>
 </body>
 </html>
