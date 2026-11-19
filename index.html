@@ -22,6 +22,9 @@ a{color:inherit}
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 .mono{font-family:'JetBrains Mono',monospace}
 
+/* Aviso */
+.aviso{background:var(--orange);color:#0D1219;text-align:center;padding:11px 16px;font-weight:700;font-size:1rem;line-height:1.35}
+
 /* Cabecera */
 header{position:sticky;top:0;z-index:20;background:rgba(13,18,25,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
@@ -159,6 +162,7 @@ footer a:hover{color:var(--orange)}
 </style>
 </head>
 <body>
+<div class="aviso" role="status">Ahora mismo no realizamos trabajos ni aceptamos encargos.</div>
 <header>
   <div class="wrap">
     <a href="#inicio" aria-label="TecnoSystems, inicio"><img src="logo-blanco.png" alt="TecnoSystems"></a>
@@ -175,7 +179,6 @@ footer a:hover{color:var(--orange)}
     <div class="wrap">
       <h1>Tecnología aplicada a la climatización, el frío y la energía.</h1>
       <p class="lead">TecnoSystems es un proyecto dedicado a las instalaciones técnicas: climatización, refrigeración, electricidad y energía solar fotovoltaica. Desde Málaga.</p>
-      <div class="status"><i></i>Ahora mismo no realizamos trabajos ni aceptamos encargos.</div>
 
       <div class="wxpanel">
         <div class="wxinfo">
