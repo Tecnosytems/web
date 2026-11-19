@@ -66,6 +66,10 @@ h1{font-size:clamp(2.1rem,3.7vw,3.2rem);line-height:1.04;font-weight:800;font-st
 .wxmap .dot text.v{font:500 12px 'JetBrains Mono',monospace;fill:#0D1219;text-anchor:middle;dominant-baseline:central;pointer-events:none}
 .wxmap .dot text.n{font:500 10.5px 'Archivo',sans-serif;fill:var(--muted);text-anchor:middle;pointer-events:none}
 .wxmap .dot.mine circle{stroke:var(--text)}
+.wxmap a.dot{cursor:pointer}
+.wxmap a.dot:hover text.n{fill:var(--text);text-decoration:underline}
+.wxmap a.dot:hover circle,.wxmap a.dot:focus-visible circle{stroke:var(--orange);stroke-width:3}
+.wxmap a.dot:focus-visible{outline:none}
 .days{display:flex;flex-wrap:wrap;gap:8px}
 .days button{font:500 .9rem 'Archivo',sans-serif;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 16px;cursor:pointer;transition:color .2s,border-color .2s,background .2s}
 .days button:hover{color:var(--text);border-color:var(--muted)}
@@ -73,7 +77,8 @@ h1{font-size:clamp(2.1rem,3.7vw,3.2rem);line-height:1.04;font-weight:800;font-st
 .wxnote{margin-top:14px;color:var(--muted);font-size:.88rem}
 .mine-list{list-style:none;margin-top:24px;border-top:1px solid var(--line)}
 .mine-list li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
-.mine-list b{font-weight:650;font-size:1.05rem}
+.mine-list a.city{font-weight:650;font-size:1.05rem;color:var(--text);text-decoration:none;border-bottom:1px solid var(--line);transition:color .2s,border-color .2s}
+.mine-list a.city:hover{color:var(--orange);border-color:var(--orange)}
 .mine-list span.r{font:400 .9rem 'JetBrains Mono',monospace;color:var(--muted);text-align:right}
 .mine-list span.r em{font-style:normal;color:var(--text);font-weight:500}
 
@@ -203,7 +208,7 @@ footer a:hover{color:var(--orange)}
             <button type="button" data-d="1" aria-pressed="false">Mañana</button>
             <button type="button" data-d="2" aria-pressed="false">Pasado</button>
           </div>
-          <p class="wxnote" id="wxnote">Temperatura actual en España. Datos de Open-Meteo.</p>
+          <p class="wxnote" id="wxnote">Temperatura actual (Open-Meteo). Pulsa una ciudad para ver su previsión de los próximos días en AEMET.</p>
           <ul class="mine-list" id="mine" aria-live="polite"></ul>
           <p class="empty" id="wxerr" hidden>No se ha podido cargar el tiempo ahora mismo. Vuelve a intentarlo en un rato.</p>
         </div>
@@ -328,6 +333,8 @@ footer a:hover{color:var(--orange)}
     return 'rgb(228,71,43)';
   }
   function fmtT(t, d){ return t.toLocaleString('es-ES',{maximumFractionDigits:d==null?1:d}) + ' °C'; }
+  var AEMET = {'A Coruña':'coruna-a-id15030','Bilbao':'bilbao-id48020','Barcelona':'barcelona-id08019','Zaragoza':'zaragoza-id50297','Valladolid':'valladolid-id47186','Madrid':'madrid-id28079','Palma':'palma-de-mallorca-id07040','Valencia':'valencia-id46250','Badajoz':'badajoz-id06015','Murcia':'murcia-id30030','Sevilla':'sevilla-id41091','Granada':'granada-id18087','Málaga':'malaga-id29067','Las Palmas':'palmas-de-gran-canaria-las-id35016','Benamocarra':'benamocarra-id29027'};
+  function aemet(n){ return 'https://www.aemet.es/es/eltiempo/prediccion/municipios/' + AEMET[n]; }
   var WX = null, dayMode = 'now';
   var SVGNS = 'http://www.w3.org/2000/svg';
 
@@ -348,11 +355,13 @@ footer a:hover{color:var(--orange)}
     CITIES.forEach(function(c, idx){
       var p = WX[idx]; if(!p) return;
       var v = valueFor(p); if(typeof v !== 'number') return;
-      var dot = el('g', {'class':'dot' + (c[0]==='Málaga' ? ' mine' : '')});
-      dot.appendChild(el('title', {}, c[0] + ': ' + fmtT(v) + (dayMode==='now' ? '' : ' (máx.), mín. ' + fmtT(p.min[+dayMode]))));
-      dot.appendChild(el('circle', {cx:c[3], cy:c[4], r:(window.innerWidth <= 680 ? 20 : 15), fill:tcolor(v)}));
+      var dot = el('a', {'class':'dot' + (c[0]==='Málaga' ? ' mine' : ''), href:aemet(c[0]), target:'_blank', rel:'noopener noreferrer'});
+      dot.appendChild(el('title', {}, c[0] + ': ' + fmtT(v) + (dayMode==='now' ? '' : ' (máx.), mín. ' + fmtT(p.min[+dayMode])) + '. Pulsa para ver la previsión de AEMET'));
+      var big = window.innerWidth <= 680, rr = big ? 20 : 15, up = (c[0]==='Granada' || c[0]==='Las Palmas'), off = up ? (big ? -28 : -21) : (big ? 35 : 28);
+      dot.appendChild(el('rect', {x:c[3]-34, y:(up ? c[4]+off-14 : c[4]-rr), width:68, height:(up ? rr-off+14 : off+8+rr), fill:'rgba(0,0,0,0.001)'}));
+      dot.appendChild(el('circle', {cx:c[3], cy:c[4], r:rr, fill:tcolor(v)}));
       dot.appendChild(el('text', {'class':'v', x:c[3], y:c[4]}, String(Math.round(v))));
-      dot.appendChild(el('text', {'class':'n', x:c[3], y:c[4] + (c[0]==='Granada' || c[0]==='Las Palmas' ? (window.innerWidth <= 680 ? -28 : -21) : (window.innerWidth <= 680 ? 35 : 28))}, c[0]));
+      dot.appendChild(el('text', {'class':'n', x:c[3], y:c[4] + off}, c[0]));
       g.appendChild(dot);
     });
   }
@@ -363,7 +372,7 @@ footer a:hover{color:var(--orange)}
       var p = WX[CITIES.length + k]; if(!p) return;
       var d = dayMode === 'now' ? 0 : +dayMode;
       var li = document.createElement('li');
-      var b = document.createElement('b'); b.textContent = m[0];
+      var b = document.createElement('a'); b.className = 'city'; b.href = aemet(m[0]); b.target = '_blank'; b.rel = 'noopener noreferrer'; b.title = 'Previsión de AEMET para ' + m[0]; b.textContent = m[0];
       var r = document.createElement('span'); r.className = 'r';
       if(dayMode === 'now'){
         r.appendChild(document.createTextNode('ahora '));
@@ -411,7 +420,7 @@ footer a:hover{color:var(--orange)}
     var b = e.target.closest('button'); if(!b || !WX) return;
     dayMode = b.getAttribute('data-d');
     Array.prototype.forEach.call(this.querySelectorAll('button'), function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-    document.getElementById('wxnote').textContent = dayMode === 'now' ? 'Temperatura actual en España. Datos de Open-Meteo.' : 'Temperatura máxima prevista. Datos de Open-Meteo.';
+    document.getElementById('wxnote').textContent = dayMode === 'now' ? 'Temperatura actual (Open-Meteo). Pulsa una ciudad para ver su previsión de los próximos días en AEMET.' : 'Temperatura máxima prevista (Open-Meteo). Pulsa una ciudad para ver su previsión de los próximos días en AEMET.';
     drawMap(); drawMine();
   });
 
