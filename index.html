@@ -254,6 +254,18 @@ footer a:hover{color:var(--orange)}
 .cal-g .dow{color:var(--muted);font-size:.74rem;padding:4px 0}
 .cal-g span{padding:6px 0;border-radius:6px}
 .cal-g .hoy{background:var(--orange);color:#0D1219;font-weight:700}
+.cal-g .fn,.cal-g .fb,.cal-g .fm{font-weight:700;position:relative}
+.cal-g .fn{color:var(--orange)}
+.cal-g .fb{color:var(--cool)}
+.cal-g .fm{color:var(--amber)}
+.cal-g .fn::after,.cal-g .fb::after,.cal-g .fm::after{content:"";position:absolute;left:50%;bottom:1px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:currentColor}
+.cal-g .hoy.fn,.cal-g .hoy.fb,.cal-g .hoy.fm{color:#0D1219;box-shadow:inset 0 0 0 2px var(--bg2)}
+.cal-l{list-style:none;margin:10px 0 0;padding:0;font-size:.8rem;color:var(--muted);display:grid;gap:3px;min-height:1.2em}
+.cal-l b{color:var(--text);font-variant-numeric:tabular-nums}
+.cal-k{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:10px;font-size:.72rem;color:var(--muted)}
+.cal-k span::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;background:currentColor}
+.cal-k .k-n{color:var(--orange)}.cal-k .k-b{color:var(--cool)}.cal-k .k-m{color:var(--amber)}
+.cal-n{margin-top:8px;font-size:.7rem;color:var(--muted);line-height:1.4}
 .cal-f{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:.76rem;color:var(--muted)}
 @media (max-width:680px){
   .clock>button{padding:2px 8px}
@@ -277,6 +289,9 @@ footer a:hover{color:var(--orange)}
       <div class="cal" id="cal" role="dialog" aria-label="Calendario" hidden>
         <div class="cal-h"><button type="button" id="calPrev" aria-label="Mes anterior">‹</button><strong id="calTitle"></strong><button type="button" id="calNext" aria-label="Mes siguiente">›</button></div>
         <div class="cal-g" id="calGrid"></div>
+        <ul class="cal-l" id="calList"></ul>
+        <div class="cal-k"><span class="k-n">Festivo nacional y autonómico</span><span class="k-b">Benamocarra</span><span class="k-m">Málaga capital</span></div>
+        <p class="cal-n">Festivos de 2026 y 2027 según el BOJA. Los locales son de Benamocarra y de Málaga capital; confirma los de tu municipio en el calendario oficial.</p>
         <div class="cal-f"><span>Hora de España</span><button type="button" class="cal-today" id="calToday">Hoy</button></div>
       </div>
     </div>
@@ -929,6 +944,10 @@ footer a:hover{color:var(--orange)}
   var fM=new Intl.DateTimeFormat('es-ES',{timeZone:TZ,month:'long',year:'numeric'});
   function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
   function today(){var p=fP.formatToParts(new Date()),o={};p.forEach(function(x){o[x.type]=+x.value});return {y:o.year,m:o.month,d:o.day}}
+  var N='n', B='b', M='m', H={
+    2026:{'1-1':[N,'Año Nuevo'],'1-6':[N,'Epifanía del Señor'],'2-28':[N,'Día de Andalucía'],'4-2':[N,'Jueves Santo'],'4-3':[N,'Viernes Santo'],'5-1':[N,'Fiesta del Trabajo'],'8-15':[N,'Asunción de la Virgen'],'10-12':[N,'Fiesta Nacional de España'],'11-2':[N,'Todos los Santos'],'12-7':[N,'Día de la Constitución'],'12-8':[N,'Inmaculada Concepción'],'12-25':[N,'Natividad del Señor'],'5-18':[B,'Fiesta local de Benamocarra'],'10-19':[B,'Fiesta local de Benamocarra'],'8-19':[M,'Fiesta local de Málaga'],'9-8':[M,'Fiesta local de Málaga']},
+    2027:{'1-1':[N,'Año Nuevo'],'1-6':[N,'Epifanía del Señor'],'3-1':[N,'Día de Andalucía'],'3-25':[N,'Jueves Santo'],'3-26':[N,'Viernes Santo'],'5-1':[N,'Fiesta del Trabajo'],'8-16':[N,'Asunción de la Virgen'],'10-12':[N,'Fiesta Nacional de España'],'11-1':[N,'Todos los Santos'],'12-6':[N,'Día de la Constitución'],'12-8':[N,'Inmaculada Concepción'],'12-25':[N,'Natividad del Señor'],'5-17':[B,'Fiesta local de Benamocarra'],'10-18':[B,'Fiesta local de Benamocarra'],'8-19':[M,'Fiesta local de Málaga'],'9-8':[M,'Fiesta local de Málaga']}
+  };
   var last='', vy=0, vm=0, open=false;
   function tick(){
     var now=new Date(), t=fT.format(now);
@@ -945,7 +964,16 @@ footer a:hover{color:var(--orange)}
     ['L','M','X','J','V','S','D'].forEach(function(l){var s=document.createElement('span');s.className='dow';s.textContent=l;g.appendChild(s)});
     var first=(new Date(Date.UTC(vy,vm-1,1)).getUTCDay()+6)%7, n=new Date(Date.UTC(vy,vm,0)).getUTCDate(), i;
     for(i=0;i<first;i++) g.appendChild(document.createElement('span'));
-    for(i=1;i<=n;i++){var c=document.createElement('span');c.textContent=i;if(vy===td.y&&vm===td.m&&i===td.d){c.className='hoy';c.setAttribute('aria-current','date')}g.appendChild(c)}
+    var hy=H[vy]||{}, L=document.getElementById('calList');
+    while(L.firstChild) L.removeChild(L.firstChild);
+    for(i=1;i<=n;i++){
+      var c=document.createElement('span'), f=hy[vm+'-'+i], cl=[];
+      c.textContent=i;
+      if(f){cl.push('f'+f[0]);c.title=f[1];var li=document.createElement('li'),b=document.createElement('b');b.textContent=i+' ';li.appendChild(b);li.appendChild(document.createTextNode(f[1]));L.appendChild(li)}
+      if(vy===td.y&&vm===td.m&&i===td.d){cl.push('hoy');c.setAttribute('aria-current','date')}
+      if(cl.length) c.className=cl.join(' ');
+      g.appendChild(c);
+    }
   }
   function show(v){open=v;pop.hidden=!v;btn.setAttribute('aria-expanded',v?'true':'false');if(v){var t=today();vy=t.y;vm=t.m;draw()}}
   btn.addEventListener('click',function(){show(pop.hidden)});
