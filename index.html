@@ -521,6 +521,8 @@ footer a:hover{color:var(--orange)}
         <button type="button" role="tab" id="tab-cable" aria-controls="p-cable" aria-selected="false">Sección de cable</button>
         <button type="button" role="tab" id="tab-aero" aria-controls="p-aero" aria-selected="false">Cambio de equipo</button>
         <button type="button" role="tab" id="tab-fv" aria-controls="p-fv" aria-selected="false">Autoconsumo solar</button>
+        <button type="button" role="tab" id="tab-str" aria-controls="p-str" aria-selected="false">Strings solares</button>
+        <button type="button" role="tab" id="tab-sh" aria-controls="p-sh" aria-selected="false">Superheat y subcooling</button>
       </div>
 
       <div class="panel" role="tabpanel" id="p-luz" aria-labelledby="tab-luz">
@@ -603,6 +605,55 @@ footer a:hover{color:var(--orange)}
         </div>
         <div class="res" id="fRes" aria-live="polite"></div>
         <p class="fine">La producción real depende de la orientación, la inclinación y las sombras: calcúlala para tu tejado con <a href="https://re.jrc.ec.europa.eu/pvg_tools/es/" target="_blank" rel="noopener noreferrer">PVGIS</a>, la herramienta gratuita de la Comisión Europea. Las baterías cambian el porcentaje de autoconsumo y el coste.</p>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-str" aria-labelledby="tab-str" hidden>
+        <h3>Strings fotovoltaicos: módulos en serie y en paralelo</h3>
+        <p class="lead2">Comprueba cuántos módulos caben en serie sin pasarte de la tensión máxima del inversor, cuántos hacen falta para entrar en su rango MPPT y cuántos strings admite cada entrada. Los números iniciales son de ejemplo: usa los de las fichas técnicas.</p>
+        <p class="lead2" style="margin-top:16px"><strong>Módulo (condiciones estándar)</strong></p>
+        <div class="form">
+          <label>Voc (V)
+            <input id="sVoc" type="number" inputmode="decimal" min="0" step="any" value="49.9"></label>
+          <label>Vmp (V)
+            <input id="sVmp" type="number" inputmode="decimal" min="0" step="any" value="41.9"></label>
+          <label>Isc (A)
+            <input id="sIsc" type="number" inputmode="decimal" min="0" step="any" value="13.9"></label>
+          <label>Coeficiente de Voc (%/°C)
+            <input id="sB" type="number" inputmode="decimal" max="0" step="0.01" value="-0.27"></label>
+          <label>Temperatura mínima del lugar (°C)
+            <input id="sTmin" type="number" inputmode="decimal" step="1" value="-5"></label>
+          <label>Temperatura máxima de célula (°C)
+            <input id="sTmax" type="number" inputmode="decimal" step="1" value="70"></label>
+        </div>
+        <p class="lead2" style="margin-top:16px"><strong>Inversor (entrada de corriente continua)</strong></p>
+        <div class="form">
+          <label>Tensión máxima de entrada (V)
+            <input id="sVmax" type="number" inputmode="decimal" min="0" step="any" value="600"></label>
+          <label>MPPT: tensión mínima (V)
+            <input id="sMin" type="number" inputmode="decimal" min="0" step="any" value="80"></label>
+          <label>Isc máxima por entrada MPPT (A)
+            <input id="sImax" type="number" inputmode="decimal" min="0" step="any" value="20"></label>
+        </div>
+        <div class="res" id="sRes" aria-live="polite"></div>
+        <p class="fine">Estimación orientativa: la tensión en calor usa el coeficiente de Voc como aproximación al de Vmp y no incluye caídas en el cableado. Confirma siempre con las fichas del módulo y del inversor o con el programa de dimensionado del fabricante. Dimensionar y conectar un generador es trabajo de una empresa instaladora (REBT, ITC-BT-40; Real Decreto 244/2019).</p>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-sh" aria-labelledby="tab-sh" hidden>
+        <h3>Recalentamiento (superheat) y subenfriamiento (subcooling)</h3>
+        <p class="lead2">Calcula las dos diferencias a partir de las temperaturas de saturación que obtienes de la tabla del refrigerante y de las lecturas de temperatura de las tuberías. Los números iniciales son de ejemplo.</p>
+        <div class="form">
+          <label>Evaporación saturada (°C)
+            <input id="hTe" type="number" inputmode="decimal" step="any" value="5"></label>
+          <label>Tubería de aspiración (°C)
+            <input id="hTs" type="number" inputmode="decimal" step="any" value="11"></label>
+          <label>Condensación saturada (°C)
+            <input id="hTc" type="number" inputmode="decimal" step="any" value="45"></label>
+          <label>Tubería de líquido (°C)
+            <input id="hTl" type="number" inputmode="decimal" step="any" value="40"></label>
+        </div>
+        <div class="res" id="hRes" aria-live="polite"></div>
+        <p class="fine">Recalentamiento = temperatura de aspiración menos temperatura de evaporación saturada. Subenfriamiento = temperatura de condensación saturada menos temperatura del líquido. En mezclas con deslizamiento de temperatura se usa el punto de rocío en el evaporador y el de burbuja en el condensador. Compara con los valores del fabricante: los rangos correctos dependen del equipo, de la válvula de expansión y de las condiciones.</p>
+        <p class="fine descargo"><strong>Aviso:</strong> medir presiones implica conectar manómetros al circuito de refrigerante, y eso solo puede hacerlo personal con certificación en gases fluorados (Reglamento (UE) 2024/573). Esta herramienta solo hace una resta: no autoriza ni guía ninguna intervención sobre el circuito.</p>
       </div>
     </div>
   </section>
@@ -1142,6 +1193,43 @@ footer a:hover{color:var(--orange)}
   }
   ['fP','fH','fA','fPc','fPx','fI'].forEach(function(id){ document.getElementById(id).addEventListener('input', calcFv); });
   calcFv();
+
+  /* Strings fotovoltaicos */
+  function calcStr(){
+    var box = document.getElementById('sRes');
+    var Voc = num('sVoc'), Vmp = num('sVmp'), Isc = num('sIsc'), b = num('sB'), Tmin = num('sTmin'), Tmax = num('sTmax');
+    var Vmax = num('sVmax'), Mmin = num('sMin'), Imax = num('sImax');
+    if(!(Voc > 0 && Vmp > 0 && Isc > 0 && b <= 0 && !isNaN(Tmin) && !isNaN(Tmax) && Vmax > 0 && Mmin > 0 && Imax > 0)){ hint(box, 'Rellena todos los datos con valores positivos; el coeficiente de Voc debe ser negativo.'); return; }
+    var vocCold = Voc * (1 + b/100 * (Tmin - 25)), vmpHot = Vmp * (1 + b/100 * (Tmax - 25));
+    var nMax = Math.floor(Vmax / vocCold), nMin = Math.ceil(Mmin / vmpHot), par = Math.floor(Imax / Isc);
+    box.textContent = '';
+    cell(box, 'Voc de un módulo en frío', nf(vocCold, 1) + ' V');
+    cell(box, 'Vmp de un módulo en calor', nf(vmpHot, 1) + ' V');
+    if(nMax < 1 || nMin > nMax){
+      cell(box, 'Módulos en serie', 'sin configuración válida', 'warn');
+      cell(box, 'Revisa', nMin > nMax ? 'Con estos datos el mínimo (' + nMin + ') supera el máximo (' + nMax + ').' : 'Un solo módulo ya supera la tensión máxima.');
+    } else {
+      cell(box, 'Módulos en serie', 'de ' + nMin + ' a ' + nMax, 'ok');
+      cell(box, 'Tensión máx. del string', nf(nMax * vocCold, 0) + ' V (límite ' + nf(Vmax, 0) + ' V)');
+    }
+    cell(box, 'Strings en paralelo por MPPT', par >= 1 ? 'hasta ' + par : 'ninguno', par >= 1 ? '' : 'warn');
+  }
+  ['sVoc','sVmp','sIsc','sB','sTmin','sTmax','sVmax','sMin','sImax'].forEach(function(id){ document.getElementById(id).addEventListener('input', calcStr); });
+  calcStr();
+
+  /* Superheat y subcooling */
+  function calcSh(){
+    var box = document.getElementById('hRes');
+    var Te = num('hTe'), Ts = num('hTs'), Tc = num('hTc'), Tl = num('hTl');
+    if(isNaN(Te) || isNaN(Ts) || isNaN(Tc) || isNaN(Tl)){ hint(box, 'Rellena las cuatro temperaturas.'); return; }
+    var sh = Ts - Te, sc = Tc - Tl;
+    box.textContent = '';
+    cell(box, 'Recalentamiento', nf(sh, 1) + ' K', sh >= 0 ? 'ok' : 'warn');
+    cell(box, 'Subenfriamiento', nf(sc, 1) + ' K', sc >= 0 ? 'ok' : 'warn');
+    if(sh < 0 || sc < 0) cell(box, 'Revisa las lecturas', 'Un valor negativo no es coherente con un circuito en marcha: comprueba las temperaturas.');
+  }
+  ['hTe','hTs','hTc','hTl'].forEach(function(id){ document.getElementById(id).addEventListener('input', calcSh); });
+  calcSh();
 
   /* Novedades automáticas */
   var COLORS = {'Climatización':'var(--cool)','Refrigeración':'var(--cold)','Fotovoltaica':'var(--orange)','Electricidad':'var(--amber)'};
