@@ -1,0 +1,102 @@
+name: Actualizar novedades
+on:
+  schedule:
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  novedades:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Descargar titulares
+        run: |
+          python3 - <<'PY'
+          import json, re, datetime, urllib.request, urllib.parse
+          import xml.etree.ElementTree as ET
+          from email.utils import parsedate_to_datetime
+
+          TEMAS = {
+              "Climatización": ["climatización bombas de calor aerotermia", "aire acondicionado instaladores HVAC"],
+              "Refrigeración": ["refrigeración industrial frío comercial", "instalaciones frigoríficas refrigerantes"],
+              "Fotovoltaica": ["autoconsumo fotovoltaico", "energía solar fotovoltaica instaladores baterías"],
+              "Electricidad": ["instalaciones eléctricas baja tensión REBT", "instaladores eléctricos normativa"],
+          }
+          DIRECTOS = [("Fotovoltaica", "https://www.pv-magazine.es/feed/")]
+          POR_TEMA = 8
+          DIAS = 30
+
+          def bajar(url):
+              req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (compatible; TecnoSystemsBot/1.0)"})
+              with urllib.request.urlopen(req, timeout=30) as r:
+                  return r.read()
+
+          def fecha(txt):
+              try:
+                  d = parsedate_to_datetime(txt)
+                  return d if d.tzinfo else d.replace(tzinfo=datetime.timezone.utc)
+              except Exception:
+                  return None
+
+          def leer(url, tema, fuente_fija=None):
+              raiz = ET.fromstring(bajar(url))
+              salida = []
+              for it in raiz.iter("item"):
+                  titulo = (it.findtext("title") or "").strip()
+                  enlace = (it.findtext("link") or "").strip()
+                  src = it.find("source")
+                  fuente = (src.text.strip() if src is not None and src.text else fuente_fija) or ""
+                  if fuente and titulo.endswith(" - " + fuente):
+                      titulo = titulo[: -len(fuente) - 3].strip()
+                  elif " - " in titulo and not fuente_fija:
+                      cabeza, _, cola = titulo.rpartition(" - ")
+                      titulo, fuente = cabeza.strip(), cola.strip()
+                  d = fecha(it.findtext("pubDate") or "")
+                  if titulo and enlace.startswith("http") and d:
+                      salida.append({"topic": tema, "title": titulo, "link": enlace, "source": fuente, "date": d})
+              return salida
+
+          todas = []
+          for tema, consultas in TEMAS.items():
+              for q in consultas:
+                  url = "https://news.google.com/rss/search?q=" + urllib.parse.quote(q + " when:14d") + "&hl=es&gl=ES&ceid=ES:es"
+                  try:
+                      encontradas = leer(url, tema)
+                      print("OK ", tema, "|", q, "|", len(encontradas))
+                      todas += encontradas
+                  except Exception as e:
+                      print("ERR", tema, "|", q, "|", e)
+          for tema, url in DIRECTOS:
+              try:
+                  encontradas = leer(url, tema, fuente_fija="pv magazine")
+                  print("OK ", tema, "|", url, "|", len(encontradas))
+                  todas += encontradas
+              except Exception as e:
+                  print("ERR", tema, "|", url, "|", e)
+
+          limite = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=DIAS)
+          vistos, por_tema, final = set(), {}, []
+          for n in sorted(todas, key=lambda x: x["date"], reverse=True):
+              clave = re.sub(r"\W+", " ", n["title"].lower()).strip()[:80]
+              if clave in vistos or n["date"] < limite:
+                  continue
+              if por_tema.get(n["topic"], 0) >= POR_TEMA:
+                  continue
+              vistos.add(clave)
+              por_tema[n["topic"]] = por_tema.get(n["topic"], 0) + 1
+              final.append({**n, "date": n["date"].strftime("%Y-%m-%dT%H:%M:%SZ")})
+
+          if final:
+              with open("noticias.json", "w", encoding="utf-8") as f:
+                  json.dump({"updated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "items": final}, f, ensure_ascii=False, indent=1)
+              print("Guardadas", len(final), "noticias")
+          else:
+              print("Sin noticias nuevas: se conserva el archivo anterior")
+          PY
+      - name: Guardar cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add noticias.json || true
+          git diff --staged --quiet || (git commit -m "Actualizar novedades" && git push)
