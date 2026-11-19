@@ -6,10 +6,11 @@
 <title>Política de privacidad · TecnoSystems</title>
 <meta name="description" content="Política de privacidad del sitio web tecnosystems.org.">
 <link rel="icon" type="image/png" href="icono.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face{font-family:"Archivo";src:url(fonts/archivo-latin-wdth-normal.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-style:normal;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url(fonts/jetbrains-mono-latin-400-normal.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url(fonts/jetbrains-mono-latin-500-normal.woff2) format("woff2");font-weight:500;font-style:normal;font-display:swap}
 :root{--orange:#F47C48;--ink:#0d0f12;--ink-2:#15181d;--line:#262a31;--text:#eef0f3;--muted:#9aa1ab}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--ink);color:var(--text);font-family:Archivo,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
@@ -82,9 +83,8 @@ footer .links{margin-top:8px}
       </ul>
 
       <h2>4. Servicios de terceros que se cargan al navegar</h2>
-      <p>Para mostrar algunos contenidos, tu navegador se conecta directamente a servidores de terceros, a los que comunica tu dirección IP y los datos técnicos habituales de cualquier conexión (navegador, idioma, página de origen). TecnoSystems no recibe esa información ni la utiliza. Son:</p>
+      <p>Para mostrar algunos contenidos, tu navegador se conecta directamente a servidores de terceros, a los que comunica tu dirección IP y los datos técnicos habituales de cualquier conexión (navegador, idioma, página de origen). TecnoSystems no recibe esa información ni la utiliza. Las fuentes tipográficas se alojan en este mismo sitio y no se cargan desde terceros. Los servicios son:</p>
       <ul>
-        <li><strong>Google Fonts</strong> (Google): fuentes tipográficas.</li>
         <li><strong>Open-Meteo:</strong> datos meteorológicos del mapa y de la portada.</li>
         <li><strong>Red Eléctrica de España (API de datos):</strong> precios de la electricidad por horas.</li>
         <li><strong>GoatCounter:</strong> contador de visitas descrito arriba.</li>
@@ -92,7 +92,7 @@ footer .links{margin-top:8px}
       <p>Cada uno de ellos trata esos datos conforme a su propia política de privacidad, de la que es responsable. Los enlaces a otras webs (organismos públicos, medios de comunicación y otras fuentes) se abren fuera de este sitio y se rigen por las condiciones y la política de privacidad de cada una.</p>
 
       <h2>5. Transferencias internacionales</h2>
-      <p>Algunos de esos proveedores (por ejemplo, Google y GitHub) tienen sede en Estados Unidos, por lo que tus datos de conexión podrían tratarse fuera del Espacio Económico Europeo. Esas transferencias se rigen por las garantías que cada proveedor declara aplicar conforme al RGPD, como su adhesión al Marco de Privacidad de Datos UE-EE. UU. o las cláusulas contractuales tipo.</p>
+      <p>Algunos de esos proveedores (por ejemplo, GitHub) tienen sede en Estados Unidos, por lo que tus datos de conexión podrían tratarse fuera del Espacio Económico Europeo. Esas transferencias se rigen por las garantías que cada proveedor declara aplicar conforme al RGPD, como su adhesión al Marco de Privacidad de Datos UE-EE. UU. o las cláusulas contractuales tipo.</p>
 
       <h2>6. Cookies</h2>
       <p>Este sitio no utiliza cookies propias ni de terceros, ni almacena información en tu dispositivo, por lo que no muestra aviso de cookies. Si esto cambiara, se informaría aquí y se pediría tu consentimiento cuando la ley lo exija.</p>
