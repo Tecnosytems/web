@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TecnoSystems · Soluciones Tecnológicas</title>
+<meta name="description" content="TecnoSystems · Soluciones Tecnológicas. Climatización, refrigeración, electricidad y energía solar fotovoltaica. Málaga.">
+<link rel="icon" type="image/png" href="icono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--orange:#F47C48;--ink:#0d0f12;--ink-2:#15181d;--line:#262a31;--text:#eef0f3;--muted:#9aa1ab}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ink);color:var(--text);font-family:Archivo,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;opacity:.3;mask-image:radial-gradient(ellipse at 50% 20%,#000 10%,transparent 70%)}
+a{color:inherit}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px;width:100%}
+.mono{font-family:"JetBrains Mono",monospace;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
+
+.hero{padding:88px 0 56px;text-align:center}
+.hero img{width:min(420px,85%);height:auto;margin-bottom:44px}
+.hero h1{font-size:clamp(1.9rem,4.6vw,3rem);line-height:1.12;font-weight:800;letter-spacing:-.02em;margin:14px auto 18px;max-width:18em}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:36em;margin:0 auto}
+.notice{display:inline-flex;align-items:center;gap:10px;margin-top:32px;border:1px solid var(--line);background:var(--ink-2);border-radius:999px;padding:10px 18px;font-size:.95rem;color:var(--muted)}
+.notice i{width:8px;height:8px;border-radius:50%;background:var(--orange);display:inline-block}
+
+.areas{padding:40px 0 72px}
+.areas h2{font-size:1.4rem;font-weight:700;margin:10px 0 28px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.card{background:var(--ink);padding:28px 24px}
+.card svg{width:30px;height:30px;stroke:var(--orange);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-bottom:16px}
+.card h3{font-size:1.05rem;font-weight:600;margin-bottom:6px}
+.card p{color:var(--muted);font-size:.93rem}
+
+.contact{padding:0 0 80px;text-align:center}
+.contact p{color:var(--muted);margin-bottom:14px}
+.contact a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--orange);padding-bottom:2px;font-weight:500}
+.contact a:hover{color:var(--orange)}
+
+footer{margin-top:auto;border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:.88rem;text-align:center}
+footer a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
+footer a:hover{color:var(--orange)}
+footer .links{margin-top:8px}
+
+@media (max-width:860px){.grid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.grid{grid-template-columns:1fr}.hero{padding:56px 0 40px}}
+</style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <img src="logo-blanco.png" alt="TecnoSystems · Soluciones Tecnológicas">
+      <div class="mono">Málaga</div>
+      <h1>Tecnología aplicada a la climatización, el frío y la energía.</h1>
+      <p>TecnoSystems es un proyecto dedicado a las instalaciones técnicas: climatización, refrigeración, electricidad y energía solar fotovoltaica.</p>
+      <div class="notice"><i></i>Actualmente no estamos realizando trabajos ni aceptando encargos.</div>
+    </div>
+  </section>
+
+  <section class="areas">
+    <div class="wrap">
+      <div class="mono">Áreas</div>
+      <h2>Nuestro campo de conocimiento</h2>
+      <div class="grid">
+        <div class="card">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="8" rx="1.5"/><path d="M7 17c0 1.5-1 2-1 3M12 17v3M17 17c0 1.5 1 2 1 3M6 10h12"/></svg>
+          <h3>Climatización</h3>
+          <p>Aire acondicionado, bombas de calor y sistemas HVAC.</p>
+        </div>
+        <div class="card">
+          <svg viewBox="0 0 24 24"><path d="M12 2v20M4.9 6.5l14.2 11M19.1 6.5 4.9 17.5M9.5 3.5 12 6l2.5-2.5M9.5 20.5 12 18l2.5 2.5"/></svg>
+          <h3>Refrigeración</h3>
+          <p>Equipos de frío comercial e industrial.</p>
+        </div>
+        <div class="card">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <h3>Fotovoltaica</h3>
+          <p>Autoconsumo solar y almacenamiento de energía.</p>
+        </div>
+        <div class="card">
+          <svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>
+          <h3>Electricidad</h3>
+          <p>Instalaciones eléctricas y normativa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="wrap">
+      <p>Para cualquier consulta o información:</p>
+      <a href="mailto:info@tecnosystems.org">info@tecnosystems.org</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="y">2026</span> TecnoSystems · Soluciones Tecnológicas
+    <div class="links"><a href="privacidad.html">Política de privacidad</a> · <a href="condiciones.html">Condiciones del servicio</a></div>
+  </div>
+</footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+<script data-goatcounter="https://tecnosystems.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
