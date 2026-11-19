@@ -105,6 +105,10 @@ h2{font-size:clamp(1.6rem,3.6vw,2.3rem);line-height:1.12;font-weight:750;font-st
 .card svg{width:36px;height:36px;stroke:var(--c);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin-bottom:18px}
 .card h3{font-size:1.25rem;font-weight:700;font-stretch:90%}
 .card p{margin-top:8px;color:var(--muted);font-size:.96rem;flex:1}
+.card .leg{list-style:none;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:.86rem}
+.card .leg li{margin-top:6px}
+.card .leg a{color:var(--muted);border-bottom:1px solid var(--line)}
+.card .leg a:hover{color:var(--text);border-color:var(--c)}
 .card .tag{margin-top:18px;align-self:flex-start;font:500 .78rem 'JetBrains Mono',monospace;color:var(--c);border:1px solid var(--c);border-radius:5px;padding:2px 8px}
 
 /* Cómo trabajamos */
@@ -203,6 +207,30 @@ footer a:hover{color:var(--orange)}
 .aid li{margin-top:4px}
 .aid a.out{display:inline-block;margin-top:14px;color:var(--text);font-size:.92rem;border-bottom:1px solid var(--line)}
 .aid a.out:hover{color:var(--orange);border-color:var(--orange)}
+
+/* Guía interactiva */
+.gx{margin-top:28px;max-width:820px;border:1px solid var(--line);border-radius:14px;padding:22px;background:rgba(18,26,36,.55)}
+.gx h3{font-size:1.2rem;font-weight:700;font-stretch:90%}
+.gx .gx-lead{margin-top:6px;color:var(--muted);font-size:.96rem;max-width:68ch}
+.gx .gx-q{margin-top:20px;font-size:.9rem;color:var(--muted)}
+.gx .gx-opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.gx .gx-opts button{font:500 .92rem 'Archivo',sans-serif;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer;text-align:left;transition:color .2s,border-color .2s,background .2s}
+.gx .gx-opts button:hover{color:var(--text);border-color:var(--muted)}
+.gx .gx-opts button[aria-pressed="true"]{color:#0D1219;background:var(--text);border-color:var(--text)}
+.gx .gx-res{margin-top:22px;border-top:1px solid var(--line);padding-top:20px}
+.gx .gx-res[hidden]{display:none}
+.gx .gx-res h4{font-size:1.1rem;font-weight:700}
+.gx .gx-res h5{margin-top:18px;font-size:.95rem;font-weight:700}
+.gx .gx-res ul,.gx .gx-res ol{margin:8px 0 0 20px;color:var(--muted);font-size:.95rem;max-width:70ch}
+.gx .gx-res li{margin-top:5px}
+.gx .gx-res p{margin-top:8px;color:var(--muted);font-size:.95rem;max-width:70ch}
+.gx .gx-stop{margin-top:18px;border-left:3px solid var(--orange);padding:2px 0 2px 14px}
+.gx .gx-stop h5{margin-top:0;color:var(--orange)}
+.gx .gx-src a{color:var(--text);border-bottom:1px solid var(--line)}
+.gx .gx-src a:hover{color:var(--orange);border-color:var(--orange)}
+.gx .gx-reset{margin-top:20px;font:500 .9rem 'Archivo',sans-serif;color:var(--text);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 16px;cursor:pointer}
+.gx .gx-reset:hover{border-color:var(--orange);color:var(--orange)}
+.gx .gx-urg{margin-top:20px;color:var(--muted);font-size:.88rem;max-width:70ch}
 
 /* Preguntas */
 .faq{margin-top:28px;max-width:820px;border-top:1px solid var(--line)}
@@ -420,27 +448,46 @@ footer a:hover{color:var(--orange)}
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M4.9 6.5l14.2 11M19.1 6.5 4.9 17.5M9.5 3.5 12 6l2.5-2.5M9.5 20.5 12 18l2.5 2.5"/></svg>
           <h3>Refrigeración</h3>
           <p>Equipos de frío comercial e industrial.</p>
+          <ul class="leg" aria-label="Legislación y consultas">
+            <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2019-15228" target="_blank" rel="noopener noreferrer">Reglamento de seguridad frigorífica, RD 552/2019 (BOE)</a></li>
+            <li><a href="https://eur-lex.europa.eu/eli/reg/2024/573/oj" target="_blank" rel="noopener noreferrer">Reglamento (UE) 2024/573, gases fluorados (EUR-Lex)</a></li>
+            <li><a href="https://industria.gob.es/Calidad-Industrial/seguridadindustrial/instalacionesindustriales/instaciones-frigorificas/Paginas/reglamento-seguridad-rd-5522019.aspx" target="_blank" rel="noopener noreferrer">Normativa de instalaciones frigoríficas (Ministerio de Industria)</a></li>
+          </ul>
           <span class="tag">RSIF</span>
         </article>
         <article class="card" style="--c:var(--cool)">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="8" rx="1.5"/><path d="M7 17c0 1.5-1 2-1 3M12 17v3M17 17c0 1.5 1 2 1 3M6 10h12"/></svg>
           <h3>Climatización</h3>
           <p>Aire acondicionado, bombas de calor y sistemas HVAC.</p>
+          <ul class="leg" aria-label="Legislación y consultas">
+            <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2007-15820" target="_blank" rel="noopener noreferrer">RITE, RD 1027/2007 (BOE)</a></li>
+            <li><a href="https://www.boe.es/eli/es/rd/2013/04/05/238" target="_blank" rel="noopener noreferrer">Modificación del RITE, RD 238/2013 (BOE)</a></li>
+          </ul>
           <span class="tag">RITE</span>
         </article>
         <article class="card" style="--c:var(--amber)">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>
           <h3>Electricidad</h3>
           <p>Instalaciones eléctricas y normativa.</p>
+          <ul class="leg" aria-label="Legislación y consultas">
+            <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099" target="_blank" rel="noopener noreferrer">REBT, RD 842/2002 (BOE)</a></li>
+            <li><a href="https://industria.gob.es/Calidad-Industrial/seguridadindustrial/instalacionesindustriales/baja-tension/Paginas/preguntas-frecuentes.aspx" target="_blank" rel="noopener noreferrer">Preguntas frecuentes del REBT (Ministerio de Industria)</a></li>
+          </ul>
           <span class="tag">REBT</span>
         </article>
         <article class="card" style="--c:var(--orange)">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
           <h3>Fotovoltaica</h3>
           <p>Autoconsumo solar y almacenamiento de energía.</p>
+          <ul class="leg" aria-label="Legislación y consultas">
+            <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2019-5089" target="_blank" rel="noopener noreferrer">RD 244/2019 de autoconsumo (BOE)</a></li>
+            <li><a href="https://libreria.miteco.gob.es/ebook/416/free_download" target="_blank" rel="noopener noreferrer">Guía de tramitación del autoconsumo (IDAE)</a></li>
+            <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099" target="_blank" rel="noopener noreferrer">REBT, instalaciones generadoras (BOE)</a></li>
+          </ul>
           <span class="tag">Autoconsumo</span>
         </article>
       </div>
+      <p class="fine">Enlaces a la legislación y a consultas de organismos oficiales. Consulta siempre el texto consolidado vigente: para fines jurídicos prevalece la publicación oficial.</p>
     </div>
   </section>
 
@@ -666,7 +713,18 @@ footer a:hover{color:var(--orange)}
   <section id="preguntas" style="border-top:1px solid var(--line)">
     <div class="wrap">
       <h2>Preguntas frecuentes</h2>
-      <div class="faq">
+      <div class="gx" id="guia">
+        <h3>Guía paso a paso</h3>
+        <p class="gx-lead">Elige tu caso y te mostramos qué puedes comprobar tú sin riesgo, cuándo parar y llamar a un profesional, y qué normativa lo respalda, con enlaces a las fuentes oficiales.</p>
+        <p class="gx-q" id="gxq1">1. ¿De qué se trata?</p>
+        <div class="gx-opts" id="gxa" role="group" aria-labelledby="gxq1"></div>
+        <p class="gx-q" id="gxq2" hidden>2. ¿Qué te pasa?</p>
+        <div class="gx-opts" id="gxt" role="group" aria-labelledby="gxq2" hidden></div>
+        <div class="gx-res" id="gxr" tabindex="-1" aria-live="polite" hidden></div>
+        <p class="gx-urg">Si hay peligro inmediato (humo, chispas, olor a quemado, alguien herido), corta la corriente solo si puedes hacerlo con seguridad, aléjate y llama al 112. Información general y orientativa: no sustituye a un técnico ni a la normativa vigente, y no sirve para trabajar sobre instalaciones.</p>
+      </div>
+      <h3 style="margin-top:36px;font-size:1.1rem">Respuestas rápidas</h3>
+      <div class="faq" style="margin-top:12px">
         <details><summary>Mi aire acondicionado no enfría. ¿Qué reviso antes de avisar?</summary>
           <ul>
             <li>Que esté en modo frío, con la temperatura por debajo de la de la habitación.</li>
@@ -1182,6 +1240,180 @@ footer a:hover{color:var(--orange)}
     .then(function(r){ return r.ok ? r.json() : null; })
     .then(function(d){ if(d && d.count && d.count !== '0'){ document.getElementById('visn').textContent = d.count; document.getElementById('vis').style.display = ''; } })
     .catch(function(){});
+})();
+</script>
+<script>
+(function(){
+  var S = {
+    rebt:  ['REBT, Real Decreto 842/2002 (BOE)', 'https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099'],
+    rite:  ['RITE, Real Decreto 1027/2007 (BOE)', 'https://www.boe.es/buscar/act.php?id=BOE-A-2007-15820'],
+    rsif:  ['Reglamento de seguridad para instalaciones frigoríficas, Real Decreto 552/2019 (BOE)', 'https://www.boe.es/buscar/act.php?id=BOE-A-2019-15228'],
+    fgas:  ['Reglamento (UE) 2024/573 sobre gases fluorados (EUR-Lex)', 'https://eur-lex.europa.eu/eli/reg/2024/573/oj'],
+    rd244: ['Real Decreto 244/2019 de autoconsumo (BOE)', 'https://www.boe.es/buscar/act.php?id=BOE-A-2019-5089'],
+    idae:  ['Guía profesional de tramitación del autoconsumo (IDAE)', 'https://libreria.miteco.gob.es/ebook/416/free_download'],
+    pvgis: ['PVGIS, herramienta de la Comisión Europea', 'https://re.jrc.ec.europa.eu/pvg_tools/es/']
+  };
+  var AREAS = [
+    {id:'clima', name:'Climatización', topics:[
+      {id:'nofria', name:'El aire acondicionado no enfría',
+       intro:'Antes de avisar, hay comprobaciones que no entrañan riesgo y resuelven muchos casos.',
+       check:['Que esté en modo frío y con una temperatura por debajo de la de la habitación.','Que los filtros de la unidad interior estén limpios. Con el equipo apagado se sacan sin herramientas; lávalos con agua tibia y sécalos bien antes de ponerlos.','Que nada tape la unidad exterior ni su salida de aire (hojas, objetos, cortinas).','Que puertas y ventanas estén cerradas.','Que el magnetotérmico del equipo no haya saltado. Rearma una sola vez: si vuelve a saltar, no insistas.'],
+       stop:['Hielo en las tuberías o en la unidad.','Manchas de aceite en las conexiones.','Ruidos metálicos o olor a quemado.','El equipo arranca y se para continuamente.'],
+       stopNote:'Cualquiera de estas señales puede indicar una fuga de refrigerante o una avería eléctrica. Apágalo y avisa a un técnico: recargar gas sin localizar la fuga no la arregla.',
+       norma:['El circuito de refrigerante (localizar fugas, recargar, recuperar gas) solo lo puede manipular personal con certificación en gases fluorados, según el Reglamento (UE) 2024/573 y su desarrollo en España.','El RITE establece que el montaje y la reparación de instalaciones térmicas en edificios los realizan empresas habilitadas.'],
+       src:['rite','fgas']},
+      {id:'gotea', name:'La unidad interior gotea agua',
+       intro:'El goteo suele venir de filtros sucios o de un desagüe obstruido, pero conviene no tocar nada eléctrico.',
+       check:['Apaga el equipo y déjalo parado.','Revisa y limpia los filtros: si están muy sucios, el aire circula mal, se forma hielo y luego gotea al derretirse.','Mira si el tubo de desagüe exterior, si lo alcanzas desde el suelo, está doblado, aplastado u obstruido.','Seca el suelo y protege muebles o enchufes cercanos.'],
+       stop:['Hay agua cerca de enchufes, regletas o del cuadro eléctrico: no toques el equipo con las manos mojadas ni pises agua.','El goteo continúa tras limpiar los filtros.','Hay hielo en la unidad o en las tuberías.'],
+       stopNote:'En estos casos deja el equipo apagado y llama a un técnico. Si hay agua en el cuadro eléctrico, no lo manipules.',
+       norma:['La reparación de instalaciones térmicas la hacen empresas habilitadas, según el RITE.'],
+       src:['rite']},
+      {id:'mant', name:'Mantenimiento y revisiones: qué me toca',
+       intro:'Una parte del mantenimiento la puede hacer cualquiera y otra es obligatoria y profesional según la potencia de la instalación.',
+       h1:'Qué puedes hacer tú',
+       check:['Limpiar los filtros con regularidad, más a menudo si el uso es intenso. Sigue lo que indique el manual del fabricante.','Mantener despejadas las unidades y sus rejillas.','Guardar el manual, las facturas y los partes de revisión.','Fijarte en cambios de rendimiento, ruidos o consumo y avisar pronto.'],
+       stop:['Cualquier intervención en el circuito de refrigerante o en la parte eléctrica interna del equipo.','Instalaciones de cierta potencia o de uso profesional: las revisiones son obligatorias y las hace una empresa mantenedora habilitada.'],
+       norma:['El RITE (instrucciones técnicas IT 3 e IT 4) regula el mantenimiento y las inspecciones: en general, a partir de cierta potencia térmica, el mantenimiento lo realiza una empresa mantenedora habilitada con un programa de mantenimiento preventivo, y el titular debe entregarle el manual de uso y mantenimiento. Consulta el texto para ver el umbral de tu caso.'],
+       src:['rite']}
+    ]},
+    {id:'frio', name:'Refrigeración', topics:[
+      {id:'nevera', name:'Una nevera, congelador o cámara no enfría bien',
+       intro:'Estas comprobaciones son seguras y no requieren abrir ningún equipo.',
+       check:['Que la puerta cierre bien y la junta esté sin grietas ni suciedad. Una prueba habitual es cerrar la puerta sobre un papel: si sale sin resistencia, la junta no sella.','Que no esté sobrecargado y el aire pueda circular entre los productos.','Que el termostato no se haya movido de la posición habitual.','Que haya espacio libre alrededor para ventilar, y la rejilla o el condensador sin polvo. Desenchufa el equipo antes de limpiarlos.','Si hay mucha escarcha, descongela el equipo siguiendo su manual.'],
+       stop:['El compresor no arranca, hace ruido anormal o está muy caliente.','Huele a quemado.','La escarcha reaparece pronto tras descongelar y arreglar las juntas.','Aparecen manchas de aceite en las tuberías.','Es un equipo comercial y hay producto en riesgo: traslada el género a otro equipo y avisa a un servicio técnico.'],
+       norma:['Las instalaciones frigoríficas se rigen por el Reglamento de seguridad para instalaciones frigoríficas (Real Decreto 552/2019).','Quien manipula refrigerantes fluorados debe tener certificación, según el Reglamento (UE) 2024/573. Los equipos domésticos sellados no se recargan por el usuario.'],
+       src:['rsif','fgas']},
+      {id:'fuga', name:'Sospecho que hay una fuga de refrigerante',
+       intro:'Una fuga no se resuelve añadiendo gas: hay que localizarla y repararla, y eso es trabajo de personal certificado.',
+       h1:'Qué hacer mientras tanto',
+       check:['Apaga el equipo y evita volver a ponerlo en marcha.','Si es un local cerrado y notas olor o silbidos, ventila.','No uses llamas ni soldadura cerca del equipo para buscar la fuga.','Anota síntomas, fecha y marca y modelo del equipo para el técnico.'],
+       stop:['Siempre: una fuga la repara personal con certificación en gases fluorados.','No compres ni intentes cargar refrigerante por tu cuenta: su venta y manipulación están restringidas al personal certificado.','Si hay síntomas de intoxicación (mareo, dificultad para respirar), sal al exterior y llama al 112.'],
+       norma:['El Reglamento (UE) 2024/573 regula la certificación del personal y las obligaciones de control de fugas y registro de los titulares, según la carga y el tipo de gas.','El Real Decreto 552/2019 fija los requisitos de seguridad de las instalaciones frigoríficas.'],
+       src:['fgas','rsif']}
+    ]},
+    {id:'solar', name:'Fotovoltaica', topics:[
+      {id:'tramite', name:'Quiero instalar placas: ¿qué trámites hay?',
+       intro:'Estos son los pasos generales. Los plazos y documentos concretos dependen de tu comunidad autónoma y de la modalidad.',
+       h1:'Pasos habituales',
+       ordered:true,
+       check:['Reúne tu consumo real (facturas o curva de carga) y haz una estimación de producción con el mapa de radiación y la estimación rápida de esta web o con PVGIS.','Pide presupuesto a empresas instaladoras habilitadas. Pide memoria técnica, garantías y las condiciones por escrito.','Decide la modalidad: sin excedentes, o con excedentes. Con excedentes y hasta 100 kW se puede optar por la compensación simplificada, que exige un contrato de compensación con la comercializadora.','La empresa instaladora realiza la instalación y la tramitación administrativa de tu modalidad, incluida la comunicación a la distribuidora y al registro.','Revisa qué ayudas, bonificaciones fiscales o descuentos municipales hay vigentes en tu zona (consulta la sección Ayudas de esta web).'],
+       stop:['Desconfía de promesas de ahorro garantizado o de empresas que no entregan memoria técnica.','No firmes ni pagues anticipos sin ver presupuesto detallado y contrato.','No conectes ni modifiques tú un generador a tu cuadro eléctrico: lo hace una empresa instaladora.'],
+       stopH:'Ojo con',
+       norma:['El Real Decreto 244/2019 regula las condiciones administrativas, técnicas y económicas del autoconsumo: modalidades, compensación de excedentes y registro.','La instalación debe cumplir el REBT, que incluye la instrucción para instalaciones generadoras de baja tensión (ITC-BT-40).'],
+       src:['rd244','idae','pvgis','rebt'],
+       link:['Ir a la estimación de producción','#solcalc']},
+      {id:'produce', name:'Mi instalación produce menos de lo esperado',
+       intro:'Antes de culpar a los paneles, comprueba lo que puedes ver sin subir al tejado ni abrir nada.',
+       check:['Mira en la app o el portal del inversor si hay avisos o errores.','Compara la producción con la estimación de tu zona, teniendo en cuenta que es una media y varía de un año a otro y de un mes a otro.','Busca sombras nuevas: ramas, antenas, edificios o chimeneas.','Mira desde el suelo o desde una ventana si hay suciedad evidente, nieve u hojas.','Comprueba que el inversor esté encendido y que los interruptores de la instalación no estén disparados. Rearma una sola vez.'],
+       stop:['Nunca subas al tejado ni limpies paneles sin medios de protección contra caídas: los trabajos en altura son una causa grave de accidentes.','No abras el inversor ni las cajas de conexión: los paneles dan tensión en continua mientras reciban luz, aunque desconectes la red.','Humo, olor a quemado, cables dañados o avisos de fallo de aislamiento o de tierra: apaga solo si puedes hacerlo con seguridad y llama a la empresa instaladora o mantenedora.'],
+       norma:['La instalación generadora debe cumplir el REBT y el Real Decreto 244/2019. Las reparaciones las hace una empresa instaladora habilitada.'],
+       src:['pvgis','rd244','rebt'],
+       link:['Ir a la estimación de producción','#solcalc']},
+      {id:'cuanto', name:'¿Cuánto producirían unas placas en mi zona?',
+       intro:'Puedes obtener una primera cifra orientativa en un minuto.',
+       h1:'Cómo hacerlo',
+       ordered:true,
+       check:['Ve al mapa de radiación solar de la parte superior de esta web y pulsa tu ciudad o la más cercana.','En la estimación rápida, escribe la potencia que quieres instalar en kWp.','Lee la producción anual, el mejor y peor mes y la inclinación óptima.','Para tu caso real, con tu orientación, tu inclinación y tus sombras, calcula con PVGIS usando la ubicación exacta de tu tejado.'],
+       stop:['La estimación es orientativa: parte de datos de PVGIS, orientación e inclinación óptimas, pérdidas del 14 % y sin sombras. No sustituye a un proyecto técnico.'],
+       stopH:'Importante',
+       src:['pvgis'],
+       link:['Ir a la estimación de producción','#solcalc']}
+    ]},
+    {id:'elec', name:'Electricidad', topics:[
+      {id:'dif', name:'Salta el diferencial',
+       intro:'El diferencial te protege de derivaciones a tierra. No debe anularse ni forzarse.',
+       check:['Desenchufa los aparatos o desconecta los circuitos y rearma una vez.','Si no vuelve a saltar, conecta los aparatos de uno en uno: el que lo haga saltar probablemente tiene una fuga, déjalo desenchufado.','Piensa si coincide con lluvia, tormenta o humedad en exteriores, terrazas o cuartos de baño.','Pulsa el botón de prueba (TEST) de vez en cuando, según indique el fabricante, para comprobar que dispara.'],
+       stop:['Salta de forma repetida y no encuentras la causa.','No se puede rearmar.','Notas calambre al tocar algo.','Hay humedad en el cuadro o en las cajas.'],
+       stopNote:'No pongas puentes ni lo anules: es la protección que evita la electrocución.',
+       norma:['El REBT (ITC-BT-24) reconoce los dispositivos de corriente diferencial residual de hasta 30 mA como protección complementaria frente a contactos directos y exige protección frente a contactos indirectos.'],
+       src:['rebt']},
+      {id:'magneto', name:'Salta el magnetotérmico (el automático)',
+       intro:'Salta por sobrecarga o por cortocircuito para evitar que los cables se calienten.',
+       check:['Desenchufa los aparatos del circuito afectado y rearma una vez.','Conecta los aparatos de uno en uno para ver si alguno lo provoca.','Evita regletas encadenadas y varios aparatos de mucha potencia en la misma toma (plancha, calefactor, horno).','Si salta el interruptor general por potencia, repasa qué aparatos de alto consumo usas a la vez.'],
+       stop:['Salta al instante al rearmar, incluso sin nada conectado: puede haber un cortocircuito en la instalación.','Huele a quemado o el interruptor o los cables están calientes.','Tienes la tentación de poner uno de más calibre: no lo hagas, el cable puede sobrecalentarse.'],
+       norma:['El REBT (ITC-BT-22) regula la protección contra sobreintensidades: el calibre de la protección debe adecuarse a la sección del cable.'],
+       src:['rebt']},
+      {id:'caliente', name:'Un enchufe o clavija se calienta, huele a quemado o chispea',
+       intro:'Es una señal de mala conexión o sobrecarga. Puede acabar en incendio, así que no se espera.',
+       h1:'Qué hacer ahora',
+       check:['Deja de usar ese enchufe y el aparato conectado.','Si hay humo, chispas u olor intenso, aléjate y corta el interruptor del circuito en el cuadro solo si puedes llegar sin riesgo.','Si todo está tranquilo, desenchufa con la mano seca y sin tirar del cable.','No vuelvas a usar ese circuito hasta que lo revise un profesional.'],
+       stop:['Siempre debe revisarlo una empresa instaladora o un electricista autorizado: no basta con cambiar el enchufe sin saber por qué se calentó.','Llama al 112 si hay fuego o humo.'],
+       norma:['El REBT establece que las instalaciones eléctricas de baja tensión y sus modificaciones las realizan empresas instaladoras autorizadas.'],
+       src:['rebt']},
+      {id:'puedo', name:'¿Qué puedo tocar yo y qué no?',
+       intro:'Como usuario, tienes un margen limitado y seguro.',
+       h1:'Puedes',
+       check:['Enchufar y desenchufar aparatos.','Rearmar una protección que haya saltado, una vez.','Cambiar una bombilla con la luz apagada.','Mantener los aparatos limpios y revisar cables a la vista.'],
+       stop:['Abrir el cuadro eléctrico, tocar cableado o cambiar protecciones.','Ampliar o modificar circuitos.','Instalar un punto de recarga de vehículo eléctrico, un generador o cualquier aparato fijo que requiera conexión al cuadro.','Hacer empalmes provisionales o usar cables en mal estado.'],
+       stopH:'No lo hagas tú',
+       norma:['El REBT atribuye a las empresas instaladoras autorizadas la ejecución y modificación de las instalaciones. Las instalaciones nuevas o ampliadas se documentan con un certificado de instalación.'],
+       src:['rebt']}
+    ]}
+  ];
+
+  var A = document.getElementById('gxa'), T = document.getElementById('gxt'), Q2 = document.getElementById('gxq2'), R = document.getElementById('gxr');
+  if(!A || !T || !R) return;
+  var curA = null, curT = null;
+
+  function h(tag, txt, cls){ var e = document.createElement(tag); if(txt != null) e.textContent = txt; if(cls) e.className = cls; return e; }
+  function list(items, ordered){ var l = h(ordered ? 'ol' : 'ul'); items.forEach(function(t){ l.appendChild(h('li', t)); }); return l; }
+
+  function btn(label, pressed, fn){
+    var b = h('button', label); b.type = 'button'; b.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+    b.addEventListener('click', fn); return b;
+  }
+
+  function drawAreas(){
+    A.textContent = '';
+    AREAS.forEach(function(a){
+      A.appendChild(btn(a.name, curA === a, function(){ curA = a; curT = null; drawAreas(); drawTopics(); R.hidden = true; }));
+    });
+  }
+  function drawTopics(){
+    T.textContent = '';
+    if(!curA){ T.hidden = true; Q2.hidden = true; return; }
+    T.hidden = false; Q2.hidden = false;
+    curA.topics.forEach(function(t){
+      T.appendChild(btn(t.name, curT === t, function(){ curT = t; drawTopics(); drawResult(true); }));
+    });
+  }
+  function drawResult(focus){
+    R.textContent = '';
+    if(!curT){ R.hidden = true; return; }
+    var t = curT;
+    R.hidden = false;
+    R.appendChild(h('h4', t.name));
+    R.appendChild(h('p', t.intro));
+    R.appendChild(h('h5', t.h1 || 'Qué puedes comprobar tú, sin riesgo'));
+    R.appendChild(list(t.check, t.ordered));
+    var stop = h('div', null, 'gx-stop');
+    stop.appendChild(h('h5', t.stopH || 'Cuándo parar y llamar a un profesional'));
+    stop.appendChild(list(t.stop));
+    if(t.stopNote) stop.appendChild(h('p', t.stopNote));
+    R.appendChild(stop);
+    if(t.norma){
+      R.appendChild(h('h5', 'Qué dice la normativa'));
+      R.appendChild(list(t.norma));
+    }
+    if(t.src){
+      var d = h('div', null, 'gx-src');
+      d.appendChild(h('h5', 'Fuentes oficiales'));
+      var l = h('ul');
+      t.src.forEach(function(k){
+        var li = h('li'), a = h('a', S[k][0]); a.href = S[k][1]; a.target = '_blank'; a.rel = 'noopener noreferrer'; li.appendChild(a); l.appendChild(li);
+      });
+      d.appendChild(l); R.appendChild(d);
+    }
+    if(t.link){
+      var lk = h('p'), a2 = h('a', t.link[0]); a2.href = t.link[1]; a2.style.color = 'var(--text)'; lk.appendChild(a2); R.appendChild(lk);
+    }
+    var rs = h('button', 'Empezar de nuevo', 'gx-reset'); rs.type = 'button';
+    rs.addEventListener('click', function(){ curA = null; curT = null; drawAreas(); drawTopics(); R.hidden = true; document.getElementById('guia').scrollIntoView({behavior:'smooth', block:'start'}); });
+    R.appendChild(rs);
+    if(focus){ R.scrollIntoView({behavior:'smooth', block:'nearest'}); R.focus({preventScroll:true}); }
+  }
+  drawAreas();
 })();
 </script>
 <script data-goatcounter="https://tecnosystems.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
