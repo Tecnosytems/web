@@ -13,7 +13,7 @@
 @font-face{font-family:"JetBrains Mono";src:url(fonts/jetbrains-mono-latin-500-normal.woff2) format("woff2");font-weight:500;font-style:normal;font-display:swap}
 :root{
   --bg:#0D1219; --bg2:#131B25; --line:#243040; --text:#EAF0F5; --muted:#93A1B2;
-  --orange:#F47C48; --cold:#4FB3E8; --cool:#7ED0C0; --amber:#F2B84B;
+  --orange:#F47C48; --cold:#4FB3E8; --cool:#7ED0C0; --amber:#F2B84B; --ev:#8FD16B;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
@@ -100,13 +100,36 @@ h1{font-size:clamp(2.1rem,3.7vw,3.2rem);line-height:1.04;font-weight:800;font-st
 .mine-list span.r{font:400 .9rem 'JetBrains Mono',monospace;color:var(--muted);text-align:right}
 .mine-list span.r em{font-style:normal;color:var(--text);font-weight:500}
 
+.card .cw-go{margin-top:12px;flex:none}
+.card .cw-go a{font-weight:650;text-decoration:none;border-bottom:1px solid var(--c)}
+.card .cw-go a:hover,.card .cw-go a:focus-visible{color:var(--c)}
+@media (max-width:960px){.grid>.card:last-child:nth-child(odd){grid-column:1/-1}}
+/* Recarga VE */
+.rc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 40px;margin-top:28px}
+.rc h3{font-size:1.3rem;font-weight:700;padding-bottom:10px;border-bottom:2px solid var(--ev)}
+.rc h4{margin-top:20px;font-size:1rem;font-weight:700}
+.rc ul{margin:8px 0 0 20px;color:var(--muted)}
+.rc li{margin-top:7px;max-width:62ch}
+.rc li strong{color:var(--text);font-weight:650}
+.rc-tec{margin-top:40px}
+.rc-tec h3{font-size:1.3rem;font-weight:700;padding-bottom:10px;border-bottom:2px solid var(--ev);max-width:none}
+.rc-tec .rc-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px}
+.rc-tec ul{margin:10px 0 0 20px;color:var(--muted)}
+.rc-tec li{margin-top:7px;max-width:62ch}
+.rc-tec li strong{color:var(--text);font-weight:650}
+.rc-pasos{margin:12px 0 0 22px;color:var(--muted)}
+.rc-pasos li{margin-top:7px;max-width:70ch;padding-left:4px}
+.rc-fuentes{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:.92rem}
+.rc-fuentes a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
+.rc-fuentes a:hover,.rc-fuentes a:focus-visible{color:var(--ev);border-color:var(--ev)}
+@media (max-width:860px){.rc-grid,.rc-tec .rc-cols{grid-template-columns:1fr}.rc-grid{gap:32px}}
 /* Secciones */
 section{padding:72px 0}
 h2{font-size:clamp(1.6rem,3.6vw,2.3rem);line-height:1.12;font-weight:750;font-stretch:85%;letter-spacing:-.01em;max-width:24ch}
 .sub{margin-top:12px;color:var(--muted);max-width:62ch}
 
 /* Áreas */
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:36px}
 .card{background:var(--bg2);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:10px;padding:24px 22px 22px;display:flex;flex-direction:column;transition:transform .25s,border-color .25s}
 .card:hover{transform:translateY(-4px);border-color:var(--c)}
 .card svg{width:36px;height:36px;stroke:var(--c);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin-bottom:18px}
@@ -451,8 +474,8 @@ footer a:hover{color:var(--orange)}
 
   <section id="areas">
     <div class="wrap">
-      <h2>Cuatro áreas, del frío al calor</h2>
-      <p class="sub">Las cuatro áreas que recoge este sitio informativo, ordenadas como en la escala de arriba.</p>
+      <h2>Cinco áreas de información técnica</h2>
+      <p class="sub">Las áreas que recoge este sitio informativo: de la refrigeración a la fotovoltaica, ordenadas como en la escala de arriba, y la recarga del coche eléctrico.</p>
       <div class="grid">
         <article class="card" style="--c:var(--cold)">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M4.9 6.5l14.2 11M19.1 6.5 4.9 17.5M9.5 3.5 12 6l2.5-2.5M9.5 20.5 12 18l2.5 2.5"/></svg>
@@ -496,8 +519,98 @@ footer a:hover{color:var(--orange)}
           </ul>
           <span class="tag">Autoconsumo</span>
         </article>
+        <article class="card" style="--c:var(--ev)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2v5M15 2v5M7 7h10v4a5 5 0 0 1-10 0zM12 16v6"/></svg>
+          <h3>Recarga del coche eléctrico</h3>
+          <p>Información sobre puntos de recarga en vivienda unifamiliar y comunidades de propietarios.</p>
+          <p class="cw-go"><a href="#recarga">Ver el resumen</a></p>
+          <ul class="leg" aria-label="Legislación y consultas">
+            <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2014-13681" target="_blank" rel="noopener noreferrer">ITC-BT-52, RD 1053/2014 (BOE)</a></li>
+            <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2021-21096" target="_blank" rel="noopener noreferrer">Real Decreto-ley 29/2021 (BOE)</a></li>
+            <li><a href="https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-9848" target="_blank" rel="noopener noreferrer">RD 450/2022, Código Técnico, sección HE 6 (BOE)</a></li>
+            <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-1960-10906" target="_blank" rel="noopener noreferrer">Ley de Propiedad Horizontal (BOE)</a></li>
+          </ul>
+          <span class="tag">ITC-BT-52</span>
+        </article>
       </div>
       <p class="fine">Enlaces a la legislación y a consultas de organismos oficiales. Consulta siempre el texto consolidado vigente: para fines jurídicos prevalece la publicación oficial.</p>
+    </div>
+  </section>
+
+  <section id="recarga" style="border-top:1px solid var(--line)">
+    <div class="wrap">
+      <h2>Recarga del coche eléctrico: qué dice la normativa</h2>
+      <p class="sub">Resumen informativo para vivienda unifamiliar y para garajes de comunidades de propietarios. Revisado en noviembre de 2026.</p>
+      <p class="fine descargo"><strong>Importante:</strong> el punto de recarga debe instalarlo una empresa instaladora autorizada en baja tensión, que emite el certificado y lo tramita. Este resumen es orientativo: no sustituye a un proyecto técnico ni a un asesoramiento jurídico, y la norma puede cambiar.</p>
+      <div class="rc-grid">
+        <article class="rc">
+          <h3>Vivienda unifamiliar</h3>
+          <h4>Permisos y trámites</h4>
+          <ul>
+            <li><strong>Sin licencia.</strong> Para instalar puntos de recarga las administraciones no pueden exigir licencia ni autorización previa: basta una declaración responsable (art. 48.5 de la Ley del Sector Eléctrico, introducido por el <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2021-21096" target="_blank" rel="noopener noreferrer">Real Decreto-ley 29/2021</a>). Hay excepciones, por ejemplo en edificaciones del patrimonio histórico-artístico.</li>
+            <li><strong>Certificado de instalación.</strong> La empresa instaladora lo emite y lo registra. En Andalucía los certificados se tramitan por la plataforma <a href="https://www.juntadeandalucia.es/sites/default/files/inline-files/2025/06/Manual_Usuario_TECI.pdf" target="_blank" rel="noopener noreferrer">TECI de la Junta (manual)</a>.</li>
+            <li><strong>Proyecto técnico.</strong> La ITC-BT-52 lo exige para recarga en exterior de más de 10 kW, en interior de más de 50 kW y en instalaciones con estaciones de modo 4. Si se exige proyecto, también hay inspección inicial por un organismo de control.</li>
+            <li><strong>Potencia contratada.</strong> Si el cargador no cabe en la potencia actual, hay que ampliarla con la comercializadora. Los sistemas de gestión de carga permiten recargar sin ampliar potencia.</li>
+          </ul>
+          <h4>Esquema de instalación</h4>
+          <ul>
+            <li>La ITC-BT-52 prevé un <strong>circuito exclusivo</strong> para la recarga (esquema 4a en vivienda unifamiliar) o su conexión al contador existente (esquema 2), con la protección de la centralización dimensionada para ambos.</li>
+          </ul>
+        </article>
+        <article class="rc">
+          <h3>Comunidad de propietarios</h3>
+          <h4>Plaza individual y uso privado</h4>
+          <ul>
+            <li><strong>Solo comunicación previa.</strong> El art. 17.5 de la <a href="https://www.boe.es/buscar/act.php?id=BOE-A-1960-10906" target="_blank" rel="noopener noreferrer">Ley de Propiedad Horizontal</a> dice que instalar un punto de recarga privado en una plaza individual solo requiere comunicarlo antes a la comunidad. No hace falta votación ni autorización de la junta.</li>
+            <li><strong>Sentencia reciente.</strong> El Tribunal Supremo (STS 1745/2025, de 1 de diciembre) confirmó que esa comunicación basta aunque el cableado pase por elementos comunes, salvo afectación innecesaria. <a href="https://www.poderjudicial.es/cgpj/es/Poder-Judicial/Noticias-Judiciales/El-Tribunal-Supremo-resuelve-que-la-instalacion-del-punto-de-recarga-de-vehiculos-electricos-en-una-plaza-individual-de-un-garaje-comunitario-solo-requiere-comunicarlo-previamente-a-la-comunidad-de-propietarios" target="_blank" rel="noopener noreferrer">Nota del Poder Judicial</a>.</li>
+            <li><strong>Coste.</strong> La instalación y el consumo corren a cargo de quien instala el punto.</li>
+            <li><strong>La parte técnica sigue vigente.</strong> Que la comunidad no pueda oponerse no exime del certificado de instalación y del resto de requisitos de la ITC-BT-52.</li>
+          </ul>
+          <h4>Instalación colectiva y edificios nuevos</h4>
+          <ul>
+            <li><strong>Zonas comunes.</strong> Una infraestructura común para varias plazas es un asunto de la comunidad: consulta el art. 17 de la Ley de Propiedad Horizontal.</li>
+            <li><strong>Edificios nuevos y reformas importantes.</strong> La sección HE 6 del Código Técnico (<a href="https://www.codigotecnico.org/noticias/2022-06-15b-modificacion-CTE.html" target="_blank" rel="noopener noreferrer">RD 450/2022</a>) exige preinstalación para recarga en el 100 % de las plazas en uso residencial privado.</li>
+            <li><strong>Esquemas en garajes colectivos.</strong> La ITC-BT-52 admite instalación colectiva con contadores secundarios (1a a 1c), contador individual por plaza (2 y 3) o circuito adicional (4a y 4b, este último desde los servicios generales del garaje).</li>
+            <li><strong>Proyecto.</strong> En garajes depende de la ventilación y del número de plazas (ITC-BT-04): lo determina la empresa instaladora.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="rc-tec">
+        <h3>Qué debe tener la instalación para cumplir</h3>
+        <div class="rc-cols">
+          <ul>
+            <li><strong>Circuito dedicado</strong> a la recarga, salvo los consumos auxiliares del propio equipo.</li>
+            <li><strong>Diferencial de 30 mA, clase A</strong>, por cada punto de conexión.</li>
+            <li><strong>Magnetotérmico omnipolar, curva C</strong>, por cada punto.</li>
+            <li><strong>Protección contra sobretensiones</strong> transitorias cerca del origen de la instalación.</li>
+          </ul>
+          <ul>
+            <li><strong>Modo de carga 3</strong> (cargador fijo conectado a la instalación). Con enchufe doméstico (modos 1 y 2) se limita a 10 A por toma, y 16 A con garantía del fabricante de la base. En vivienda unifamiliar y garajes de propiedad horizontal se admiten bases de uso doméstico hasta 3,7 kW monofásicos.</li>
+            <li><strong>Puesta a tierra</strong> con tensión de contacto no superior a 24 V.</li>
+            <li><strong>Exterior:</strong> equipos y canalizaciones con grados de protección IP e IK reforzados.</li>
+            <li><strong>Corriente continua:</strong> la norma de producto recomienda detección de 6 mA. Pregunta si el equipo la incluye.</li>
+          </ul>
+        </div>
+        <h3 style="margin-top:32px">Pasos habituales</h3>
+        <ol class="rc-pasos">
+          <li>En comunidad, comunicar por escrito al presidente o administrador la intención de instalar, y guardar el justificante.</li>
+          <li>Pedir presupuesto a una empresa instaladora autorizada en baja tensión.</li>
+          <li>La empresa revisa la instalación, diseña el circuito y ejecuta los trabajos.</li>
+          <li>La empresa emite el certificado de instalación y lo registra (en Andalucía, por TECI).</li>
+          <li>Si hace falta, ajustar la potencia contratada con la comercializadora.</li>
+          <li>Guardar el certificado y la documentación del equipo.</li>
+        </ol>
+        <h3 style="margin-top:32px">Ayudas</h3>
+        <p class="fine" style="max-width:70ch">El Plan MOVES III terminó el 31 de diciembre de 2025. Según la información publicada, en 2026 sigue la deducción del 15 % en el IRPF por instalar un punto de recarga (base máxima de 4.000 €). Las condiciones cambian: confírmalas en la <a href="https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c16-deducciones-generales-cuota/deducciones-adquisicion-vehiculos-electricos-puntos-recarga.html" target="_blank" rel="noopener noreferrer">web de la Agencia Tributaria</a>.</p>
+      </div>
+      <div class="rc-fuentes" aria-label="Fuentes oficiales">
+        <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2014-13681" target="_blank" rel="noopener noreferrer">ITC-BT-52, RD 1053/2014 (BOE)</a>
+        <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2022-9848" target="_blank" rel="noopener noreferrer">RD 450/2022, Código Técnico (BOE)</a>
+        <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2021-21096" target="_blank" rel="noopener noreferrer">Real Decreto-ley 29/2021 (BOE)</a>
+        <a href="https://www.boe.es/buscar/act.php?id=BOE-A-1960-10906" target="_blank" rel="noopener noreferrer">Ley de Propiedad Horizontal (BOE)</a>
+        <a href="https://industria.gob.es/Calidad-Industrial/seguridadindustrial/instalacionesindustriales/baja-tension/Documents/bt/guia_bt_52_nov17R1.pdf" target="_blank" rel="noopener noreferrer">Guía técnica ITC-BT-52 (Ministerio de Industria)</a>
+      </div>
+      <p class="fine" style="margin-top:20px">En caso de peligro inmediato, llama al 112. No manipules cuadros eléctricos ni cableado: eso corresponde a una empresa instaladora autorizada.</p>
     </div>
   </section>
 
