@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TecnoSystems · Información técnica</title>
 <meta name="description" content="Sitio informativo sobre climatización, refrigeración, electricidad y energía solar. Precio de la luz por horas, calculadoras y ayudas en Andalucía.">
+<link rel="canonical" href="https://tecnosystems.org/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TecnoSystems">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="TecnoSystems · Información técnica">
+<meta property="og:description" content="Climatización, refrigeración, electricidad y energía solar: calculadoras, guías y ayudas en Andalucía.">
+<meta property="og:url" content="https://tecnosystems.org/">
+<meta property="og:image" content="https://tecnosystems.org/logo.png">
+<meta name="twitter:card" content="summary">
 <link rel="icon" type="image/png" href="icono.png">
 <link rel="preload" href="fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
@@ -73,7 +82,7 @@ h1{font-size:clamp(2.1rem,3.7vw,3.2rem);line-height:1.04;font-weight:800;font-st
 .sollg{display:flex;align-items:center;gap:10px;margin-top:16px;font:400 .74rem 'JetBrains Mono',monospace;color:var(--muted)}
 .sollg i{flex:1;height:8px;border-radius:4px;background:linear-gradient(90deg,rgb(79,179,232),rgb(242,184,75),rgb(244,124,72))}
 .wxmap .dot.sel circle{stroke:var(--orange);stroke-width:3}
-.solcalc{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:28px;align-items:start}.solcalc h3,.solcalc .descargo{grid-column:1/-1}.solcalc .res{margin-top:14px}.solcalc .cpbox{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}.solcalc .cpbox label{flex:1 1 180px}.solcalc .cpbox button{font:600 .95rem 'Archivo',system-ui,sans-serif;color:#fff;background:var(--orange);border:0;border-radius:8px;padding:11px 18px;cursor:pointer}.solcalc .cpbox button:hover{filter:brightness(1.08)}.solcalc .cpmsg{grid-column:1/-1;margin:0;font-size:.85rem;color:var(--muted)}.solcalc .cpmsg.err{color:#e4472b}
+.solcalc{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:28px;align-items:start}.solcalc h3,.solcalc .descargo{grid-column:1/-1}.solcalc .res{margin-top:14px}.solcalc .cpbox{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}.solcalc .cpbox label{flex:1 1 180px}.solcalc .cpbox button{font:600 .95rem 'Archivo',system-ui,sans-serif;color:#0D1219;background:var(--orange);border:0;border-radius:8px;padding:11px 18px;cursor:pointer}.solcalc .cpbox button:hover{filter:brightness(1.08)}.solcalc .cpmsg{grid-column:1/-1;margin:0;font-size:.85rem;color:var(--muted)}.solcalc .cpmsg.err{color:#e4472b}
 .solcalc h3{font-size:1.05rem;font-weight:700}
 .solcalc .form{grid-template-columns:1fr 1fr;margin-top:14px}
 .solcalc .res{grid-template-columns:1fr 1fr}
@@ -377,7 +386,7 @@ footer a:hover{color:var(--orange)}
 <body>
 <details class="aviso" id="aviso">
   <summary>Web informativa y sin finalidad comercial <span aria-hidden="true">· más información</span></summary>
-  <p>Reúne herramientas de cálculo, datos y novedades sobre climatización, refrigeración, electricidad y energía solar, con fines divulgativos. No ofrece servicios, presupuestos ni contratación, no incluye publicidad y no obtiene beneficio económico.</p>
+  <p>Reúne herramientas de cálculo, datos y novedades sobre climatización, refrigeración, electricidad y energía solar, con fines divulgativos. No ofrece servicios, presupuestos ni contratación y no incluye publicidad.</p>
 </details>
 <header>
   <div class="wrap">
@@ -391,8 +400,8 @@ footer a:hover{color:var(--orange)}
         <div class="cal-h"><button type="button" id="calPrev" aria-label="Mes anterior">‹</button><strong id="calTitle"></strong><button type="button" id="calNext" aria-label="Mes siguiente">›</button></div>
         <div class="cal-g" id="calGrid"></div>
         <ul class="cal-l" id="calList"></ul>
-        <div class="cal-k"><span class="k-n">Festivo nacional y autonómico</span><span class="k-b">Benamocarra</span><span class="k-m">Málaga capital</span></div>
-        <p class="cal-n">Festivos de 2026 y 2027 según el BOJA. Los locales son de Benamocarra y de Málaga capital; confirma los de tu municipio en el calendario oficial.</p>
+        <div class="cal-k"><span class="k-n">Festivo nacional y autonómico</span></div>
+        <p class="cal-n">Festivos de 2026 y 2027 según el BOJA. Los festivos locales dependen de cada municipio: confírmalos en el calendario oficial de tu ayuntamiento.</p>
         <div class="cal-f"><span>Hora de España</span><button type="button" class="cal-today" id="calToday">Hoy</button></div>
       </div>
     </div>
@@ -424,7 +433,7 @@ footer a:hover{color:var(--orange)}
        <div class="wxcard">
         <h2>Temperatura</h2>
         <div class="wxinfo">
-          <div class="scale" role="group" aria-label="Temperatura actual en Málaga y Benamocarra">
+          <div class="scale" role="group" aria-label="Temperatura actual en Málaga y Sevilla">
             <div class="scalewrap">
               <span aria-hidden="true">0°</span>
               <div class="track">
@@ -482,7 +491,7 @@ footer a:hover{color:var(--orange)}
         <div class="form">
           <div class="cpbox">
             <label>Código postal
-              <input id="solcp" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="5" pattern="[0-9]{5}" placeholder="29719"></label>
+              <input id="solcp" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="5" pattern="[0-9]{5}" placeholder="29001"></label>
             <button type="button" id="solcpbtn">Buscar</button>
           </div>
           <p class="cpmsg" id="solcpmsg" aria-live="polite">Escribe tu código postal para estimar la producción en tu zona, o elige una ciudad.</p>
@@ -826,6 +835,7 @@ footer a:hover{color:var(--orange)}
       </div>
       <div class="guia" id="bono-social">
         <h3>Bono social eléctrico y térmico: guía informativa</h3>
+        <p class="fine"><a href="bono-social.html">Leer esta guía en su propia página</a></p>
         <p class="fine descargo">Resumen orientativo de información publicada por el Ministerio para la Transición Ecológica (MITECO), la Junta de Andalucía y organismos de consumo, revisada el 19 de noviembre de 2026. No es asesoramiento ni garantiza el derecho a ninguna ayuda: la concesión depende de la comercializadora de referencia y de las administraciones. TecnoSystems no tramita bonos sociales ni tiene relación con ninguna comercializadora u organismo.</p>
         <div class="faq">
           <details><summary>¿Qué son y en qué se diferencian?</summary>
@@ -914,6 +924,7 @@ footer a:hover{color:var(--orange)}
           </ul>
           <p>Si hay hielo en las tuberías, ruidos raros o goteo de aceite, apágalo y llama a un técnico: puede haber una fuga de refrigerante, y recargar sin localizarla no la arregla.</p></details>
         <details><summary>Salta el diferencial. ¿Puedo seguir rearmándolo?</summary>
+          <p><a href="diferencial-que-salta.html" style="color:var(--orange)">Leer en su propia página</a></p>
           <p>Si salta una vez tras una tormenta o un aparato concreto, puedes rearmarlo. Si salta de forma repetida, desconecta los circuitos uno a uno para localizar el que falla y no lo fuerces: el diferencial está para protegerte de derivaciones a tierra. Para repararlo, avisa a un instalador autorizado.</p></details>
         <details><summary>¿Qué significa el SCOP de una bomba de calor?</summary>
           <p>Es el rendimiento medio estacional: cuántos kWh de calor entrega el equipo por cada kWh de electricidad que consume a lo largo de la temporada. Con un SCOP de 4, por cada kWh eléctrico entrega 4 kWh de calor. Cuanto mayor, menor gasto.</p></details>
@@ -921,8 +932,8 @@ footer a:hover{color:var(--orange)}
           <p>La potencia contratada depende de lo que usas a la vez, no del tamaño de los paneles. Las placas reducen lo que compras a la red, pero de noche o con nubes el pico de consumo es el mismo. Revisa las potencias máximas de tus últimas facturas antes de cambiarla.</p></details>
         <details><summary>¿Con qué frecuencia conviene revisar un equipo de climatización?</summary>
           <p>Limpiar los filtros con regularidad lo puede hacer cualquiera. Una revisión técnica periódica mantiene el rendimiento y detecta fugas pronto. Si el equipo es de uso profesional o tiene cierta potencia, el RITE fija revisiones obligatorias; consulta lo que te corresponde.</p></details>
-        <details><summary>¿Por qué no aceptáis encargos?</summary>
-          <p>TecnoSystems es ahora mismo un proyecto de información: reúne herramientas, noticias y guías del sector. Para consultas generales, escribe a <a href="mailto:info@tecnosystems.org" style="color:var(--text)">info@tecnosystems.org</a>.</p></details>
+        <details><summary>¿Qué es TecnoSystems?</summary>
+          <p>Un sitio informativo: reúne herramientas de cálculo, noticias y guías del sector con fines divulgativos. No ofrece servicios, presupuestos ni contratación. Para dudas o correcciones sobre el contenido, escribe a <a href="mailto:info@tecnosystems.org" style="color:var(--text)">info@tecnosystems.org</a>.</p></details>
       </div>
     </div>
   </section>
@@ -1005,12 +1016,11 @@ footer a:hover{color:var(--orange)}
 
   <section class="contact" id="contacto">
     <div class="wrap">
-      <p>Para cualquier consulta o información:</p>
+      <p>Para dudas o correcciones sobre el contenido de esta web:</p>
       <a class="mail" href="mailto:info@tecnosystems.org">info@tecnosystems.org</a>
     </div>
   </section>
 </main>
-<a class="fab" href="mailto:info@tecnosystems.org" aria-label="Escribir un correo a TecnoSystems"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Escribir</a>
 
 <footer>
   <div class="wrap">
@@ -1027,7 +1037,7 @@ footer a:hover{color:var(--orange)}
   /* Tiempo: escala del inicio + mapa de España */
   var MIN = 0, MAX = 45;
   var CITIES = [["A Coruña",43.37,-8.4,50.7,27],["Bilbao",43.26,-2.93,255.1,37.2],["Barcelona",41.39,2.17,452.2,125.9],["Zaragoza",41.65,-0.89,334.1,118.3],["Valladolid",41.65,-4.72,187.2,119.8],["Madrid",40.42,-3.7,226.3,183.2],["Palma",39.57,2.65,477.3,217.9],["Valencia",39.47,-0.38,357.8,229.5],["Badajoz",38.88,-6.97,95.6,259.8],["Murcia",37.99,-1.13,330.3,306.4],["Sevilla",37.39,-5.98,133.2,337.6],["Granada",37.18,-3.6,230.4,349.5],["Málaga",36.72,-4.42,196.6,373.1],["Las Palmas",28.12,-15.41,90.5,447.2]];
-  var MINE = [['Málaga',36.72,-4.42],['Benamocarra',36.7936,-4.1928]];
+  var MINE = [['Málaga',36.72,-4.42],['Sevilla',37.39,-5.98]];
   var STOPS = [[0,[79,179,232]],[12.6,[126,208,192]],[27,[242,184,75]],[36.9,[244,124,72]],[45,[228,71,43]]];
   function tcolor(t){
     t = Math.min(Math.max(t,MIN),MAX);
@@ -1040,7 +1050,7 @@ footer a:hover{color:var(--orange)}
     return 'rgb(228,71,43)';
   }
   function fmtT(t, d){ return t.toLocaleString('es-ES',{maximumFractionDigits:d==null?1:d}) + ' °C'; }
-  var AEMET = {'A Coruña':'coruna-a-id15030','Bilbao':'bilbao-id48020','Barcelona':'barcelona-id08019','Zaragoza':'zaragoza-id50297','Valladolid':'valladolid-id47186','Madrid':'madrid-id28079','Palma':'palma-de-mallorca-id07040','Valencia':'valencia-id46250','Badajoz':'badajoz-id06015','Murcia':'murcia-id30030','Sevilla':'sevilla-id41091','Granada':'granada-id18087','Málaga':'malaga-id29067','Las Palmas':'palmas-de-gran-canaria-las-id35016','Benamocarra':'benamocarra-id29027'};
+  var AEMET = {'A Coruña':'coruna-a-id15030','Bilbao':'bilbao-id48020','Barcelona':'barcelona-id08019','Zaragoza':'zaragoza-id50297','Valladolid':'valladolid-id47186','Madrid':'madrid-id28079','Palma':'palma-de-mallorca-id07040','Valencia':'valencia-id46250','Badajoz':'badajoz-id06015','Murcia':'murcia-id30030','Sevilla':'sevilla-id41091','Granada':'granada-id18087','Málaga':'malaga-id29067','Las Palmas':'palmas-de-gran-canaria-las-id35016'};
   function aemet(n){ return 'https://www.aemet.es/es/eltiempo/prediccion/municipios/' + AEMET[n]; }
   var WX = null, dayMode = 'now';
   var SVGNS = 'http://www.w3.org/2000/svg';
@@ -1121,7 +1131,7 @@ footer a:hover{color:var(--orange)}
     .catch(function(){ document.getElementById('wxerr').hidden = false; });
 
   /* Radiación solar (PVGIS, datos propios en radiacion.json) */
-  var RAD = null, solMode = 'y', solMes = new Date().getMonth(), solSel = 'Benamocarra';
+  var RAD = null, solMode = 'y', solMes = new Date().getMonth(), solSel = 'Málaga';
   var MD = [31,28,31,30,31,30,31,31,30,31,30,31];
   var MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
   function nf(v, d){ return v.toLocaleString('es-ES',{minimumFractionDigits:d,maximumFractionDigits:d}); }
@@ -1154,7 +1164,7 @@ footer a:hover{color:var(--orange)}
       g.appendChild(dot);
     });
     var ul = document.getElementById('solmine'); ul.textContent = '';
-    ['Málaga','Benamocarra'].forEach(function(n){
+    ['Málaga','Sevilla'].forEach(function(n){
       var d = RAD.data[n]; if(!d) return;
       var li = document.createElement('li');
       var b = document.createElement('a'); b.className = 'city'; b.href = '#solcalc'; b.textContent = n; b.title = 'Calcular una instalación en ' + n;
@@ -1727,8 +1737,8 @@ footer a:hover{color:var(--orange)}
   function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
   function today(){var p=fP.formatToParts(new Date()),o={};p.forEach(function(x){o[x.type]=+x.value});return {y:o.year,m:o.month,d:o.day}}
   var N='n', B='b', M='m', H={
-    2026:{'1-1':[N,'Año Nuevo'],'1-6':[N,'Epifanía del Señor'],'2-28':[N,'Día de Andalucía'],'4-2':[N,'Jueves Santo'],'4-3':[N,'Viernes Santo'],'5-1':[N,'Fiesta del Trabajo'],'8-15':[N,'Asunción de la Virgen'],'10-12':[N,'Fiesta Nacional de España'],'11-2':[N,'Todos los Santos'],'12-7':[N,'Día de la Constitución'],'12-8':[N,'Inmaculada Concepción'],'12-25':[N,'Natividad del Señor'],'5-18':[B,'Fiesta local de Benamocarra'],'10-19':[B,'Fiesta local de Benamocarra'],'8-19':[M,'Fiesta local de Málaga'],'9-8':[M,'Fiesta local de Málaga']},
-    2027:{'1-1':[N,'Año Nuevo'],'1-6':[N,'Epifanía del Señor'],'3-1':[N,'Día de Andalucía'],'3-25':[N,'Jueves Santo'],'3-26':[N,'Viernes Santo'],'5-1':[N,'Fiesta del Trabajo'],'8-16':[N,'Asunción de la Virgen'],'10-12':[N,'Fiesta Nacional de España'],'11-1':[N,'Todos los Santos'],'12-6':[N,'Día de la Constitución'],'12-8':[N,'Inmaculada Concepción'],'12-25':[N,'Natividad del Señor'],'5-17':[B,'Fiesta local de Benamocarra'],'10-18':[B,'Fiesta local de Benamocarra'],'8-19':[M,'Fiesta local de Málaga'],'9-8':[M,'Fiesta local de Málaga']}
+    2026:{'1-1':[N,'Año Nuevo'],'1-6':[N,'Epifanía del Señor'],'2-28':[N,'Día de Andalucía'],'4-2':[N,'Jueves Santo'],'4-3':[N,'Viernes Santo'],'5-1':[N,'Fiesta del Trabajo'],'8-15':[N,'Asunción de la Virgen'],'10-12':[N,'Fiesta Nacional de España'],'11-2':[N,'Todos los Santos'],'12-7':[N,'Día de la Constitución'],'12-8':[N,'Inmaculada Concepción'],'12-25':[N,'Natividad del Señor']},
+    2027:{'1-1':[N,'Año Nuevo'],'1-6':[N,'Epifanía del Señor'],'3-1':[N,'Día de Andalucía'],'3-25':[N,'Jueves Santo'],'3-26':[N,'Viernes Santo'],'5-1':[N,'Fiesta del Trabajo'],'8-16':[N,'Asunción de la Virgen'],'10-12':[N,'Fiesta Nacional de España'],'11-1':[N,'Todos los Santos'],'12-6':[N,'Día de la Constitución'],'12-8':[N,'Inmaculada Concepción'],'12-25':[N,'Natividad del Señor']}
   };
   var last='', vy=0, vm=0, open=false;
   function tick(){
@@ -1813,11 +1823,13 @@ a.querySelector('summary').addEventListener('click',function(e){if(fine){e.preve
   });
   add('Guía paso a paso: qué puedes comprobar y cuándo llamar a un profesional', 'aire acondicionado climatización refrigeración electricidad diferencial fotovoltaica bomba de calor avería qué hacer', document.getElementById('guia'), '', 'Preguntas frecuentes');
 
+  var SYN = {cargador:['recarga'],cargadores:['recarga'],wallbox:['recarga'],coche:['vehiculo','recarga'],placas:['fotovoltaica','solar'],paneles:['fotovoltaica','solar'],solar:['fotovoltaica'],aire:['climatizacion','acondicionado'],split:['climatizacion','acondicionado'],luz:['electricidad','tarifa'],factura:['tarifa','bono'],calefaccion:['climatizacion','bomba'],nevera:['refrigeracion','frio'],frigorifico:['refrigeracion','frio'],termostato:['climatizacion'],aerotermia:['bomba']};
   function match(w, q){ return w.indexOf(q) === 0 || (q.length > 3 && q.replace(/(es|s)$/, '').length > 2 && w.indexOf(q.replace(/(es|s)$/, '')) === 0); }
   function score(it, qs){
     var sc = 0, hit = 0;
     qs.forEach(function(q){
-      var inT = it.tw.some(function(w){ return match(w, q); }), inB = it.bw.some(function(w){ return match(w, q); });
+      var alts = [q].concat(SYN[q] || []);
+      var inT = alts.some(function(a){ return it.tw.some(function(w){ return match(w, a); }); }), inB = alts.some(function(a){ return it.bw.some(function(w){ return match(w, a); }); });
       if(inT){ sc += 3; hit++; } else if(inB){ sc += 1; hit++; }
     });
     return { sc: sc, hit: hit };
