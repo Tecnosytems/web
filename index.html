@@ -123,6 +123,17 @@ h1{font-size:clamp(2.1rem,3.7vw,3.2rem);line-height:1.04;font-weight:800;font-st
 .rc-fuentes a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
 .rc-fuentes a:hover,.rc-fuentes a:focus-visible{color:var(--ev);border-color:var(--ev)}
 @media (max-width:860px){.rc-grid,.rc-tec .rc-cols{grid-template-columns:1fr}.rc-grid{gap:32px}}
+/* Enlaces de interés */
+.enl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 40px;margin-top:32px}
+.enl h3{font-size:1.05rem;font-weight:700;padding-bottom:10px;border-bottom:2px solid var(--orange)}
+.enl ul{list-style:none}
+.enl li{padding:12px 0;border-bottom:1px solid var(--line)}
+.enl li a{font-weight:600;text-decoration:none;border-bottom:1px solid var(--line);transition:color .2s,border-color .2s}
+.enl li a:hover,.enl li a:focus-visible{color:var(--orange);border-color:var(--orange)}
+.enl li span{display:block;margin-top:4px;color:var(--muted);font-size:.9rem}
+.enl+.descargo{margin-top:28px}
+@media (max-width:860px){.enl{grid-template-columns:1fr;gap:28px}}
+
 /* Secciones */
 section{padding:72px 0}
 h2{font-size:clamp(1.6rem,3.6vw,2.3rem);line-height:1.12;font-weight:750;font-stretch:85%;letter-spacing:-.01em;max-width:24ch}
@@ -389,6 +400,7 @@ footer a:hover{color:var(--orange)}
       <a href="#herramientas">Herramientas</a>
       <a href="#ayudas">Ayudas</a>
       <a href="#novedades">Novedades</a>
+      <a href="#enlaces">Enlaces</a>
       <a href="#contacto">Contacto</a>
     </nav>
   </div>
@@ -932,6 +944,40 @@ footer a:hover{color:var(--orange)}
       <ul id="news"></ul>
       <p class="empty" id="empty" hidden>Todavía no hay novedades cargadas. Vuelve en unas horas.</p>
       <button type="button" class="more" id="more" hidden>Ver más noticias</button>
+    </div>
+  </section>
+
+  <section id="enlaces" style="border-top:1px solid var(--line)">
+    <div class="wrap">
+      <h2>Enlaces de interés</h2>
+      <p class="sub">Páginas oficiales e institucionales donde consultar normativa, datos y ayudas. Las usamos como fuentes de esta web.</p>
+      <div class="enl">
+        <div>
+          <h3>Organismos</h3>
+          <ul>
+            <li><a href="https://www.idae.es" target="_blank" rel="noopener noreferrer">IDAE</a><span>Instituto para la Diversificación y Ahorro de la Energía.</span></li>
+            <li><a href="https://www.agenciaandaluzadelaenergia.es" target="_blank" rel="noopener noreferrer">Agencia Andaluza de la Energía</a><span>Información y programas de energía en Andalucía.</span></li>
+            <li><a href="https://www.cnmc.es" target="_blank" rel="noopener noreferrer">CNMC</a><span>Regulador de los mercados de energía y de la competencia.</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Datos y herramientas</h3>
+          <ul>
+            <li><a href="https://www.aemet.es" target="_blank" rel="noopener noreferrer">AEMET</a><span>Predicción y datos del tiempo en España.</span></li>
+            <li><a href="https://re.jrc.ec.europa.eu/pvg_tools/es/" target="_blank" rel="noopener noreferrer">PVGIS</a><span>Radiación solar y producción fotovoltaica (Comisión Europea).</span></li>
+            <li><a href="https://www.esios.ree.es" target="_blank" rel="noopener noreferrer">ESIOS (Red Eléctrica)</a><span>Precios y datos del sistema eléctrico.</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Seguridad y guías</h3>
+          <ul>
+            <li><a href="https://www.insst.es" target="_blank" rel="noopener noreferrer">INSST</a><span>Instituto Nacional de Seguridad y Salud en el Trabajo.</span></li>
+            <li><a href="https://libreria.miteco.gob.es/ebook/416/free_download" target="_blank" rel="noopener noreferrer">Guía de tramitación del autoconsumo</a><span>Publicación del IDAE y el Ministerio, de descarga gratuita.</span></li>
+            <li><a href="https://www.boe.es" target="_blank" rel="noopener noreferrer">BOE</a><span>Texto oficial y consolidado de la legislación.</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="fine descargo">Enlaces a webs de terceros, sin relación comercial con TecnoSystems. Su contenido es responsabilidad de sus titulares y puede cambiar sin aviso.</p>
     </div>
   </section>
 
