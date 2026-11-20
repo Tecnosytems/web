@@ -28,8 +28,9 @@ a{color:inherit}
 
 /* Cabecera */
 header{position:sticky;top:0;z-index:20;background:rgba(13,18,25,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
-header img{height:26px;width:auto;display:block}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:84px;gap:16px}
+header img{height:54px;width:auto;display:block}
+@media (max-width:960px){header img{height:40px;flex:none}nav{gap:14px;font-size:.9rem;overflow-x:auto;white-space:nowrap;scrollbar-width:none;min-width:0}nav::-webkit-scrollbar{display:none}}
 nav{display:flex;gap:22px;font-size:.95rem}
 nav a{text-decoration:none;color:var(--muted);padding:6px 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
 nav a:hover{color:var(--text);border-color:var(--orange)}
@@ -265,7 +266,7 @@ footer a:hover{color:var(--orange)}
   nav{gap:16px;font-size:.9rem;overflow-x:auto;white-space:nowrap;scrollbar-width:none;min-width:0}
   nav::-webkit-scrollbar{display:none}
   header .wrap{gap:12px}
-  header img{height:22px;flex:none}
+  header img{height:32px;flex:none}
   .panel{padding:18px}
   .form{grid-template-columns:1fr}
   .bars{height:120px;gap:2px}
@@ -336,7 +337,7 @@ footer a:hover{color:var(--orange)}
 <div class="aviso" role="status">Ahora mismo no realizamos trabajos ni aceptamos encargos.</div>
 <header>
   <div class="wrap">
-    <a href="#inicio" aria-label="TecnoSystems, inicio"><img src="logo-blanco.png" alt="TecnoSystems"></a>
+    <a href="#inicio" aria-label="TecnoSystems, inicio"><img src="logo-cabecera.png" alt="TecnoSystems" width="256" height="54"></a>
     <div class="clock" id="clock">
       <button type="button" id="clockBtn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cal" aria-label="Hora y fecha en España. Abrir calendario">
         <span class="ck-time" id="ckTime">--:--:--</span>
