@@ -73,7 +73,7 @@ h1{font-size:clamp(2.1rem,3.7vw,3.2rem);line-height:1.04;font-weight:800;font-st
 .sollg{display:flex;align-items:center;gap:10px;margin-top:16px;font:400 .74rem 'JetBrains Mono',monospace;color:var(--muted)}
 .sollg i{flex:1;height:8px;border-radius:4px;background:linear-gradient(90deg,rgb(79,179,232),rgb(242,184,75),rgb(244,124,72))}
 .wxmap .dot.sel circle{stroke:var(--orange);stroke-width:3}
-.solcalc{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:28px;align-items:start}.solcalc h3,.solcalc .descargo{grid-column:1/-1}.solcalc .res{margin-top:14px}
+.solcalc{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:28px;align-items:start}.solcalc h3,.solcalc .descargo{grid-column:1/-1}.solcalc .res{margin-top:14px}.solcalc .cpbox{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}.solcalc .cpbox label{flex:1 1 180px}.solcalc .cpbox button{font:600 .95rem 'Archivo',system-ui,sans-serif;color:#fff;background:var(--orange);border:0;border-radius:8px;padding:11px 18px;cursor:pointer}.solcalc .cpbox button:hover{filter:brightness(1.08)}.solcalc .cpmsg{grid-column:1/-1;margin:0;font-size:.85rem;color:var(--muted)}.solcalc .cpmsg.err{color:#e4472b}
 .solcalc h3{font-size:1.05rem;font-weight:700}
 .solcalc .form{grid-template-columns:1fr 1fr;margin-top:14px}
 .solcalc .res{grid-template-columns:1fr 1fr}
@@ -458,7 +458,7 @@ footer a:hover{color:var(--orange)}
               <select id="solmes" aria-label="Mes"><option value="0">enero</option><option value="1">febrero</option><option value="2">marzo</option><option value="3">abril</option><option value="4">mayo</option><option value="5">junio</option><option value="6">julio</option><option value="7">agosto</option><option value="8">septiembre</option><option value="9">octubre</option><option value="10">noviembre</option><option value="11">diciembre</option></select></label>
           </div>
           <div class="sollg" aria-hidden="true"><span id="sllo"></span><i></i><span id="slhi"></span></div>
-          <p class="wxnote" id="solnote">Horas de sol pico al día. Una hora de sol pico equivale a 1 kWh/m². Fuente: PVGIS (Comisión Europea). Pulsa una ciudad para calcular tu instalación.</p>
+          <p class="wxnote" id="solnote">Horas de sol pico al día. Una hora de sol pico equivale a 1 kWh/m². Fuente: PVGIS (Comisión Europea). Pulsa una ciudad o escribe tu código postal en la estimación para calcular tu instalación.</p>
           <ul class="mine-list" id="solmine" aria-live="polite"></ul>
           <p class="empty" id="solerr" hidden>No se han podido cargar los datos de radiación. Vuelve a intentarlo en un rato.</p>
         </div>
@@ -472,13 +472,19 @@ footer a:hover{color:var(--orange)}
       <div class="wxcard solcalc" id="solcalc">
         <h3>Estimación rápida de producción</h3>
         <div class="form">
+          <div class="cpbox">
+            <label>Código postal
+              <input id="solcp" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="5" pattern="[0-9]{5}" placeholder="29719"></label>
+            <button type="button" id="solcpbtn">Buscar</button>
+          </div>
+          <p class="cpmsg" id="solcpmsg" aria-live="polite">Escribe tu código postal para estimar la producción en tu zona, o elige una ciudad.</p>
           <label>Ubicación
             <select id="solcity"></select></label>
           <label>Potencia pico (kWp)
             <input id="solkwp" type="number" inputmode="decimal" min="0.1" max="10000" step="any" value="5"></label>
         </div>
         <div class="res" id="solres" aria-live="polite"></div>
-        <p class="fine descargo">Cálculo orientativo con datos de PVGIS (media 2005-2023), inclinación y orientación óptimas, pérdidas del sistema del 14 % y sin sombras. Una instalación real depende de su orientación, sombras y equipos: calcula tu caso con su ubicación exacta en <a href="https://re.jrc.ec.europa.eu/pvg_tools/es/" target="_blank" rel="noopener noreferrer">PVGIS</a>. No sustituye a un proyecto técnico.</p>
+        <p class="fine descargo">Cálculo orientativo con datos de PVGIS (media 2005-2023). Con el código postal, la cifra se interpola a partir de los puntos PVGIS más cercanos y puede diferir de tu ubicación exacta; la ubicación del código postal se consulta en Open-Meteo sin guardar nada en esta web. Base del cálculo: inclinación y orientación óptimas, pérdidas del sistema del 14 % y sin sombras. Una instalación real depende de su orientación, sombras y equipos: calcula tu caso con su ubicación exacta en <a href="https://re.jrc.ec.europa.eu/pvg_tools/es/" target="_blank" rel="noopener noreferrer">PVGIS</a>. No sustituye a un proyecto técnico.</p>
       </div>
       </div>
     </div>
@@ -1151,7 +1157,7 @@ footer a:hover{color:var(--orange)}
       rs.appendChild(document.createTextNode(' · ' + nf(kw,0) + ' kWh/kWp' + (solMode === 'y' ? ' al año' : ' en ' + MESES[solMes])));
       li.appendChild(b); li.appendChild(rs); ul.appendChild(li);
     });
-    document.getElementById('solnote').textContent = (solMode === 'y' ? 'Horas de sol pico al día (media anual)' : 'Horas de sol pico al día (media de ' + MESES[solMes] + ')') + ', con el panel a su inclinación óptima. Una hora de sol pico equivale a 1 kWh/m². Fuente: PVGIS (Comisión Europea). Pulsa una ciudad para calcular tu instalación.';
+    document.getElementById('solnote').textContent = (solMode === 'y' ? 'Horas de sol pico al día (media anual)' : 'Horas de sol pico al día (media de ' + MESES[solMes] + ')') + ', con el panel a su inclinación óptima. Una hora de sol pico equivale a 1 kWh/m². Fuente: PVGIS (Comisión Europea). Pulsa una ciudad o escribe tu código postal en la estimación para calcular tu instalación.';
   }
   function drawCalc(){
     var d = RAD.data[solSel], res = document.getElementById('solres'); res.textContent = '';
@@ -1193,6 +1199,40 @@ footer a:hover{color:var(--orange)}
   document.getElementById('solmes').addEventListener('change', function(){ solMes = +this.value; if(RAD) drawSol(); });
   document.getElementById('solcity').addEventListener('change', function(){ if(RAD) selectCity(this.value); });
   document.getElementById('solkwp').addEventListener('input', function(){ if(RAD) drawCalc(); });
+
+  /* Estimación por código postal: ubicación (Open-Meteo) + interpolación entre los puntos PVGIS más cercanos */
+  var PTS = CITIES.map(function(c){ return [c[0], c[1], c[2]]; }).concat([['Benamocarra', 36.7936, -4.1928]]);
+  function dkm(a, b, c, d){ var r = Math.PI/180, x = Math.sin((c-a)*r/2), y = Math.sin((d-b)*r/2); var h = x*x + Math.cos(a*r)*Math.cos(c*r)*y*y; return 12742 * Math.asin(Math.sqrt(h)); }
+  function interp(lat, lon){
+    var L = PTS.filter(function(p){ return RAD.data[p[0]]; }).map(function(p){ return {n:p[0], d:dkm(lat, lon, p[1], p[2])}; }).sort(function(a,b){ return a.d - b.d; }).slice(0,3);
+    if(L[0].d < 1) L = [L[0]];
+    var w = L.map(function(x){ return 1 / Math.pow(Math.max(x.d, 1), 2); }), sw = w.reduce(function(a,b){ return a + b; }, 0);
+    function mix(f){ return L.reduce(function(a, x, i){ return a + f(RAD.data[x.n]) * w[i]; }, 0) / sw; }
+    return { d:{ e:mix(function(q){ return q.e; }), h:mix(function(q){ return q.h; }), a:Math.round(mix(function(q){ return q.a; })), az:0,
+      hm:[0,1,2,3,4,5,6,7,8,9,10,11].map(function(i){ return mix(function(q){ return q.hm[i]; }); }),
+      em:[0,1,2,3,4,5,6,7,8,9,10,11].map(function(i){ return mix(function(q){ return q.em[i]; }); }) }, near:L[0].n, dist:L[0].d };
+  }
+  function cpMsg(t, err){ var m = document.getElementById('solcpmsg'); m.textContent = t; m.className = 'cpmsg' + (err ? ' err' : ''); }
+  function buscarCP(){
+    var cp = document.getElementById('solcp').value.trim();
+    if(!RAD){ cpMsg('Los datos de radiación no están cargados todavía. Inténtalo en un momento.', true); return; }
+    if(!/^(0[1-9]|[1-4][0-9]|5[0-2])[0-9]{3}$/.test(cp)){ cpMsg('Escribe un código postal español de 5 cifras.', true); return; }
+    cpMsg('Buscando ' + cp + '…');
+    fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + cp + '&count=10&language=es&countryCode=ES')
+      .then(function(r){ if(!r.ok) throw new Error('http'); return r.json(); })
+      .then(function(j){
+        var ok = (j.results || []).filter(function(x){ return (x.postcodes || []).indexOf(cp) >= 0; })[0];
+        if(!ok){ cpMsg('No se ha encontrado el código postal ' + cp + '. Revísalo o elige una ciudad.', true); return; }
+        var r = interp(ok.latitude, ok.longitude), key = 'CP ' + cp + ' · ' + ok.name;
+        if(!RAD.data[key]){ var o = document.createElement('option'); o.value = key; o.textContent = key; document.getElementById('solcity').appendChild(o); }
+        RAD.data[key] = r.d;
+        selectCity(key);
+        cpMsg('Estimado para ' + ok.name + ' (' + cp + ') a partir de los puntos PVGIS más cercanos (el más próximo, ' + r.near + ', a ' + nf(r.dist,0) + ' km). Orientativo.');
+      })
+      .catch(function(){ cpMsg('No se ha podido consultar el código postal ahora mismo. Elige una ciudad de la lista.', true); });
+  }
+  document.getElementById('solcpbtn').addEventListener('click', buscarCP);
+  document.getElementById('solcp').addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); buscarCP(); } });
 
   var lastW = window.innerWidth;
   window.addEventListener('resize', function(){ if(window.innerWidth !== lastW){ lastW = window.innerWidth; if(WX) drawMap(); if(RAD) drawSol(); } });
@@ -1558,7 +1598,7 @@ footer a:hover{color:var(--orange)}
        intro:'Puedes obtener una primera cifra orientativa en un minuto.',
        h1:'Cómo hacerlo',
        ordered:true,
-       check:['Ve al mapa de radiación solar de la parte superior de esta web y pulsa tu ciudad o la más cercana.','En la estimación rápida, escribe la potencia que quieres instalar en kWp.','Lee la producción anual, el mejor y peor mes y la inclinación óptima.','Para tu caso real, con tu orientación, tu inclinación y tus sombras, calcula con PVGIS usando la ubicación exacta de tu tejado.'],
+       check:['Ve al mapa de radiación solar de la parte superior de esta web y escribe tu código postal en la estimación rápida (o pulsa tu ciudad o la más cercana).','En la estimación rápida, escribe la potencia que quieres instalar en kWp.','Lee la producción anual, el mejor y peor mes y la inclinación óptima.','Para tu caso real, con tu orientación, tu inclinación y tus sombras, calcula con PVGIS usando la ubicación exacta de tu tejado.'],
        stop:['La estimación es orientativa: parte de datos de PVGIS, orientación e inclinación óptimas, pérdidas del 14 % y sin sombras. No sustituye a un proyecto técnico.'],
        stopH:'Importante',
        src:['pvgis'],
