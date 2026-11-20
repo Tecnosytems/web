@@ -484,7 +484,7 @@ footer a:hover{color:var(--orange)}
             <input id="solkwp" type="number" inputmode="decimal" min="0.1" max="10000" step="any" value="5"></label>
         </div>
         <div class="res" id="solres" aria-live="polite"></div>
-        <p class="fine descargo">Cálculo orientativo con datos de PVGIS (media 2005-2023). Con el código postal, la cifra se interpola a partir de los puntos PVGIS más cercanos y puede diferir de tu ubicación exacta; la ubicación del código postal se consulta en Open-Meteo sin guardar nada en esta web. Base del cálculo: inclinación y orientación óptimas, pérdidas del sistema del 14 % y sin sombras. Una instalación real depende de su orientación, sombras y equipos: calcula tu caso con su ubicación exacta en <a href="https://re.jrc.ec.europa.eu/pvg_tools/es/" target="_blank" rel="noopener noreferrer">PVGIS</a>. No sustituye a un proyecto técnico.</p>
+        <p class="fine descargo">Cálculo orientativo con datos de PVGIS (media 2005-2023). Con el código postal, la cifra se interpola a partir de una malla de puntos PVGIS separados unos 50 km y puede diferir de tu ubicación exacta; la ubicación del código postal se consulta en Open-Meteo sin guardar nada en esta web. Base del cálculo: inclinación y orientación óptimas, pérdidas del sistema del 14 % y sin sombras. Una instalación real depende de su orientación, sombras y equipos: calcula tu caso con su ubicación exacta en <a href="https://re.jrc.ec.europa.eu/pvg_tools/es/" target="_blank" rel="noopener noreferrer">PVGIS</a>. No sustituye a un proyecto técnico.</p>
       </div>
       </div>
     </div>
@@ -1200,17 +1200,21 @@ footer a:hover{color:var(--orange)}
   document.getElementById('solcity').addEventListener('change', function(){ if(RAD) selectCity(this.value); });
   document.getElementById('solkwp').addEventListener('input', function(){ if(RAD) drawCalc(); });
 
-  /* Estimación por código postal: ubicación (Open-Meteo) + interpolación entre los puntos PVGIS más cercanos */
-  var PTS = CITIES.map(function(c){ return [c[0], c[1], c[2]]; }).concat([['Benamocarra', 36.7936, -4.1928]]);
+  /* Estimación por código postal: ubicación (Open-Meteo) + interpolación entre los puntos de la malla PVGIS (radiacion_malla.json) */
+  var GRID = null, gridP = null;
+  function loadGrid(){
+    if(GRID) return Promise.resolve(GRID);
+    if(!gridP) gridP = fetch('radiacion_malla.json?v=1').then(function(r){ if(!r.ok) throw new Error('malla'); return r.json(); }).then(function(g){ GRID = g.pts; return GRID; }).catch(function(e){ gridP = null; throw e; });
+    return gridP;
+  }
   function dkm(a, b, c, d){ var r = Math.PI/180, x = Math.sin((c-a)*r/2), y = Math.sin((d-b)*r/2); var h = x*x + Math.cos(a*r)*Math.cos(c*r)*y*y; return 12742 * Math.asin(Math.sqrt(h)); }
   function interp(lat, lon){
-    var L = PTS.filter(function(p){ return RAD.data[p[0]]; }).map(function(p){ return {n:p[0], d:dkm(lat, lon, p[1], p[2])}; }).sort(function(a,b){ return a.d - b.d; }).slice(0,3);
-    if(L[0].d < 1) L = [L[0]];
+    var L = GRID.map(function(p){ return {p:p, d:dkm(lat, lon, p[0], p[1])}; }).sort(function(a,b){ return a.d - b.d; }).slice(0,4);
+    if(L[0].d < 5) L = [L[0]];
     var w = L.map(function(x){ return 1 / Math.pow(Math.max(x.d, 1), 2); }), sw = w.reduce(function(a,b){ return a + b; }, 0);
-    function mix(f){ return L.reduce(function(a, x, i){ return a + f(RAD.data[x.n]) * w[i]; }, 0) / sw; }
-    return { d:{ e:mix(function(q){ return q.e; }), h:mix(function(q){ return q.h; }), a:Math.round(mix(function(q){ return q.a; })), az:0,
-      hm:[0,1,2,3,4,5,6,7,8,9,10,11].map(function(i){ return mix(function(q){ return q.hm[i]; }); }),
-      em:[0,1,2,3,4,5,6,7,8,9,10,11].map(function(i){ return mix(function(q){ return q.em[i]; }); }) }, near:L[0].n, dist:L[0].d };
+    function mix(i){ return L.reduce(function(a, x, k){ return a + x.p[i] * w[k]; }, 0) / sw; }
+    var idx = [0,1,2,3,4,5,6,7,8,9,10,11];
+    return { d:{ e:mix(2), h:mix(3), a:Math.round(mix(4)), az:Math.round(mix(5)), hm:idx.map(function(i){ return mix(6 + i); }), em:idx.map(function(i){ return mix(18 + i); }) }, dist:L[0].d };
   }
   function cpMsg(t, err){ var m = document.getElementById('solcpmsg'); m.textContent = t; m.className = 'cpmsg' + (err ? ' err' : ''); }
   function buscarCP(){
@@ -1218,16 +1222,18 @@ footer a:hover{color:var(--orange)}
     if(!RAD){ cpMsg('Los datos de radiación no están cargados todavía. Inténtalo en un momento.', true); return; }
     if(!/^(0[1-9]|[1-4][0-9]|5[0-2])[0-9]{3}$/.test(cp)){ cpMsg('Escribe un código postal español de 5 cifras.', true); return; }
     cpMsg('Buscando ' + cp + '…');
-    fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + cp + '&count=10&language=es&countryCode=ES')
-      .then(function(r){ if(!r.ok) throw new Error('http'); return r.json(); })
-      .then(function(j){
+    Promise.all([
+      fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + cp + '&count=10&language=es&countryCode=ES').then(function(r){ if(!r.ok) throw new Error('http'); return r.json(); }),
+      loadGrid()
+    ]).then(function(res){
+        var j = res[0];
         var ok = (j.results || []).filter(function(x){ return (x.postcodes || []).indexOf(cp) >= 0; })[0];
         if(!ok){ cpMsg('No se ha encontrado el código postal ' + cp + '. Revísalo o elige una ciudad.', true); return; }
         var r = interp(ok.latitude, ok.longitude), key = 'CP ' + cp + ' · ' + ok.name;
         if(!RAD.data[key]){ var o = document.createElement('option'); o.value = key; o.textContent = key; document.getElementById('solcity').appendChild(o); }
         RAD.data[key] = r.d;
         selectCity(key);
-        cpMsg('Estimado para ' + ok.name + ' (' + cp + ') a partir de los puntos PVGIS más cercanos (el más próximo, ' + r.near + ', a ' + nf(r.dist,0) + ' km). Orientativo.');
+        cpMsg('Estimado para ' + ok.name + ' (' + cp + ') con la malla de puntos PVGIS (el más próximo, a ' + nf(r.dist,0) + ' km). Orientativo.');
       })
       .catch(function(){ cpMsg('No se ha podido consultar el código postal ahora mismo. Elige una ciudad de la lista.', true); });
   }
