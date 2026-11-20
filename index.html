@@ -24,7 +24,13 @@ a{color:inherit}
 .mono{font-family:'JetBrains Mono',monospace}
 
 /* Aviso */
-.aviso{background:var(--orange);color:#0D1219;text-align:center;padding:11px 16px;font-weight:700;font-size:1rem;line-height:1.35}
+.aviso{background:var(--orange);color:#0D1219;text-align:center;font-size:.9rem;line-height:1.4}
+.aviso summary{list-style:none;cursor:pointer;padding:6px 16px;font-weight:700}
+.aviso summary::-webkit-details-marker{display:none}
+.aviso summary span{font-weight:500;text-decoration:underline;text-underline-offset:3px}
+.aviso summary:focus-visible{outline:2px solid #0D1219;outline-offset:-4px}
+.aviso p{max-width:90ch;margin:0 auto;padding:2px 16px 12px}
+.aviso[open] summary span{display:none}
 
 /* Cabecera */
 header{position:sticky;top:0;z-index:20;background:rgba(13,18,25,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
@@ -334,7 +340,10 @@ footer a:hover{color:var(--orange)}
 </style>
 </head>
 <body>
-<div class="aviso" role="status">Ahora mismo no realizamos trabajos ni aceptamos encargos.</div>
+<details class="aviso" id="aviso">
+  <summary>Web informativa y sin finalidad comercial <span aria-hidden="true">· más información</span></summary>
+  <p>Reúne herramientas de cálculo, datos y novedades sobre climatización, refrigeración, electricidad y energía solar, con fines divulgativos. No ofrece servicios, presupuestos ni contratación, no incluye publicidad y no obtiene beneficio económico.</p>
+</details>
 <header>
   <div class="wrap">
     <a href="#inicio" aria-label="TecnoSystems, inicio"><img src="logo-cabecera.png" alt="TecnoSystems" width="256" height="54"></a>
@@ -1536,6 +1545,14 @@ footer a:hover{color:var(--orange)}
   document.addEventListener('click',function(e){if(open&&!document.getElementById('clock').contains(e.target)) show(false)});
   tick(); setInterval(function(){if(!document.hidden) tick()},1000);
   document.addEventListener('visibilitychange',function(){if(!document.hidden) tick()});
+})();
+</script>
+<script>
+(function(){var a=document.getElementById('aviso');if(!a)return;
+var fine=window.matchMedia&&window.matchMedia('(hover:hover) and (pointer:fine)').matches,pinned=false;
+if(fine){a.addEventListener('mouseenter',function(){a.open=true});
+a.addEventListener('mouseleave',function(){if(!pinned)a.open=false});}
+a.querySelector('summary').addEventListener('click',function(e){if(fine){e.preventDefault();pinned=!pinned;a.open=pinned||a.open&&!pinned?pinned:true;if(!pinned)a.open=false;}});
 })();
 </script>
 </body>
