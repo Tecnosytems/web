@@ -29,6 +29,7 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
 body{background:var(--bg);color:var(--text);font-family:'Archivo',system-ui,sans-serif;font-size:1.02rem;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:3px}
+.skip{position:absolute;left:-9999px;top:8px;background:var(--orange);color:#0D1219;padding:8px 14px;border-radius:6px;font-weight:700;z-index:100;text-decoration:none}.skip:focus{left:8px}
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 .mono{font-family:'JetBrains Mono',monospace}
 
@@ -239,7 +240,7 @@ footer a:hover{color:var(--orange)}
 .form{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 18px;margin-top:20px}
 .form label{display:flex;flex-direction:column;gap:5px;font-size:.86rem;color:var(--muted)}
 .form input,.form select{font:500 1rem 'JetBrains Mono',monospace;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;width:100%}
-.form input:focus,.form select:focus{border-color:var(--orange);outline:none}
+.form input:focus,.form select:focus{border-color:var(--orange);outline:none;box-shadow:0 0 0 2px var(--orange)}
 .res{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
 .res div{border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:var(--bg)}
 .res small{display:block;color:var(--muted);font-size:.8rem}
@@ -283,7 +284,7 @@ footer a:hover{color:var(--orange)}
 .gx .gx-urg{margin-top:20px;color:var(--muted);font-size:.88rem;max-width:70ch}
 
 /* Preguntas */
-.buscador{max-width:680px;margin-top:22px}.buscador form{display:block}.buscador label{display:block;font-size:.86rem;color:var(--muted);margin-bottom:6px}.buscador input{font:500 1rem 'Archivo',system-ui,sans-serif;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:13px 16px;width:100%}.buscador input:focus{border-color:var(--orange);outline:none}.buscador .bnote{margin-top:10px;font-size:.82rem;line-height:1.5;color:var(--muted);max-width:68ch}.buscador ul{list-style:none;margin-top:12px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;overflow:hidden}.buscador ul[hidden]{display:none}.buscador li a{display:block;padding:12px 16px;text-decoration:none;border-bottom:1px solid var(--line)}.buscador li:last-child a{border-bottom:0}.buscador li a:hover,.buscador li a:focus-visible{background:rgba(255,255,255,.04)}.buscador li b{display:block;font-weight:650;font-size:.97rem}.buscador li small{display:block;color:var(--muted);font-size:.8rem;margin-top:2px}.buscador li span{display:block;color:var(--muted);font-size:.86rem;margin-top:4px}.buscador .bnone{padding:14px 16px;color:var(--muted);font-size:.9rem}.bhit{outline:2px solid var(--orange);outline-offset:4px;border-radius:6px;transition:outline-color .6s}
+.buscador{max-width:680px;margin-top:22px}.buscador form{display:block}.buscador label{display:block;font-size:.86rem;color:var(--muted);margin-bottom:6px}.buscador input{font:500 1rem 'Archivo',system-ui,sans-serif;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:13px 16px;width:100%}.buscador input:focus{border-color:var(--orange);outline:none;box-shadow:0 0 0 2px var(--orange)}.buscador .bnote{margin-top:10px;font-size:.82rem;line-height:1.5;color:var(--muted);max-width:68ch}.buscador ul{list-style:none;margin-top:12px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;overflow:hidden}.buscador ul[hidden]{display:none}.buscador li a{display:block;padding:12px 16px;text-decoration:none;border-bottom:1px solid var(--line)}.buscador li:last-child a{border-bottom:0}.buscador li a:hover,.buscador li a:focus-visible{background:rgba(255,255,255,.04)}.buscador li b{display:block;font-weight:650;font-size:.97rem}.buscador li small{display:block;color:var(--muted);font-size:.8rem;margin-top:2px}.buscador li span{display:block;color:var(--muted);font-size:.86rem;margin-top:4px}.buscador .bnone{padding:14px 16px;color:var(--muted);font-size:.9rem}.bhit{outline:2px solid var(--orange);outline-offset:4px;border-radius:6px;transition:outline-color .6s}
 .faq{margin-top:28px;max-width:820px;border-top:1px solid var(--line)}
 .faq details{border-bottom:1px solid var(--line)}
 .faq summary{cursor:pointer;list-style:none;padding:16px 36px 16px 0;font-weight:650;font-size:1.05rem;position:relative}
@@ -384,6 +385,7 @@ footer a:hover{color:var(--orange)}
 </style>
 </head>
 <body>
+<a class="skip" href="#inicio">Saltar al contenido</a>
 <details class="aviso" id="aviso">
   <summary>Web informativa y sin finalidad comercial <span aria-hidden="true">· más información</span></summary>
   <p>Reúne herramientas de cálculo, datos y novedades sobre climatización, refrigeración, electricidad y energía solar, con fines divulgativos. No ofrece servicios, presupuestos ni contratación, no incluye publicidad y no obtiene beneficio económico.</p>
@@ -1686,6 +1688,7 @@ footer a:hover{color:var(--orange)}
       T.appendChild(btn(t.name, curT === t, function(){ curT = t; drawTopics(); drawResult(true); }));
     });
   }
+  var PAGES = {dif:'diferencial-que-salta.html',nofria:'aire-no-enfria.html',gotea:'aire-gotea.html',mant:'mantenimiento-climatizacion.html',nevera:'nevera-no-enfria.html',magneto:'salta-el-magnetotermico.html',caliente:'enchufe-caliente.html',puedo:'que-puedo-tocar.html'};
   function drawResult(focus){
     R.textContent = '';
     if(!curT){ R.hidden = true; return; }
@@ -1712,6 +1715,9 @@ footer a:hover{color:var(--orange)}
         var li = h('li'), a = h('a', S[k][0]); a.href = S[k][1]; a.target = '_blank'; a.rel = 'noopener noreferrer'; li.appendChild(a); l.appendChild(li);
       });
       d.appendChild(l); R.appendChild(d);
+    }
+    if(PAGES[t.id]){
+      var lp = h('p'), ap = h('a', 'Leer esta guía en su propia página'); ap.href = PAGES[t.id]; ap.style.color = 'var(--text)'; lp.appendChild(ap); R.appendChild(lp);
     }
     if(t.link){
       var lk = h('p'), a2 = h('a', t.link[0]); a2.href = t.link[1]; a2.style.color = 'var(--text)'; lk.appendChild(a2); R.appendChild(lk);
