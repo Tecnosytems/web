@@ -1,13 +1,45 @@
 {
- "updated": "2026-11-20T13:59:21Z",
+ "updated": "2026-11-21T13:27:37Z",
  "items": [
+  {
+   "topic": "Climatización",
+   "title": "El Ente Vasco de la Energía lanza el programa de ayudas Eguzki Hotz para instalaciones energéticas",
+   "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPS2haUnIwUGpDOFFBU2Q1Wk80b0o0UnRQaUgzVXJTZEQ4bGZPdTFfZ2ZIVFVnMDdUcEI3cE1xd2dyaVdYNC1ZSHM0LUQyLXp4R0tyLW5PbWlUMzRPQzJZNXN5MlpqUHZhWUtad3JrTHlkMnZ3Y2F2b1RHbmlmMEVaV1pIck1rRkJuY2hKQ0F3?oc=5",
+   "source": "Comunicae",
+   "date": "2026-11-21T05:49:46Z",
+   "image": ""
+  },
+  {
+   "topic": "Refrigeración",
+   "title": "El mercado de gases refrigerantes crecerá hasta 2035 impulsado por la demanda mundial de refrigeración y la reducción de HFC",
+   "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOOXJ3RHpsRFM0N3VSUHpTOXoxa3pkN3pCUDBaQmpkX1dWaDFrd2F5U2pGU2VrNU1oNm9iNUF3OEhJVUhia3dFeHNOOGZaUW1xanRKRzVtMXNNMHdHTDgtQjJHdTNtQU1QNWJwRkpVWmFfamdET1A1RU9LVHBxU3c5VktZRXBqbTBBNFBiSXU2S2k4VDFkQ2FNWmZtVmVlLWNiT2NQbGtBUzMzV0F1a0Y1a2dYbGlMd3M5dTdzTlg4NlRuWTRIUEVYNXd1QUE4VXdm?oc=5",
+   "source": "IndexBox",
+   "date": "2026-11-21T00:36:04Z",
+   "image": ""
+  },
+  {
+   "topic": "Fotovoltaica",
+   "title": "España refuerza la repotenciación eólica, el autoconsumo industrial, y el almacenamiento con hidroeléctrica y solar termoeléctrica",
+   "link": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOQ2lxSmRvTGlKTjZYWkhKN0RtaERPekVRSlNkMFc0dlVzbERWQi0tbERBeDQtUnd4VjBEbXgzVmpQTXgxc1FaWkk0SmtPMzRzRzEzOHlxckZ4aUhRSE5sRjc4Z2FEUVdfQW1SdUlhR3lXbm43UlIwZ0I5OTBzUzRtU0FkbDljbVJBbTJVMkJ2TUw0Sjhzd2pNWWRnaWRGRWFVNVdKOEEzYklFbHFKQnZnenFtTVFqYVFlS1dxTzZrSHJNY2pfVXkwRlFqdzZiYVZXV21pcDZOVWYyd2xmVkNUR0RNaDUxb0h2M09wZ0V4LUZCMGpSdnJF?oc=5",
+   "source": "El Periódico de la Energía",
+   "date": "2026-11-20T23:58:08Z",
+   "image": ""
+  },
+  {
+   "topic": "Fotovoltaica",
+   "title": "22 proyectos de almacenamiento publicados en los boletines oficiales en esta semana",
+   "link": "https://www.pv-magazine.es/2026/11/20/22-proyectos-de-almacenamiento-publicados-en-los-boletines-oficiales-en-esta-semana/",
+   "source": "pv magazine",
+   "date": "2026-11-20T14:39:00Z",
+   "image": "https://www.pv-magazine.es/wp-content/uploads/2026/11/BESS-a-noite-Pacific-Energy-1024x568-1.jpg"
+  },
   {
    "topic": "Fotovoltaica",
    "title": "El MITECO aprueba el decreto de centros de datos",
    "link": "https://www.pv-magazine.es/2026/11/20/el-miteco-aprueba-el-decreto-de-centros-de-datos/",
    "source": "pv magazine",
    "date": "2026-11-20T13:25:46Z",
-   "image": "https://www.pv-magazine.es/wp-content/uploads/2025/12/BalticServers_data_center-1200x797-1.jpg"
+   "image": "https://www.pv-magazine.es/wp-content/uploads/2026/11/Captura-de-pantalla-2026-11-20-a-las-14.58.48.png"
   },
   {
    "topic": "Fotovoltaica",
@@ -50,20 +82,12 @@
    "image": "https://www.pv-magazine.es/wp-content/uploads/2026/07/Heat-pump-2-1024x683-1.jpg"
   },
   {
-   "topic": "Fotovoltaica",
-   "title": "Prueban la integración de electrólisis, almacenamiento en hidruros y pilas de combustible en una comunidad energética",
-   "link": "https://www.pv-magazine.es/2026/11/20/prueban-la-integracion-de-electrolisis-almacenamiento-en-hidruros-y-pilas-de-combustible-en-una-comunidad-energetica/",
-   "source": "pv magazine",
-   "date": "2026-11-20T08:58:31Z",
-   "image": "https://www.pv-magazine.es/wp-content/uploads/2026/11/photo-1559139061-28d9de44e40e-scaled.avif"
-  },
-  {
-   "topic": "Fotovoltaica",
-   "title": "La lonja del Puerto de Marín incorpora 370 kWp fotovoltaicos y 591 kWh de almacenamiento",
-   "link": "https://www.pv-magazine.es/2026/11/20/la-lonja-del-puerto-de-marin-incorpora-370-kwp-fotovoltaicos-y-591-kwh-de-almacenamiento/",
-   "source": "pv magazine",
-   "date": "2026-11-20T08:03:28Z",
-   "image": "https://www.pv-magazine.es/wp-content/uploads/2026/11/Autoconsumo-Puerto-Marin-3-1536x1152-1.jpg"
+   "topic": "Climatización",
+   "title": "LG amplía su oferta en aerotermia con el lanzamiento de la gama THERMA V R290 Monobloc",
+   "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPRllwSlVJbVpOcnI3bzFnX1lHa3RkRGFDMTdNYXBubndELTFidE5SRVc4T1dGdHZSbDRqYlRHVzVCcGMyS21saTBFVXZFZlhuUG9KSXY1YlJzT04zVDEtbjlxRlBscGFSTTQ2MWVpMjhKak1pTWt3dlkzcnFJbTZYYlJ5d3hYbHNSRnZsdHFvQVVGVTllQXFHc2lzWE1GZkptcmZnOEdYSFR5bDFhc3pZ?oc=5",
+   "source": "Caloryfrio",
+   "date": "2026-11-19T14:32:12Z",
+   "image": ""
   },
   {
    "topic": "Climatización",
@@ -94,7 +118,15 @@
    "title": "La industria eléctrica rechaza de forma tajante el nuevo impuesto de la UE al reciclaje",
    "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPU1ktanppdnBZZ0lUd1ozOUtKcXg4RkhfZ1Fpd0JSWUR5eVZHVkRBQW9sS21YLVp2b205V0JIdVRiOUlzUlVlSFVaTUxxaTZaRWxVRUxvMS14UVFnN0Z2THA5TXZvLTdQaGxNY2ZRZmoxdEw0c3p1b1hLbTM0a0NwTzBRdXU3VGhNZkxscHFxS3UxVktic1F1NWVTVVQxek9pNWg5R25jYVBFRUR3ZzN5ZEN0R2RBbGZ1eXBsTllCWnltMVhPR0dMdFBOLW85RHJCWWhlNjBiTGs?oc=5",
    "source": "- Instaladores 2.0",
-   "date": "2026-11-18T16:55:47Z",
+   "date": "2026-11-18T16:56:58Z",
+   "image": ""
+  },
+  {
+   "topic": "Climatización",
+   "title": "Daikin propone cinco medidas para mejorar la climatización del hogar ante el frío",
+   "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNMV9LZnJrMEgtY0hFNVVLc3I4bmxCdVg3cXdQWXdhdmVtR3d5ZlBoZkRoN2Qwd2s0cEg1UE9EZDBHNDhTYVRLenoyQVROUXdLeDBLenhROGFkNTdKZE9QM21wdm1hempUSHdxMW9ZRHg3czNLcUxFMGM5LXN4WTRvQzZibmo2SGY2MGpzcUNBdkNQS1NaSWhGbThscllXRFhLcXZ3ZlR6c1VPM2FPQm96RWM1SXJqWEZ4UlVoak5TbXJYdmpMcHNkd28yM3dXLUoybGVr?oc=5",
+   "source": "Interempresas Media",
+   "date": "2026-11-18T10:58:36Z",
    "image": ""
   },
   {
@@ -114,11 +146,11 @@
    "image": ""
   },
   {
-   "topic": "Electricidad",
-   "title": "Mercado de conductos metálicos intermedios hasta 2035: la demanda de centros de datos y la modernización de redes sostienen el crecimiento - Noticias y Estadísticas",
-   "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQZldkU3cxZlFOX2JXb05rX3k0SXVRd2syZlZMYlBYTDNLcWJOQkM1UmN5dHZxd0dRZUc4bG1Rd1hRcHVtQlRDdzZTSVV1bVVoVVRDTEZOOVA1SjkxVy1Sa0dyR3FMaVlXRU1rRnBZQ2Q0dVhES1UzZDBGTnVKaFdZMDc3M3VsRThPeXM0R2ZlRUQ3aFhQbEN4VW96d0xPbmVoTmJ0RldjaEY2ZzBWeUktMi1fT2tnQ0RBTVBVaE90cmJISmR5QWwwUDlPZGpKLVk5X1E?oc=5",
-   "source": "IndexBox",
-   "date": "2026-11-17T16:21:04Z",
+   "topic": "Refrigeración",
+   "title": "Frigo Diz: frío y clima industrial que cuidan tu negocio y el planeta",
+   "link": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPMkJXN0FDN1BIUjdhdURGcXRfaElsMkc0dkZJSl9wWmhucjZMNFZ4RC1VT3V1aVV3NlFIUWRhLTlGY2tJeXBFbnZqREF5MThQcFg5N3o5d21MRHFhUEc0UmxIR09tVzJWdWlCWjJ6ZjVINDUtck5MQWpoaXlWMUhVcjNvQkF6WmdNQ0VoZ3FPOV8zcW1Oakh1clRWdmhYd2NfcDZLLVFBMHQ4V3diS3gtRTJRSW9zUC03UDUyWUNjRElzZUtMYVJTZnkyYlgzazgxd0xRemhoNE9lLWF3aXcyZ1ZB0gH-AUFVX3lxTFBGTXVjVENYWDlrQjRua1BmbkxlYU50cWg3bllHdzNCNXJTVTBGZnZvUEtVR21WUDhrRU1jUmgzdHpBRm1tdDFwM1ZCcWprMmVYM2d0OXAyNzdfVU85S2ZCUEZ1TXBnUzJJZ2Y5YTlnZWZEV0FhUEFYQlR4MU1vaVozcHdJYXdnWlNJdlVPbVpGQ0tkR2hFLXdzUnNIV05pZmJJM1BMOWVZTTZJUWViOTlMRkxuWHNXbnhWSEtZOTRKa05ncGNuRE9EOFkzc29rTHRnQWcxSTVqTWNlVFZMdkJyTEg5NW9tYjFNNDJQSmdZRzd5TXlaYjRjVnk4MmV3?oc=5",
+   "source": "La Voz de Galicia",
+   "date": "2026-11-18T08:00:00Z",
    "image": ""
   },
   {
@@ -146,6 +178,14 @@
    "image": ""
   },
   {
+   "topic": "Electricidad",
+   "title": "“Peligra la transición energética por la falta de profesionales”, en la presentación del Monitor Fiecov",
+   "link": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxOMWIzOURpM2lNcExJOTJGUHZ1LXIwTWVKQ2sxZWpZeU1iOGxlZWhDeUZsbjFqSXJsRlZUZVhNT3VqYXk4X2JCMnNOdzUzcXVGTFA4V1ZhQk9HUWdaeTdOaUVIS01DWGZjazBQRUYxRzhRdmdpVVAzNExmTXFsNS1jb2NwZGJJVUROXzMyUWZJWDhaZXMxQzlwSWctWXJDRVV4TzMzYUM5NU1YcldMc2pNcFNGUk9rSWd6empVMGJEWXhrU1h3ZnlwZ1plQUZ6anNxLXd5aE0tTXZoSHpRWTF5OTYyVUNYeUJDUkZN?oc=5",
+   "source": "- Instaladores 2.0",
+   "date": "2026-11-16T16:08:27Z",
+   "image": ""
+  },
+  {
    "topic": "Refrigeración",
    "title": "Primera parte: TEKO explica a qué se debe el crecimiento «significativo y constante» de las enfriadoras de CO₂ y las bombas de calor en Europa",
    "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPRDUycXNjZzFVVUhjUUNTaXNZbXV3YW9wWmFHN2NTZXNkYm5hSGNET0JsZHctbHRNM3V5eG1Yc29uNHYwaXVocWtNSFVnekJwZjk1cVg1SVgzTHZjUnBCbmUwY2NkZ3NPdWw2OEJIczliQVRseUlxMTlaVmhibkFUWUZKdk5tZFYwVTBfcGthQWRXb1A0b1BzR2VsaFdkVWZGU3ZHVHpJNU1XUUFCamxDdzhtdUdUMjRTMU1QTjIxLXVKYURSM1pYcDZqQQ?oc=5",
@@ -162,19 +202,27 @@
    "image": ""
   },
   {
-   "topic": "Electricidad",
-   "title": "El programa completo de jornadas que organiza Apiem la próxima semana en Matelec",
-   "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNaUdzVk9vcDcxRUFSVnJmMnRWeTVKNzJDM3FVb2dOUjkzaEcyc0YzUEw2eG50WE9yVVZkZ2FNa3ItMk1xVjdKSmFQOHkyTS03bkFEY0tDRktTU3dvS2xtR1FOblNNMlZNS1Z3OFBuYTZyNUxvc3QzWkh4SWdobWpaUjNvS0RMaGRkaHkwbndkYUVDUFEyT1A1Q0J4NTYwTEIwR2RmWTVUSVZsVHNwNV9uYzlOM2NOcVJCTHE1YkEzQy1VTjlkYW1PUy1B?oc=5",
-   "source": "- Instaladores 2.0",
-   "date": "2026-11-16T08:00:00Z",
-   "image": ""
-  },
-  {
    "topic": "Refrigeración",
    "title": "MarketsandMarkets: refrigerantes de bajo GWP alcanzarán USD 13,06 mil millones",
    "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQazd4b1Q3LUdHWEw0dXF2MGZFT2F2MUFqd1RWQW5fdEY1NzJ4SU92RkFrNjFTTW1ISEZPMi1uSlpoeUh3ektGZFZvSm5USFVta0lTMm1rZkZnNkIwOWNtVXV5d1Z3QXRkZUVsaTN6UEMzY2Z4V3A1R2R3VUJDWmNqcTJpbTN0Z29GXzdCQjRycE0yT28zRmVxXzBlQVBGMENEeWN2U0s1REh3UjgzVlE?oc=5",
    "source": "Refindustry",
    "date": "2026-11-15T22:30:00Z",
+   "image": ""
+  },
+  {
+   "topic": "Refrigeración",
+   "title": "México necesita fortalecer cadena de frío para atraer inversiones: Thermo King",
+   "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPTTJnRnNwc1RlYjRqaWFkUzhLc3RrUkpUTlY1eTkxZGJxaERuM2VkMXJjSmFGRnVGRUlkbXpYVmpEQVB3MG1HX2JIcmdtZWZ0YXdUZ19VUzlhVkNPdGpGdE1nODBnd1RWVExFQ2Z4Zy0ycS1WZGUwaTg4VFNRdmRhalc5aWtRa3VOTlZxRGExeVrSAZABQVVfeXFMTzlDcnN5ZDZxMUU2VUh1eU8tOWNlQl82Ym1ZU2ZobGthYWRxak9DYjFFcjE0dFo2c3NsQXRsamRKMTZKZkhucjZCYkFtNTVSQndfQUt1bG1ZQmgyY19fQ3IwQjFMU19kalBfVUpRUkNqZUIwYUNYbW5BY3JMWWgtbkphRWtrMDVYR25YbWNUaWs5?oc=5",
+   "source": "MILENIO",
+   "date": "2026-11-15T06:43:22Z",
+   "image": ""
+  },
+  {
+   "topic": "Climatización",
+   "title": "Belisario, técnico de climatización: \"Cuesta más tomar un café que tener la calefacción puesta todo el día\"",
+   "link": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxPZFNpc05CUVp0YUpIQUx2T2c3b1NsN09IcEtydWNIaHNaTHlSa19RNGhjbmJkeTB1YTdldmlJMWdQV3FGVHpVRTVLOTRjYXZOdEc4dGhYOE1xb0lqWU02Q2ZzejNJd1pKRGZPbWstSjgtWjJtNUFxWVk0M05HQWMwdnEzZjJfc2NfM1lhLWVjTi1zaHc1LWVuQ3IxOEdZU3dvZlZRZkhlcm5CSnBHZzVORVltUmFrcXpNZkVLV0ZmTE9JTkdkY3lZd3oyMzhmMEZmM1BNRnRTVWZaaWRQcmZFUkNXTFJ0YnE0RTBz0gHwAUFVX3lxTE95dXpFR3R4ZzlJeUUzUDV5VXdocHNWYkd5STFET1ZXVEw5ZWtrc09tTnctRmZPOFVhdlBRbnJEbFRtYXFSYmh0ZzlpMnpYTXVGWUptdGpIOUJLSUFqT0ZfbGxGZ3NRcTZ3MnBLSGRibFlaWUxzZS1tUTVvSENYT1ZfcnJMdEw1LXZ2eHFyeVhndGxpUkQ1bmhFeGdVY1lpSjZYS3RwaXBUVEFRTzNXV1JwVzhVRHg3NWtzY1lMVDhobnFaLWpJUWpfZ1lwRktiRjc4TmlsMlFsZzFjZERCclpwVURCMXhHZ01aTWJmNVU4Xw?oc=5",
+   "source": "El Español",
+   "date": "2026-11-15T05:30:00Z",
    "image": ""
   },
   {
@@ -186,19 +234,11 @@
    "image": ""
   },
   {
-   "topic": "Refrigeración",
-   "title": "¿Se puede hackear la cadena de frío? Un ciberataque puede alterar temperaturas y alarmas",
-   "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNamJremdWRlFMY0NlSzBhOGxXYm9vVzdXaGdGRDhOME5XU3pLMFptcm42djNMNDFub2ZBTG5jOHFIaXNkV3dBQ1dfYVlWb2FjdHFMNmVsLTd4M1RJamRHRUV6TWVIY0ZsYld6ZnRMLVltaDBsSS1EWWtmMVVGX2ViZTZR?oc=5",
-   "source": "Tour Innovación",
-   "date": "2026-11-13T09:05:32Z",
-   "image": ""
-  },
-  {
-   "topic": "Climatización",
-   "title": "El IDAE publica una guía práctica de aerotermia y geotermia para comunidades de propietarios",
-   "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPbmh5cjRJLWxfYjdsSFNYeXd3aWdpZE1XVnN6MFctUmF2d3VlNnVqaHpmbXlDWGFqcEVuRlBvbnJGeUthU2lJaVNCMTNQOC1MdGw2RFRyQjFrMUlIMUEwcjhITVJwcHVXYkh5M1NEMEtEQUVFVThmQnBDTktCdUo3NTRBVlVZclI2bjV1OGM3X3JIdFdwcC1VLXRzMzJTLWVyNTVIcW1MV1NWbUNV?oc=5",
-   "source": "casadomo",
-   "date": "2026-11-13T04:31:57Z",
+   "topic": "Electricidad",
+   "title": "La Nucía invierte más de 258.000 euros en una Escuela Taller de Electricidad para formar a jóvenes desempleados",
+   "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQLU9pdVB0WUxwcXdsTEJTVVgwZk50SFIxSzBrYVdqRkxZZnN1SGNrNlFMTUhkcFlvaWFjSnhuNlRVdWdzV1Z0ZmdLcXNRZW1NMWszVTFDQ1ZpYTE2QTM3by1UNmtYdElJN3NpcW16UUlWLXVZSE1DeVM2S3BVcE5ISU9Yd2NmSVVxVTJoNk95VVAxVnBFLVNzV1hORzc2bXFkSkJ5WWZIRVBvVnplckp1T1F1bXlIZzNZTXFUcGVVeFBnMjU1ZnJWdGE5Qk1HZV9CUG5R?oc=5",
+   "source": "Marina Baixa Digital",
+   "date": "2026-11-13T08:00:00Z",
    "image": ""
   },
   {
@@ -214,47 +254,7 @@
    "title": "Agencias de EE. UU. instan a proteger la refrigeración tras ciberataques en Europa",
    "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPMnVHRmljZEsyTjdybmlabm1LMzBmZ3Y1bFRzdzlYLXhGZ3QyUGpFSGxnQUg2Z2RGTEpVUVJpd2JxeTFsRHJpZDllUmttZG5MNHFtRjFIdER2Vk5QQnljeUtXUS1MbGxZVXJWVkZwbTRJdUZwMGxZUk1fOGVpUGNRZ0RGYzduY1JIOXhualR2bWhDYW9ycXJlVEhTcExkalYtMGE4MWR4Qzh1RUhROThwbURCRQ?oc=5",
    "source": "Refindustry",
-   "date": "2026-11-11T12:10:00Z",
-   "image": ""
-  },
-  {
-   "topic": "Climatización",
-   "title": "El IDAE publica una guía para facilitar la instalación de bombas de calor en comunidades de propietarios",
-   "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPWWxzUG02bDZjWUlTNkdvYXBmVGhOV0hRMXdMVXNaMHhUdlFrOFpibWVneGhwVjVqUldDbE1aWHgxbElSZ1UzdnRhQ3U4aTBHRjdzbWp2M2wyaE9JRE1PZVgwV2JqV3puRTVWdWszU0E4V3YtV1o2NklpLVJtVm9QaVktdWw2TmlCWHpZZjJkUTlmRkxoTTZQaDkwYldFRlM1ZVBJQXFIeE9remFrZjRmY0JJTWJiS1BVRlFaaHEyY1g5QXVraW9sOWdXeGM2NDU4aGVvVA?oc=5",
-   "source": "Interempresas.net",
    "date": "2026-11-11T08:00:00Z",
-   "image": ""
-  },
-  {
-   "topic": "Climatización",
-   "title": "Licitaciones y concursos públicos de esta semana en el sector HVAC",
-   "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOUDFVOTNMZWx2bTh3anVsbDNlTHVLMVM1TGhjOXh6akRfYUhzR3FObVRyQ1FGVktocXBJallFdUpvVFZMamU1UF9vRXQ5RC1DYVhEd19GNmVNWlI4ajBTZ2w1LTljdjR5ZVk0Q2p6Y3liTEZXcE1Vc294eERMcXk4VzA2bXdqSFpsb0tpR1dKcktyOEo2WWVfQWhxWldRYm5wXzNidmZEQ3pGMkZ1REdSR09Ya2NLUkNTdjRRNkNGZm5lY2FVcGRTZmwxN0pVbXdJRmRad1NGc3U0eXhwRWfSAeMBQVVfeXFMTlVVUFVfbC1vNm04M0ZpcnZnbndwelg0TGh5OW1ON1FUZi1xSEl3c1R0MDFIYjB3UEZTVDdyWV9UNVR1dGd3NXI4Tks1Rnd6Z2tacDJmRlllWVNUeU96Y3dEWUFOZWRPcXJnOGNQVU5GWXFwU0k5czEzUy1HdDRpQW8ybjMySU5YTmt5Um9QaHdWUDdRRGdqSlF5ckZzcVlqSmlYTDRTR1oxRl9zc0VqLVdOWTVUektnSFVCZUh5dzkwYVdGQVpkWi1Xa1M4akVaTndQd1FIcmp3Qms5V1QzSGVFam8?oc=5",
-   "source": "CdeComunicacion.es",
-   "date": "2026-11-11T08:00:00Z",
-   "image": ""
-  },
-  {
-   "topic": "Refrigeración",
-   "title": "De residuo cítrico a reserva de frío: un ejemplo de economía circular en la refrigeración industrial",
-   "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQelk3Z3NraXdZTGNadzRuRm04Y0RpUG5hUGl5UkRMaFRyRWNfYmJiRktjdnBNcjVnalBlRDlrQlFZd3RqaGtkZUhuNzJTdlp1eHlKb2FhYU1nWl81alF3ZFdLZE5veVZVVGZKUVhEZlZqcFNFM1lRNVduaUFRa1lMeTd3cGNCUXhZSXAwdi13ZElubWplMjU5SUxfdmx4bXBHOVl0Y3BZMTN2c3RBcnBEb2tHVlhTbUp1Qm1KSWRoV3RLZjNKUy1ja0RoZHBUd3Q2aWc?oc=5",
-   "source": "Interempresas Media",
-   "date": "2026-11-11T08:00:00Z",
-   "image": ""
-  },
-  {
-   "topic": "Climatización",
-   "title": "Guía para instalar bombas de calor: el IDAE explica cómo implementarlas en comunidades de vecinos",
-   "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5iSThKTW85R3VXTGNKeEdoaklsMzlJTm5fX0M4bDJ1MVA2Q0Q4bHd4dGl5TVdxd2tiWVZaMGpkd1hmSXpoLXdsSjZHY1lNRXNqVmlOV1NzTHlKbDI5WTlxT0lwOFBxdWJyaHVscFpR?oc=5",
-   "source": "Energy News",
-   "date": "2026-11-10T11:38:04Z",
-   "image": ""
-  },
-  {
-   "topic": "Refrigeración",
-   "title": "Panasonic presenta ECOi-Loop para la climatización eficiente de data centers",
-   "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOMXJacGZXR1pnM1lYczFVd2xfYk1id3VBODVWajV4V3lvUE92emthVF9OdjZEUTNlaFBLWlpldDZJMGxWOWxEWVl1MjFzcEpCZTAzZVRwUHA3QTdIZU0tcjRFTF9RZ2hEQTZ2QXM2QkFtTzZUUG12LXhvZVFpRTVJR1FaOXhzUHdieHRhLWVRQjFWbF9waHZ1VXZ5Z2hNcVAyYkFLb21ETTluRXdlbHFCTHA5bVhqRDJ3dURsd0ZkYTJ5V294anMyLUpPNlEzOW0xOVZybGo3VG5oNi1i?oc=5",
-   "source": "Caloryfrio",
-   "date": "2026-11-10T08:09:46Z",
    "image": ""
   }
  ],
@@ -324,6 +324,13 @@
   },
   {
    "topic": "Fotovoltaica",
+   "title": "Las ayudas solares en Andalucía se agotan en 24 horas y la Junta suspende 5,8 millones",
+   "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1aamdKOXBwd2lPNlVTNzZ6SmRITm5iOW5hbW5aQUFvZ3pYamRCbklWVS1KU1ZFRGNqcVEzWWpoSXp0UlZBRTlCVnpnam9xME51SDExS1VEcndnRy04RWk2X0pxN0ktRlVWbXNmTFlaMA?oc=5",
+   "source": "Qué.es",
+   "date": "2026-10-23T07:00:00Z"
+  },
+  {
+   "topic": "Fotovoltaica",
    "title": "La Junta cierra en 24 horas dos líneas de ayudas para instalar energía solar por agotar el presupuesto",
    "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQZk0xbDE4OWdPYmthWF9BZkR4TUtjWWRoMHo0OGRHN0lONWZWMWU0SUtDc1ZpSG9LWXRjb01zdDBnZU85aElLUHBWS1E4OXdPVXo4QmpqUWdIaU5fTF9XcUQ3dHVkWFZZb3FLWGlMVk1feEJ6QUc4SjVfUV9nelJxZVo2Y3pRX04wSWpmbG5MdDc?oc=5",
    "source": "Diario de Sevilla",
@@ -344,24 +351,10 @@
    "date": "2026-10-23T07:00:00Z"
   },
   {
-   "topic": "Fotovoltaica",
-   "title": "Andalucía abre las solicitudes de ayudas de hasta el 65% para instalar autoconsumo con baterías",
-   "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxQZlpiZ3J3U1RUWTJOckdUREt5ZmUxN1dFclVWdnAyMVhSbm5HQmxLLXhlZlRIZmw3UldURGgwaVRNN1J6UWpCcVFFcnhBRVVwd2dWVUtnNnBlaHJiNEdqZnRRTVZhNkhsME9yQnJvWXcxZ0VKYkVNOEVfSUQ4ZG1ZOWZFR0VBZmhyd3pCdDU5OGppUlR4bERQR1psZEpwZw?oc=5",
-   "source": "Energías Renovables, el periodismo de las energías limpias.",
-   "date": "2026-10-22T07:00:00Z"
-  },
-  {
    "topic": "Climatización",
    "title": "Andalucía abre desde hoy nuevas ayudas para las viviendas: cambiar ventanas, instalar toldos y mejorar el aislamiento con hasta un 65% de subvención",
    "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQUnNkNnh2eHUtbDZBUkZUUlRySEN5c05OV3dhVHVWbUxrcjFxMEl4RXNKWjBsdUw3SWZyLVdYeEo4MDJud2Y2YkszWXdGdy0tTWRlT01vMWlLNXo1aEZEY0xzcW5MNXFqV194WS1iVzFrNmlhZWJQbnZMcFNMVFBIUGlXU3lPcE1lUW0wRU02ZVZ2elp0ZjlfQWtn0gGfAUFVX3lxTE9GdGo0UWpldmZMSHVPTUN2aGg2ODU3Y2tNR3dQQnNZd2ZHU1JUbnI0WWFfY0xVRTdFOGRpdkIxdFBoUTNzbmdWYnFGM290eUZuSWtSS2xIcm5WTGVzYWp2X0p3YzNuS2hCSnoyOFZ3SkNfVko3WDlra1gzbFRjVzJzbVFlTFJmcTczcXNkaGIxcTZlb0l6Y0V1eVFLdVFZWQ?oc=5",
    "source": "El Correo de Andalucía",
-   "date": "2026-10-22T07:00:00Z"
-  },
-  {
-   "topic": "Refrigeración",
-   "title": "Andalucía destina más de 20,7 millones en ayudas para la eficiencia energética y las renovables",
-   "link": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxOR2pQak1GQ0IzYWs2OUJDcmtucGQ5emR1bmYxaDg0aFhab2w3M1lFc1NMeko1UDZCNUdncllhQjVmRkMxbWs3Rkx3TEppVU4wTVhsOE9vSk1TNmdKWVhQQzlqWGNVNTFCVU1iOEwxRkJ0azQ1QndqNm1rV1ZKQXdUOGtDcGJKYVZzTHpWdHdmeEEzTE5yOUcydTJSdU5QTmdWM1lhdzNLdHZTaTBNbWVWR216TTRGMS1lNFB0dkg3U0VqOV9SamFmNWJjS2czazdNWjJWWi05d3FWLTk3czdYT0VJaFpqY3ZJV3BDUWxKejVYZnZRYnBYY0Ywc9IBgAJBVV95cUxOYnQzeDUyUEN4VkpSamtlVkQ5OTluaWVnX2hwazZQVlRqTlFRaURZbmdDNW1pemhyOGt1ZW14YkV5dTA1ZXdMN3lJQWd6bk1LNU95eDc5dVR2RGJ2am1xVW1EaHVHVG15TlFYSzlZbUFYTkpJSG9NeVZNdkdncjBramdWOENGbkhmOEkwM3ZzQ3QySktLSmxOeGtVUDJOU1MydVF0N05kZFptUm1Od1EyU09SZzFYNzlUZU9qQmVxS1lVb1BpTGM3eE9rU2NkeC0wLThYa05uYWtDUGk3UGI0U1VSekpKT29IbE0yZXBVbFRBZnJvaUdLUmoxQXVjNHZG?oc=5",
-   "source": "COPE",
    "date": "2026-10-22T07:00:00Z"
   },
   {
@@ -384,6 +377,13 @@
    "link": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOVTdLQ09FVERKWGdMQU5EMThNeHotNTNQanhvWXNIRDFkd2JxTE51Z09sYWswc1FZZXpUeElXeWpxZ2EyTFdHRXJJV1BnMzdIM0t1U045RVBpbzJjU3k3SnZmdktQbVRHWlRXVENDWHVlQldDMlc2NlJpWVRWblNoUGtweTE4UDlsUDVEbk5lcEhpN1VTczNCSkhtMjlxWFNNNGpsVURabXZYSEtFTXo4R0NsNXJpa25weEhkNmdjWjFVLUdRbHg0MjdKY1BlUjRJT1IyWENUY2lWUGpRV3ExZm80SldycTBTUE9jYmhTSVNqOWMwcU1N?oc=5",
    "source": "lavozdelsur.es",
    "date": "2026-10-21T07:00:00Z"
+  },
+  {
+   "topic": "Refrigeración",
+   "title": "Subvenciones para placas solares en España y cómo solicitarlas en 2026",
+   "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxONGJ5SklwNXA4cnk1TF81ZlRDdTA5UTBEX3Y0aHkxazFzeElqbW9NWUxFcEo2TFctaXFGT01QS1lUVHhxSlBVemd4NHJvUENQMHhCZXlnYU5YaE4tM1ZSQk9fYko0Qk9tNlFJaHFRcjFTX3NoNHRZQWpKSVVZeTVZU1F3eWgtRm9kZmpUY0NR?oc=5",
+   "source": "Repsol",
+   "date": "2026-10-05T07:00:00Z"
   },
   {
    "topic": "Refrigeración",
